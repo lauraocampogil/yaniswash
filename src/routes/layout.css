@@ -1,1 +1,165 @@
 @import 'tailwindcss';
+
+@font-face {
+	font-family: 'DrukWide';
+	src: url('/assets/fonts/DrukWideBold.ttf') format('truetype');
+	font-style: Bold;
+	font-weight: 700;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Futura';
+	src: url('/assets/fonts/futura-pt-bold.otf') format('truetype');
+	font-style: bold;
+	font-weight: 700;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Futura';
+	src: url('/assets/fonts/futura-pt-demibold.otf') format('truetype');
+	font-style: bold;
+	font-weight: 600;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Futura';
+	src: url('/assets/fonts/futura-pt-medium.otf') format('truetype');
+	font-style: bold;
+	font-weight: 500;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Futura';
+	src: url('/assets/fonts/futura-pt-book.otf') format('truetype');
+	font-style: bold;
+	font-weight: 400;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Futura';
+	src: url('/assets/fonts/futura-pt-light.otf') format('truetype');
+	font-style: bold;
+	font-weight: 300;
+	font-display: swap;
+}
+
+* {
+	@apply box-border;
+}
+
+html {
+	font-size: 16px;
+	@apply text-primary;
+}
+
+body {
+	font-family: 'Futura', sans-serif;
+	line-height: 1.4;
+}
+
+@theme {
+	--color-primary: #8fadff;
+	--color-secondary: #f5f6ff;
+	--color-tertiary: #ff93ff;
+	--color-background: #f5f6ff;
+	--color-white: #ffffff;
+	--color-dark: #151d3c;
+	--color-dark-accent: #151d3c;
+	--color-primary-accent: #cacfe5;
+	--color-secondary-accent: #eef3ff;
+
+	/* Font Family */
+	--font-figtree: 'Futura', sans-serif;
+
+	/* Heading 1 - 96px */
+	--text-title-3xl: 6rem;
+	--text-title-3xl--line-height: 1;
+	--text-title-3xl--font-weight: 700;
+
+	/* Heading 2 - 48px */
+	--text-title-2xl: 3rem;
+	--text-title-2xl--line-height: 1;
+	--text-title-2xl--font-weight: 700;
+	--text-title-3xl--tracking-tightest: 0.188rem;
+
+	/* Heading 3 - 36px */
+	--text-title-xl: 2.25rem;
+	--text-title-xl--line-height: 1;
+	--text-title-xl--font-weight: 700;
+
+	/* Heading 4 - 24px */
+	--text-title-lg: 1.5rem;
+	--text-title-lg--line-height: 1;
+	--text-title-lg--font-weight: 700;
+
+	/* Heading 5 - 21px */
+	--text-title-md: 1.313rem;
+	--text-title-md--line-height: 1;
+	--text-title-md--font-weight: 600;
+
+	/* Heading 6 - 20px */
+	--text-title-md: 1.25rem;
+	--text-title-md--line-height: 1;
+	--text-title-md--font-weight: 500;
+
+	/* Subtitle Hero - 21px */
+	--text-subtitle-hero: 1.313rem;
+	--text-subtitle-hero--line-height: 1.2;
+	--text-subtitle-hero--font-weight: 500;
+
+	/* Description - 18px */
+	--text-description: 1.375rem;
+	--text-description--line-height: 1;
+	--text-description--font-weight: 500;
+
+	/*Button text - 22px */
+	--text-button: 0.875rem;
+	--text-button--line-height: 1;
+	--text-button--font-weight: 400;
+
+	/* Tagline - 16px */
+	--text-tag: 1rem;
+	--text-tag--line-height: 1;
+	--text-tag--font-weight: 500;
+
+	/* Body Text - 20px */
+	--text-body: 1.25rem;
+	--text-body--line-height: 1;
+	--text-body--font-weight: 400;
+
+	/* Mobile */
+	/* Heading 1 - 42px */
+	--text-mobile-title-3xl: 2.625rem;
+	--text-mobile-title-3xl--line-height: 1.2;
+	--text-mobile-title-3xl--font-weight: 700;
+
+	/* Heading 2 - 32px */
+	--text-mobile-title-2xl: 2rem;
+	--text-mobile-title-2xl--line-height: 1.2;
+	--text-mobile-title-2xl--font-weight: 600;
+
+	/* Heading 4 - 18px */
+	--text-mobile-title-lg: 1.125rem;
+	--text-mobile-title-lg--line-height: 1;
+	--text-mobile-title-lg--font-weight: 600;
+
+	/* Tagline - 14px */
+	--text-mobile-tag: 0.875rem;
+	--text-mobile-tag--line-height: 1;
+	--text-mobile-tag--font-weight: 400;
+
+	/* Mobile Button text - 14px */
+	--text-mobile-button: 0.875rem;
+	--text-mobile-button--line-height: 1;
+	--text-mobile-button--font-weight: 400;
+
+	/* Tag question - 16px */
+	--text-mobile-question: 1rem;
+	--text-mobile-question--line-height: 1;
+	--text-mobile-question--font-weight: 500;
+
+	/* Breakpoints */
+	--breakpoint-2xs: 375px;
+	--breakpoint-xs: 480px;
+	--breakpoint-3xl: 120rem;
+}
