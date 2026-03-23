@@ -1,4 +1,5 @@
 <script lang="ts">
+	let { title, button } = $props();
 </script>
 
 <section
@@ -7,7 +8,7 @@
 	<!-- Texto centrado en z-10 -->
 	<div class="absolute inset-0 z-10 flex flex-col items-center justify-center">
 		<h1 class="text-left font-druk text-mobile-title-3xl text-white uppercase">
-			Un bon lavage comme il faut
+			{title}
 		</h1>
 	</div>
 
@@ -22,7 +23,7 @@
 			href="#booking"
 			class="rounded-full bg-white px-8 py-3 font-medium whitespace-nowrap text-black"
 		>
-			Réserver un lavage
+			{button}
 		</a>
 	</div>
 </section>

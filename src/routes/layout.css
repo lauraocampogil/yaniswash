@@ -164,3 +164,7 @@ body {
 	--breakpoint-xs: 480px;
 	--breakpoint-3xl: 120rem;
 }
+
+.grid-section {
+	@apply xl:grid xl:grid-cols-8 xl:gap-x-5 xl:px-20;
+}
