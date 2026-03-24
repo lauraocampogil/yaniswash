@@ -21,7 +21,7 @@
 	<div class="absolute bottom-10 left-1/2 z-30 -translate-x-1/2">
 		<a
 			href="#booking"
-			class="rounded-full bg-white px-8 py-3 font-medium whitespace-nowrap text-black"
+			class="rounded-full bg-white px-8 py-3 text-button whitespace-nowrap text-black"
 		>
 			{button}
 		</a>
