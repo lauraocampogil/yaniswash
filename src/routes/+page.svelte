@@ -34,7 +34,7 @@
 				description:
 					"Nous adaptons nos soins selon votre véhicule. Nous prenons le temps qu'il faut.",
 				columns: ['Intérieur', 'Extérieur', 'Int + Ext'],
-				vehicles: [
+				vehicules: [
 					{ label: 'Citadine', interieur: '€40', exterieur: '€40', combined: '€60' },
 					{ label: 'Break', interieur: '€40', exterieur: '€40', combined: '€60' },
 					{ label: '4*4', interieur: '€50', exterieur: '€50', combined: '€70' },
@@ -46,7 +46,7 @@
 					{ name: "Déplacement jusqu'à 25 km", price: '10€' },
 					{ name: 'Petit supplément si voiture est très sale', price: '10€' }
 				],
-				cta: 'Choisir mon lavage',
+				button: 'Choisir mon lavage',
 				ctaHref: '#contact'
 			}
 		},

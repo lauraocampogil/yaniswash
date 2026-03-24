@@ -55,6 +55,7 @@ html {
 body {
 	font-family: 'Futura', sans-serif;
 	line-height: 1.4;
+	background-color: #f5f6ff;
 }
 
 @theme {
@@ -109,9 +110,9 @@ body {
 	--text-subtitle-hero--font-weight: 500;
 
 	/* Description - 18px */
-	--text-description: 1.375rem;
-	--text-description--line-height: 1;
-	--text-description--font-weight: 500;
+	--text-description: 1.125rem;
+	--text-description--line-height: 1.2;
+	--text-description--font-weight: 400;
 
 	/*Button text - 22px */
 	--text-button: 0.875rem;

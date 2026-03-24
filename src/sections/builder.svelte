@@ -1,16 +1,18 @@
 <script lang="ts">
-	import HeroBlock from './hero.svelte';
+	import { HeroBlock, ServicesBlock } from '$sections';
 
-	let { blocks = [] } = $props();
+	let { blocks = [] }: { blocks: { type: string; props: Record<string, any> }[] } = $props();
 
 	const components: Record<string, any> = {
-		HeroBlock
+		HeroBlock,
+		ServicesBlock
 	};
 </script>
 
 {#each blocks as block}
 	{@const Component = components[block.type]}
 	{#if Component}
+		<!-- @ts-ignore -->
 		<Component {...block.props} />
 	{/if}
 {/each}
