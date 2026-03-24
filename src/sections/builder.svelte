@@ -1,11 +1,12 @@
 <script lang="ts">
-	import { HeroBlock, ServicesBlock } from '$sections';
+	import { HeroBlock, ServicesBlock, ResultatBlock } from '$sections';
 
 	let { blocks = [] }: { blocks: { type: string; props: Record<string, any> }[] } = $props();
 
 	const components: Record<string, any> = {
 		HeroBlock,
-		ServicesBlock
+		ServicesBlock,
+		ResultatBlock
 	};
 </script>
 

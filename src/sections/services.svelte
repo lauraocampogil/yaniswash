@@ -13,7 +13,7 @@
 	}
 </script>
 
-<section class="flex flex-col gap-6 bg-background px-4 py-8 xl:px-20 xl:py-16">
+<section id="#services" class="flex flex-col gap-6 bg-background px-5 py-9 xl:px-20 xl:py-16">
 	<!-- Header -->
 	<div class="flex flex-col gap-3">
 		<h2 class="text-left text-mobile-title-2xl text-dark xl:text-title-2xl">{title}</h2>

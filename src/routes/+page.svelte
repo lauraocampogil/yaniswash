@@ -60,7 +60,7 @@
 					{
 						before: '/assets/images/resultat/avant1.jpg',
 						after: '/assets/images/resultat/apres1.jpg',
-						alt: 'Nettoyage intérieur — coffre'
+						alt: 'Nettoyage extérieur — jantes'
 					},
 					{
 						before: '/assets/images/resultat/avant2.jpg',
@@ -70,7 +70,7 @@
 					{
 						before: '/assets/images/resultat/avant3.jpg',
 						after: '/assets/images/resultat/apres3.jpg',
-						alt: 'Nettoyage extérieur — jantes'
+						alt: 'Nettoyage intérieur — coffre '
 					},
 					{
 						before: '/assets/images/resultat/avant4.jpg',
