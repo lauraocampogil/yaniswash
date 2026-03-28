@@ -58,6 +58,11 @@ body {
 	color: #151d3c;
 }
 
+html,
+body {
+	overflow-x: hidden;
+}
+
 @theme {
 	/* ─── Colors ─── */
 	--color-primary: #8fadff;

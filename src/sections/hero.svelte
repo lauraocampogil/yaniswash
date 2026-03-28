@@ -1,27 +1,33 @@
 <script lang="ts">
-	let { title, button } = $props();
+	let { title, button, ctaHref } = $props();
 </script>
 
 <section
-	class="relative min-h-screen overflow-hidden rounded-b-[50px] bg-[url(/assets/images/Background.png)] bg-cover bg-center"
+	class="relative min-h-[90vh] overflow-hidden rounded-b-[50px] bg-[url(/assets/images/Background.png)] bg-cover bg-center xl:min-h-svh 3xl:container 3xl:mx-auto 3xl:rounded-b-[60px]"
 >
-	<!-- Texto centrado en z-10 -->
-	<div class="absolute inset-0 z-10 flex flex-col items-center justify-center">
-		<h1 class="text-left font-druk text-mobile-title-3xl text-white uppercase">
-			{title}
+	<!-- Titre -->
+	<div
+		class="absolute top-[20%] right-0 left-0 z-10 flex justify-center px-4 xl:top-[28%] xl:px-10"
+	>
+		<h1
+			class="text-center font-druk text-[15vw] leading-none tracking-tight text-white uppercase xl:text-[6vw]"
+		>
+			{@html title}
 		</h1>
 	</div>
 
-	<!-- Foreground encima del texto en z-20 -->
+	<!-- Foreground -->
 	<img
 		src="/assets/images/Foreground.webp"
-		alt=""
-		class="pointer-events-none absolute top-1/2 left-1/2 z-20 w-full -translate-x-1/2 -translate-y-1/2"
+		alt="Lavage de voiture"
+		class="pointer-events-none absolute top-[60%] left-1/2 z-20 w-full -translate-x-1/2 -translate-y-1/2 object-cover xl:top-[60%] xl:w-[70%]"
 	/>
-	<div class="absolute bottom-10 left-1/2 z-30 -translate-x-1/2">
+
+	<!-- CTA -->
+	<div class="absolute bottom-10 left-1/2 z-30 -translate-x-1/2 xl:bottom-14">
 		<a
-			href="#booking"
-			class="rounded-full bg-white px-8 py-3 text-button whitespace-nowrap text-black"
+			href={ctaHref ?? '#contact'}
+			class="inline-flex items-center rounded-full bg-white px-8 py-3 text-button whitespace-nowrap text-dark shadow-sm"
 		>
 			{button}
 		</a>
