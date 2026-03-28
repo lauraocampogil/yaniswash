@@ -1,0 +1,183 @@
+<script lang="ts">
+	import { onMount } from 'svelte';
+	import gsap from 'gsap';
+	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+	let { logo, title, description, image, socials, services, contact, legal, copyright } = $props();
+
+	let carEl: HTMLElement;
+
+	onMount(() => {
+		gsap.registerPlugin(ScrollTrigger);
+
+		if (window.innerWidth >= 1280) {
+			gsap.fromTo(
+				carEl,
+				{ x: '40%', opacity: 0 },
+				{
+					x: '0%',
+					opacity: 1,
+					duration: 1.8,
+					ease: 'expo.out',
+					scrollTrigger: {
+						trigger: carEl,
+						start: 'top 60%',
+						once: true
+					}
+				}
+			);
+		} else {
+			gsap.set(carEl, { opacity: 1 });
+		}
+	});
+</script>
+
+<footer
+	id="footer"
+	class="rounded-t-3xl bg-primary px-5 pt-10 pb-0 xl:grid xl:grid-cols-8 xl:gap-x-5 xl:px-20 xl:pt-16 3xl:container 3xl:mx-auto"
+>
+	<!-- Logo + titre + description + socials: col 1-3 -->
+	<div class="flex flex-col gap-4 xl:col-span-3 xl:col-start-1 xl:row-start-1 xl:pb-10">
+		<img src={logo} alt="YanisWash" class="h-15 w-fit xl:h-20" />
+		<div class="flex flex-col gap-1">
+			<p class="text-mobile-title-lg font-bold text-white xl:text-title-sm">{title}</p>
+			<p class="text-mobile-body text-white">{description}</p>
+		</div>
+		<div class="flex flex-col gap-1.5">
+			<p class="font-bold text-white">Suivez-nous</p>
+			<div class="flex gap-4">
+				{#each socials as social}
+					<a href={social.href} aria-label={social.label} class="text-white">
+						{#if social.label === 'Instagram'}
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="24"
+								height="24"
+								fill="currentColor"
+								viewBox="0 0 256 256"
+							>
+								<path
+									d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"
+								/>
+							</svg>
+						{:else if social.label === 'Facebook'}
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="24"
+								height="24"
+								fill="currentColor"
+								viewBox="0 0 256 256"
+							>
+								<path
+									d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm8,191.63V152h24a8,8,0,0,0,0-16H136V112a16,16,0,0,1,16-16h16a8,8,0,0,0,0-16H152a32,32,0,0,0-32,32v24H96a8,8,0,0,0,0,16h24v63.63a88,88,0,1,1,16,0Z"
+								/>
+							</svg>
+						{/if}
+					</a>
+				{/each}
+			</div>
+		</div>
+	</div>
+
+	<!-- Horaires + CTA: col 6 -->
+	<div
+		class="mt-8 flex flex-col gap-2 xl:col-span-1 xl:col-start-6 xl:row-start-1 xl:mt-0 xl:self-start xl:pb-10"
+	>
+		<p class="font-bold text-white">Lundi - Samedi</p>
+		<p class="text-mobile-body text-white">{contact.hours}</p>
+		<a
+			href="#contact"
+			class="mt-2 inline-flex w-fit items-center rounded-full bg-white px-2 py-2 text-sm font-semibold text-dark"
+		>
+			{services.button}
+		</a>
+	</div>
+
+	<!-- Contact: col 7-8 -->
+	<div
+		class="mt-6 flex flex-col gap-2 xl:col-span-2 xl:col-start-7 xl:row-start-1 xl:mt-0 xl:self-start xl:pb-10"
+	>
+		<p class="font-bold text-white">{contact.title}</p>
+		<div class="flex items-center gap-2">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="18"
+				height="18"
+				fill="#ffffff"
+				viewBox="0 0 256 256"
+			>
+				<path
+					d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46ZM176,208A128.14,128.14,0,0,1,48,80,40.2,40.2,0,0,1,82.87,40a.61.61,0,0,0,0,.12l21,47L83.2,111.86a6.13,6.13,0,0,0-.57.77,16,16,0,0,0-1,15.7c9.06,18.53,27.73,37.06,46.46,46.11a16,16,0,0,0,15.75-1.14,8.44,8.44,0,0,0,.74-.56L168.89,152l47,21.05h0s.08,0,.11,0A40.21,40.21,0,0,1,176,208Z"
+				/>
+			</svg>
+			<span class="text-mobile-body text-white">{contact.phone}</span>
+		</div>
+		<div class="flex items-center gap-2">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="18"
+				height="18"
+				fill="#ffffff"
+				viewBox="0 0 256 256"
+			>
+				<path
+					d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48Zm-96,85.15L52.57,64H203.43ZM98.71,128,40,181.81V74.19Zm11.84,10.85,12,11.05a8,8,0,0,0,10.82,0l12-11.05,58,53.15H52.57ZM157.29,128,216,74.18V181.82Z"
+				/>
+			</svg>
+			<a
+				href={'mailto:' + contact.email}
+				class="text-mobile-body break-all text-white underline-offset-2 hover:underline"
+			>
+				{contact.email}
+			</a>
+		</div>
+		<div class="flex items-start gap-2">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="18"
+				height="18"
+				fill="#ffffff"
+				viewBox="0 0 256 256"
+				class="mt-0.5 shrink-0"
+			>
+				<path
+					d="M200,224H150.54A266.56,266.56,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25a88,88,0,0,0-176,0c0,31.4,14.51,64.68,42,96.25A266.56,266.56,0,0,0,105.46,224H56a8,8,0,0,0,0,16H200a8,8,0,0,0,0-16ZM56,104a72,72,0,0,1,144,0c0,57.23-55.47,105-72,118C111.47,209,56,161.23,56,104Zm112,0a40,40,0,1,0-40,40A40,40,0,0,0,168,104Zm-64,0a24,24,0,1,1,24,24A24,24,0,0,1,104,104Z"
+				/>
+			</svg>
+			<a
+				href={'https://maps.google.com/?q=' + encodeURIComponent(contact.adresse)}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="text-mobile-body text-white underline-offset-2 hover:underline"
+			>
+				{contact.adresse}
+			</a>
+		</div>
+	</div>
+
+	<!-- Image voiture: col 1-8, row 2 — animation depuis la droite -->
+	<div
+		bind:this={carEl}
+		class="-mx-5 mt-6 overflow-hidden px-4 xl:col-span-8 xl:col-start-1 xl:row-start-2 xl:mx-0 xl:-mb-1 xl:px-0"
+		style="opacity: 0"
+	>
+		<img src={image} alt="voiture" class="w-full object-contain xl:max-h-95" />
+	</div>
+
+	<!-- Legal: col 1-8, row 3 -->
+	<div
+		class="flex flex-col gap-2 py-4 xl:col-span-8 xl:col-start-1 xl:row-start-3 xl:flex-row xl:items-center xl:justify-between xl:py-5"
+	>
+		<a
+			href="https://unixcreativestudio.com/index.html"
+			target="_blank"
+			class="text-xs text-white/60">Made with love by Unix</a
+		>
+		<div class="flex flex-wrap gap-4 xl:gap-6">
+			{#each legal as item}
+				<a href={item.href} class="text-xs text-white/60">{item.label}</a>
+			{/each}
+		</div>
+		<p class="text-xs text-white/60">{copyright}</p>
+	</div>
+</footer>

@@ -182,10 +182,7 @@
 				description:
 					'Nous prenons soin de votre voiture avec des produits respectueux et un travail soigné.',
 				image: '/assets/images/Car.webp',
-				socials: [
-					{ label: 'Instagram', href: '#insta' },
-					{ label: 'Facebook', href: '#facebook' }
-				],
+				socials: [{ label: 'Instagram', href: 'https://www.instagram.com/yaniswash/' }],
 				services: {
 					title: 'Services',
 					links: [
@@ -201,14 +198,14 @@
 					phone: '+0491 73 97 89',
 					email: 'contact@yaniswash.be',
 					adresse: 'Rue des Maraichers 5, 1070 Bruxelles',
-					hours: 'Lun – Sam · 8h – 18h'
+					hours: '8h – 18h'
 				},
 				legal: [
 					{ label: 'Mentions Légales', href: '#' },
 					{ label: 'Politique de confidentialité', href: '#' },
 					{ label: 'Cookies', href: '#' }
 				],
-				copyright: 'RAMDANI SPORT ET SANTÉ © 2026 - Tous droits réservés'
+				copyright: 'Yanis Carwash © 2026 - Tous droits réservés'
 			}
 		}
 	];
