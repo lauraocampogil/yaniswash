@@ -3,15 +3,11 @@
 </script>
 
 <section
-	class="relative min-h-[90vh] overflow-hidden rounded-b-[50px] bg-[url(/assets/images/Background.png)] bg-cover bg-center xl:min-h-svh 3xl:container 3xl:mx-auto 3xl:rounded-b-[60px]"
+	class="relative min-h-[90vh] overflow-hidden rounded-b-[50px] bg-[url(/assets/images/Background.png)] bg-cover bg-center xl:min-h-svh xl:rounded-b-[60px]"
 >
 	<!-- Titre -->
-	<div
-		class="absolute top-[25%] right-0 left-0 z-10 flex justify-center px-4 xl:top-[28%] xl:px-10"
-	>
-		<h1
-			class="text-center font-druk text-[13vw] leading-none tracking-tight text-white uppercase xl:text-[6vw]"
-		>
+	<div class="absolute top-[25%] right-0 left-0 z-10 flex justify-center px-4 xl:top-[28%] xl:px-10">
+		<h1 class="text-center font-druk text-[13vw] leading-none tracking-tight text-white uppercase xl:text-[6vw]">
 			{@html title}
 		</h1>
 	</div>
