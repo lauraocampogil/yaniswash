@@ -93,7 +93,7 @@
 					'Votre satisfaction est notre meilleure publicité. Voici quelques mots de personnes qui nous ont fait confiance.',
 				stats: {
 					note: '5.0',
-					total: '+80'
+					total: '+5'
 				},
 				avatars: ['S', 'D', 'C', 'A', 'F'],
 				avis: [
