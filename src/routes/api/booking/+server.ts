@@ -5,8 +5,16 @@ import {
 	STRIPE_PAYMENT_LINK
 } from '$env/static/private';
 import { Resend } from 'resend';
-
 const resend = new Resend(RESEND_API_KEY);
+
+import { readFileSync } from 'fs';
+import { resolve } from 'path';
+
+const signatureHtml = readFileSync(resolve('src/lib/email/signature.html'), 'utf-8');
+
+function signature() {
+	return signatureHtml;
+}
 
 // ─── Templates ───────────────────────────────────────────
 
