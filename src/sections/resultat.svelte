@@ -55,7 +55,7 @@
 				type="button"
 				aria-label="caret-left"
 				onclick={prev}
-				class="flex h-9 w-9 items-center justify-center rounded-full bg-secondary-accent text-dark shadow-sm"
+				class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-secondary-accent text-dark shadow-sm"
 			>
 				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
 					<path
@@ -70,7 +70,7 @@
 				type="button"
 				aria-label="caret-right"
 				onclick={next}
-				class="flex h-9 w-9 items-center justify-center rounded-full bg-secondary-accent text-dark shadow-sm"
+				class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-secondary-accent text-dark shadow-sm"
 			>
 				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
 					<path
@@ -116,7 +116,7 @@
 				style="left: {sliderPosition}%"
 			>
 				<div
-					class="absolute top-1/2 left-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-lg"
+					class="absolute top-1/2 left-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-white shadow-lg"
 				>
 					<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
 						<path
