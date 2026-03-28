@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { bookingOpen } from '$lib/stores/booking';
 	let { title, description, columns, vehicules, extras, button, ctaHref } = $props();
 	let selectedColumn = $state(0);
 	let dropdownOpen = $state(false);
@@ -169,6 +170,10 @@
 				<div class="flex justify-center">
 					<a
 						href={ctaHref}
+						onclick={(e) => {
+							e.preventDefault();
+							$bookingOpen = true;
+						}}
 						class="rounded-full bg-dark px-8 py-3 text-button whitespace-nowrap text-white xl:text-button"
 					>
 						{button}

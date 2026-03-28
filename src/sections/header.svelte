@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
+	import { bookingOpen } from '$lib/stores/booking';
 
 	let { logo, navigation, button } = $props();
 
@@ -125,6 +126,10 @@
 
 			<a
 				href="#contact"
+				onclick={(e) => {
+					e.preventDefault();
+					$bookingOpen = true;
+				}}
 				class="hidden items-center rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-dark xl:inline-flex"
 			>
 				{button}
@@ -196,7 +201,10 @@
 		<div bind:this={ctaEl} class="pt-8 pb-10" style="opacity: 0">
 			<a
 				href="#contact"
-				onclick={() => closeMenu()}
+				onclick={(e) => {
+					e.preventDefault();
+					$bookingOpen = true;
+				}}
 				class="inline-flex items-center justify-center rounded-full bg-white px-6 py-2 font-semibold text-dark"
 			>
 				{button}

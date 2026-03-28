@@ -1,5 +1,7 @@
 <script lang="ts">
 	import Builder from '$sections/builder.svelte';
+	import Booking from '$sections/booking.svelte';
+	import { bookingOpen } from '$lib/stores/booking';
 
 	const blocks = [
 		{
@@ -25,7 +27,7 @@
 			props: {
 				title: 'Un bon lavage comme il faut.',
 				button: 'Réserver un lavage',
-				ctaHref: '#contact'
+				ctaHref: '#booking'
 			}
 		},
 		{
@@ -212,4 +214,5 @@
 	];
 </script>
 
+<Booking bind:isOpen={$bookingOpen} />
 <Builder {blocks} />

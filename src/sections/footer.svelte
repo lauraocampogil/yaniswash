@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { bookingOpen } from '$lib/stores/booking';
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -87,6 +88,10 @@
 			<p class="text-mobile-body text-white">{contact.hours}</p>
 			<a
 				href="#contact"
+				onclick={(e) => {
+					e.preventDefault();
+					$bookingOpen = true;
+				}}
 				class="mt-2 inline-flex w-fit items-center rounded-full bg-white px-2 py-2 text-sm font-semibold text-dark"
 			>
 				{services.button}

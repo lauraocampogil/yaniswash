@@ -6,7 +6,8 @@
 		ResultatBlock,
 		ReviewsBlock,
 		FAQBlock,
-		FooterBlock
+		FooterBlock,
+		BookingBlock
 	} from '$sections';
 
 	let { blocks = [] }: { blocks: { type: string; props: Record<string, any> }[] } = $props();
@@ -18,7 +19,8 @@
 		ResultatBlock,
 		ReviewsBlock,
 		FAQBlock,
-		FooterBlock
+		FooterBlock,
+		BookingBlock
 	};
 </script>
 
