@@ -31,10 +31,36 @@
 					<button
 						type="button"
 						onclick={toggleDropdown}
-						class="flex items-center gap-2 rounded-lg bg-white px-4 py-2 text-mobile-title-lg text-dark"
+						class="flex items-center gap-2 rounded-lg bg-white px-4 py-2 text-mobile-button text-dark"
 					>
 						{columns[selectedColumn]}
-						<span class="text-xs">{dropdownOpen ? '▲' : '▼'}</span>
+						<span class="text-xs">
+							{#if dropdownOpen}
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="16"
+									height="16"
+									fill="#000000"
+									viewBox="0 0 256 256"
+								>
+									<path
+										d="M213.66,165.66a8,8,0,0,1-11.32,0L128,91.31,53.66,165.66a8,8,0,0,1-11.32-11.32l80-80a8,8,0,0,1,11.32,0l80,80A8,8,0,0,1,213.66,165.66Z"
+									/>
+								</svg>
+							{:else}
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="16"
+									height="16"
+									fill="#000000"
+									viewBox="0 0 256 256"
+								>
+									<path
+										d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"
+									/>
+								</svg>
+							{/if}
+						</span>
 					</button>
 
 					{#if dropdownOpen}
@@ -105,14 +131,14 @@
 			<div class="hidden bg-white xl:grid xl:grid-cols-4">
 				{#each vehicules as v, i}
 					<div
-						class="flex items-center px-6 py-6 text-mobile-title-lg text-dark {i !== 0
+						class="flex items-center px-6 py-9 text-mobile-title-lg text-dark {i !== 0
 							? 'border-t border-dashed border-dark/20'
 							: ''}"
 					>
 						{v.label}
 					</div>
 					<div
-						class="flex items-center justify-center border-l border-dashed border-dark/20 px-6 py-6 text-dark {i !==
+						class="flex items-center justify-center border-l border-dashed border-dark/20 px-6 py-9 text-dark {i !==
 						0
 							? 'border-t border-dashed border-dark/20'
 							: ''}"
@@ -120,7 +146,7 @@
 						{v.interieur}
 					</div>
 					<div
-						class="flex items-center justify-center border-l border-dashed border-dark/20 px-6 py-6 text-dark {i !==
+						class="flex items-center justify-center border-l border-dashed border-dark/20 px-6 py-9 text-dark {i !==
 						0
 							? 'border-t border-dashed border-dark/20'
 							: ''}"
@@ -128,7 +154,7 @@
 						{v.exterieur}
 					</div>
 					<div
-						class="flex items-center justify-center border-l border-dashed border-dark/20 px-6 py-6 text-dark {i !==
+						class="flex items-center justify-center border-l border-dashed border-dark/20 px-6 py-9 text-dark {i !==
 						0
 							? 'border-t border-dashed border-dark/20'
 							: ''}"
@@ -139,7 +165,7 @@
 			</div>
 
 			<!-- CTA + Extras -->
-			<div class="flex flex-col gap-4 rounded-b-2xl bg-white px-4 pt-2 pb-6 xl:px-6">
+			<div class="flex flex-col gap-6 rounded-b-2xl bg-white px-4 pt-6 pb-6 xl:px-6">
 				<div class="flex justify-center">
 					<a
 						href={ctaHref}
@@ -148,7 +174,7 @@
 						{button}
 					</a>
 				</div>
-				<ul class="flex flex-col gap-2 text-sm text-dark">
+				<ul class="flex flex-col gap-2 text-tag text-dark-accent/70 xl:text-sm">
 					{#each extras as extra}
 						<li>• {extra.name} — {extra.price}</li>
 					{/each}

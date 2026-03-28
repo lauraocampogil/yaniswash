@@ -131,8 +131,8 @@ body {
 
 	/* Tag — 12px */
 	--text-tag: 0.75rem;
-	--text-tag--line-height: 1;
-	--text-tag--font-weight: 600;
+	--text-tag--line-height: 1.2;
+	--text-tag--font-weight: 400;
 	--text-tag--letter-spacing: 0.08em;
 
 	/* ─── Mobile type scale ─── */

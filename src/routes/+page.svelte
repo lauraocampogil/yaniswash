@@ -44,7 +44,7 @@
 					{ name: 'Shampooing siège', price: '15€/siège' },
 					{ name: 'Traitement cuir', price: '15€/siège' },
 					{ name: "Déplacement jusqu'à 25 km", price: '10€' },
-					{ name: 'Petit supplément si voiture est très sale', price: '10€' }
+					{ name: 'Si voiture est très sale', price: '10€' }
 				],
 				button: 'Choisir mon lavage',
 				ctaHref: '#contact'
