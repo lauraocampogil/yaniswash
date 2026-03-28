@@ -99,8 +99,8 @@
 				avis: [
 					{
 						id: 1,
-						name: 'Sam D.',
-						text: 'Cela fait deux fois que je fais appel à ses services. Très professionnels et service impeccable d’une gentillesse incroyable. Son travail est 1000 fois mieux que le lavage de luxe et Dieu seul sait combien j’en ai essayé. Je le recommande à 1000 % !!!'
+						name: 'Frédéric D.',
+						text: "Service rapide, propre et honnête. Ma camionnette de travail n'avait pas été aussi nette depuis des années. Je reviendrai sans hésiter."
 					},
 					{
 						id: 2,
@@ -119,8 +119,8 @@
 					},
 					{
 						id: 5,
-						name: 'Frédéric D.',
-						text: "Service rapide, propre et honnête. Ma camionnette de travail n'avait pas été aussi nette depuis des années. Je reviendrai sans hésiter."
+						name: 'Sam D.',
+						text: 'Cela fait deux fois que je fais appel à ses services. Très professionnels et service impeccable d’une gentillesse incroyable. Son travail est 1000 fois mieux que le lavage de luxe et Dieu seul sait combien j’en ai essayé. Je le recommande à 1000 % !!!'
 					}
 				]
 			}

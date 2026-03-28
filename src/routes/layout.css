@@ -3,43 +3,43 @@
 @font-face {
 	font-family: 'DrukWide';
 	src: url('/assets/fonts/DrukWideBold.ttf') format('truetype');
-	font-style: Bold;
 	font-weight: 700;
 	font-display: swap;
 }
 @font-face {
-	font-family: 'Futura';
-	src: url('/assets/fonts/futura-pt-bold.otf') format('truetype');
-	font-style: bold;
+	font-family: 'HankenGrotesk';
+	src: url('/assets/fonts/HankenGrotesk-Black.ttf') format('truetype');
+	font-weight: 900;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'HankenGrotesk';
+	src: url('/assets/fonts/HankenGrotesk-ExtraBold.ttf') format('truetype');
+	font-weight: 800;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'HankenGrotesk';
+	src: url('/assets/fonts/HankenGrotesk-Bold.ttf') format('truetype');
 	font-weight: 700;
 	font-display: swap;
 }
 @font-face {
-	font-family: 'Futura';
-	src: url('/assets/fonts/futura-pt-demibold.otf') format('truetype');
-	font-style: bold;
+	font-family: 'HankenGrotesk';
+	src: url('/assets/fonts/HankenGrotesk-SemiBold.ttf') format('truetype');
 	font-weight: 600;
 	font-display: swap;
 }
 @font-face {
-	font-family: 'Futura';
-	src: url('/assets/fonts/futura-pt-medium.otf') format('truetype');
-	font-style: bold;
+	font-family: 'HankenGrotesk';
+	src: url('/assets/fonts/HankenGrotesk-Medium.ttf') format('truetype');
 	font-weight: 500;
 	font-display: swap;
 }
 @font-face {
-	font-family: 'Futura';
-	src: url('/assets/fonts/futura-pt-book.otf') format('truetype');
-	font-style: bold;
+	font-family: 'HankenGrotesk';
+	src: url('/assets/fonts/HankenGrotesk-Regular.ttf') format('truetype');
 	font-weight: 400;
-	font-display: swap;
-}
-@font-face {
-	font-family: 'Futura';
-	src: url('/assets/fonts/futura-pt-light.otf') format('truetype');
-	font-style: bold;
-	font-weight: 300;
 	font-display: swap;
 }
 
@@ -49,121 +49,147 @@
 
 html {
 	font-size: 16px;
-	@apply text-primary;
 }
 
 body {
-	font-family: 'Futura', sans-serif;
-	line-height: 1.4;
+	font-family: 'HankenGrotesk', sans-serif;
+	line-height: 1.5;
 	background-color: #f5f6ff;
+	color: #151d3c;
 }
 
 @theme {
+	/* ─── Colors ─── */
 	--color-primary: #8fadff;
 	--color-secondary: #f5f6ff;
 	--color-tertiary: #ff93ff;
 	--color-background: #f5f6ff;
 	--color-white: #ffffff;
 	--color-dark: #151d3c;
-	--color-dark-accent: #151d3c;
+	--color-dark-accent: #2a3460;
 	--color-primary-accent: #cacfe5;
 	--color-secondary-accent: #eef3ff;
 
-	/* Font Family */
-	--font-figtree: 'Futura', sans-serif;
+	/* ─── Font families ─── */
+	--font-hankengrotesk: 'HankenGrotesk', sans-serif;
 	--font-druk: 'DrukWide', sans-serif;
 
-	/* Heading 1 - 96px */
-	--text-title-3xl: 6rem;
+	/* ─── Desktop type scale ─── */
+
+	/* Display — 80px / DrukWide */
+	--text-title-3xl: 5rem;
 	--text-title-3xl--line-height: 1;
 	--text-title-3xl--font-weight: 700;
+	--text-title-3xl--letter-spacing: -0.02em;
 
-	/* Heading 2 - 48px */
+	/* H2 — 48px */
 	--text-title-2xl: 3rem;
-	--text-title-2xl--line-height: 1;
-	--text-title-2xl--font-weight: 700;
-	--text-title-3xl--tracking-tightest: 0.188rem;
+	--text-title-2xl--line-height: 1.05;
+	--text-title-2xl--font-weight: 800;
+	--text-title-2xl--letter-spacing: -0.02em;
 
-	/* Heading 3 - 36px */
+	/* H3 — 36px */
 	--text-title-xl: 2.25rem;
-	--text-title-xl--line-height: 1;
+	--text-title-xl--line-height: 1.1;
 	--text-title-xl--font-weight: 700;
+	--text-title-xl--letter-spacing: -0.01em;
 
-	/* Heading 4 - 24px */
-	--text-title-lg: 1.25rem;
-	--text-title-lg--line-height: 1;
-	--text-title-lg--font-weight: 600;
+	/* H4 — 28px */
+	--text-title-lg: 1.75rem;
+	--text-title-lg--line-height: 1.2;
+	--text-title-lg--font-weight: 700;
 
-	/* Heading 5 - 21px */
-	--text-title-md: 1.313rem;
-	--text-title-md--line-height: 1;
+	/* H5 — 22px */
+	--text-title-md: 1.375rem;
+	--text-title-md--line-height: 1.25;
 	--text-title-md--font-weight: 600;
 
-	/* Heading 6 - 20px */
-	--text-title-md: 1.25rem;
-	--text-title-md--line-height: 1;
-	--text-title-md--font-weight: 500;
+	/* H6 — 18px */
+	--text-title-sm: 1.125rem;
+	--text-title-sm--line-height: 1.3;
+	--text-title-sm--font-weight: 600;
 
-	/* Subtitle Hero - 21px */
-	--text-subtitle-hero: 1.313rem;
-	--text-subtitle-hero--line-height: 1.2;
-	--text-subtitle-hero--font-weight: 500;
-
-	/* Description - 18px */
+	/* Description — 18px */
 	--text-description: 1.125rem;
-	--text-description--line-height: 1.2;
+	--text-description--line-height: 1.65;
 	--text-description--font-weight: 400;
 
-	/*Button text - 20px */
-	--text-button: 1.125rem;
-	--text-button--line-height: 1;
-	--text-button--font-weight: 500;
-
-	/* Tagline - 16px */
-	--text-tag: 1rem;
-	--text-tag--line-height: 1;
-	--text-tag--font-weight: 500;
-
-	/* Body Text - 20px */
-	--text-body: 1.25rem;
-	--text-body--line-height: 1;
+	/* Body — 16px */
+	--text-body: 1rem;
+	--text-body--line-height: 1.65;
 	--text-body--font-weight: 400;
 
-	/* Mobile */
-	/* Heading 1 - 42px */
-	--text-mobile-title-3xl: 2.625rem;
-	--text-mobile-title-3xl--line-height: 1.2;
-	--text-mobile-title-3xl--font-weight: 700;
+	/* Button — 16px */
+	--text-button: 1rem;
+	--text-button--line-height: 1;
+	--text-button--font-weight: 600;
 
-	/* Heading 2 - 32px */
-	--text-mobile-title-2xl: 2rem;
-	--text-mobile-title-2xl--line-height: 1.2;
-	--text-mobile-title-2xl--font-weight: 600;
+	/* Caption — 14px */
+	--text-caption: 0.875rem;
+	--text-caption--line-height: 1.5;
+	--text-caption--font-weight: 500;
 
-	/* Heading 4 - 18px */
+	/* Tag — 12px */
+	--text-tag: 0.75rem;
+	--text-tag--line-height: 1;
+	--text-tag--font-weight: 600;
+	--text-tag--letter-spacing: 0.08em;
+
+	/* ─── Mobile type scale ─── */
+
+	/* Mobile H1 — 40px */
+	--text-mobile-title-3xl: 2.5rem;
+	--text-mobile-title-3xl--line-height: 1.1;
+	--text-mobile-title-3xl--font-weight: 800;
+	--text-mobile-title-3xl--letter-spacing: -0.02em;
+
+	/* Mobile H2 — 30px */
+	--text-mobile-title-2xl: 1.875rem;
+	--text-mobile-title-2xl--line-height: 1.15;
+	--text-mobile-title-2xl--font-weight: 800;
+	--text-mobile-title-2xl--letter-spacing: -0.01em;
+
+	/* Mobile H3 — 22px */
+	--text-mobile-title-xl: 1.375rem;
+	--text-mobile-title-xl--line-height: 1.2;
+	--text-mobile-title-xl--font-weight: 700;
+
+	/* Mobile H4 — 18px */
 	--text-mobile-title-lg: 1.125rem;
-	--text-mobile-title-lg--line-height: 1;
-	--text-mobile-title-lg--font-weight: 600;
+	--text-mobile-title-lg--line-height: 1.3;
+	--text-mobile-title-lg--font-weight: 700;
 
-	/* Tagline - 14px */
-	--text-mobile-tag: 0.875rem;
-	--text-mobile-tag--line-height: 1;
-	--text-mobile-tag--font-weight: 400;
+	/* Mobile description — 16px */
+	--text-description: 1rem;
+	--text-description--line-height: 1.65;
+	--text-description--font-weight: 400;
 
-	/* Mobile Button text - 14px */
-	--text-mobile-button: 0.875rem;
+	/* Mobile body — 15px */
+	--text-mobile-body: 0.9375rem;
+	--text-mobile-body--line-height: 1.6;
+	--text-mobile-body--font-weight: 400;
+
+	/* Mobile button — 15px */
+	--text-mobile-button: 0.9375rem;
 	--text-mobile-button--line-height: 1;
-	--text-mobile-button--font-weight: 500;
+	--text-mobile-button--font-weight: 600;
 
-	/* Tag question - 16px */
+	/* Mobile tag — 12px */
+	--text-mobile-tag: 0.75rem;
+	--text-mobile-tag--line-height: 1;
+	--text-mobile-tag--font-weight: 600;
+	--text-mobile-tag--letter-spacing: 0.06em;
+
+	/* Mobile question (FAQ) — 16px */
 	--text-mobile-question: 1rem;
-	--text-mobile-question--line-height: 1;
+	--text-mobile-question--line-height: 1.4;
 	--text-mobile-question--font-weight: 500;
 
-	/* Breakpoints */
+	/* ─── Breakpoints ─── */
 	--breakpoint-2xs: 375px;
 	--breakpoint-xs: 480px;
-	--breakpoint-3xl: 120rem;
+	--breakpoint-xl: 1280px;
+	--breakpoint-3xl: 1920px;
 }
 
 .grid-section {
