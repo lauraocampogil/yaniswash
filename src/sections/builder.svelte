@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { HeroBlock, ServicesBlock, ResultatBlock, ReviewsBlock } from '$sections';
+	import { HeroBlock, ServicesBlock, ResultatBlock, ReviewsBlock, FAQBlock } from '$sections';
 
 	let { blocks = [] }: { blocks: { type: string; props: Record<string, any> }[] } = $props();
 
@@ -7,7 +7,8 @@
 		HeroBlock,
 		ServicesBlock,
 		ResultatBlock,
-		ReviewsBlock
+		ReviewsBlock,
+		FAQBlock
 	};
 </script>
 

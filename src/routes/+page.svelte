@@ -145,7 +145,7 @@
 					{
 						question: 'Comment se passe le paiement ?',
 						answer:
-							"Le paiement s'effectue à la fin de la prestation, en espèces ou par virement bancaire."
+							'Vous pouvez régler en ligne lors de la réservation, ou en espèces directement sur place au moment du lavage.'
 					},
 					{
 						question: 'Travaillez-vous le week-end ?',
