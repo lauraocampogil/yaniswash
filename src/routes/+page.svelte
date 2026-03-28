@@ -105,7 +105,7 @@
 					{
 						id: 2,
 						name: 'David G.',
-						text: "Tout simplement : Ma voiture était encore plus propre qu'en sortie de concession."
+						text: "Tout simplement: Ma voiture était encore plus propre qu'en sortie de concession."
 					},
 					{
 						id: 3,
