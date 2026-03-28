@@ -7,10 +7,10 @@
 >
 	<!-- Titre -->
 	<div
-		class="absolute top-[20%] right-0 left-0 z-10 flex justify-center px-4 xl:top-[28%] xl:px-10"
+		class="absolute top-[25%] right-0 left-0 z-10 flex justify-center px-4 xl:top-[28%] xl:px-10"
 	>
 		<h1
-			class="text-center font-druk text-[15vw] leading-none tracking-tight text-white uppercase xl:text-[6vw]"
+			class="text-center font-druk text-[13vw] leading-none tracking-tight text-white uppercase xl:text-[6vw]"
 		>
 			{@html title}
 		</h1>

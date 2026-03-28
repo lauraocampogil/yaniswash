@@ -1,5 +1,6 @@
 <script lang="ts">
 	import {
+		HeaderBlock,
 		HeroBlock,
 		ServicesBlock,
 		ResultatBlock,
@@ -11,6 +12,7 @@
 	let { blocks = [] }: { blocks: { type: string; props: Record<string, any> }[] } = $props();
 
 	const components: Record<string, any> = {
+		HeaderBlock,
 		HeroBlock,
 		ServicesBlock,
 		ResultatBlock,

@@ -63,6 +63,26 @@ body {
 	overflow-x: hidden;
 }
 
+#services,
+#resultat,
+#avis,
+#faq,
+#contact,
+#footer {
+	scroll-margin-top: 62px;
+}
+
+@media (min-width: 1280px) {
+	#services,
+	#resultat,
+	#avis,
+	#faq,
+	#contact,
+	#footer {
+		scroll-margin-top: 66px;
+	}
+}
+
 @theme {
 	/* ─── Colors ─── */
 	--color-primary: #8fadff;

@@ -12,7 +12,7 @@
 	}
 </script>
 
-<section id="#avis" class="bg-dark">
+<section id="reviews" class="bg-dark">
 	<div
 		class="grid-section flex flex-col gap-6 px-5 py-9 xl:gap-x-5 xl:px-20 xl:py-16 3xl:container 3xl:mx-auto"
 	>

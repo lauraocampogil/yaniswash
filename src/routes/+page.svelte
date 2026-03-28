@@ -5,7 +5,8 @@
 		{
 			type: 'HeaderBlock',
 			props: {
-				logo: '/assets/svg/Logo-vertical.svg',
+				logo: '/assets/svg/Logo-vertical_blanc.svg',
+				logoMobile: '/assets/svg/Logo-vertical_blanc.svg',
 				menu: `<?xml version="1.0" encoding="UTF-8"?><svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 91.87 18.75"><line x1="2" y1="2" x2="89.87" y2="2" fill="none" stroke="#53423a" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/><line x1="30.35" y1="16.73" x2="89.87" y2="16.75" fill="none" stroke="#53423a" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/></svg>`,
 				closeButton: '',
 				navigation: {
