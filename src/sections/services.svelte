@@ -31,7 +31,7 @@
 				<button
 					type="button"
 					onclick={toggleDropdown}
-					class="flex items-center gap-2 rounded-lg bg-white px-4 py-2 text-title-lg text-dark"
+					class="flex items-center gap-2 rounded-lg bg-white px-4 py-2 text-mobile-title-lg text-dark"
 				>
 					{columns[selectedColumn]}
 					<span class="text-xs">{dropdownOpen ? '▲' : '▼'}</span>
@@ -66,7 +66,7 @@
 			<div class="px-6 py-5"></div>
 			{#each columns as col}
 				<div
-					class="border-l border-dashed border-dark/20 px-6 py-5 text-center text-title-lg text-dark"
+					class="border-l border-dashed border-dark/20 px-6 py-5 text-center text-mobile-title-lg text-dark"
 				>
 					{col}
 				</div>
@@ -92,7 +92,7 @@
 					{v.label}
 				</div>
 				<div
-					class="text-mobile-body flex items-center justify-center px-4 py-6 text-dark {i !== 0
+					class="flex items-center justify-center px-4 py-6 text-mobile-body text-dark {i !== 0
 						? 'border-t border-dashed border-dark/20'
 						: ''}"
 				>
@@ -105,7 +105,7 @@
 		<div class="hidden bg-white xl:grid xl:grid-cols-4">
 			{#each vehicules as v, i}
 				<div
-					class="flex items-center px-6 py-6 text-title-lg text-dark {i !== 0
+					class="flex items-center px-6 py-6 text-mobile-title-lg text-dark {i !== 0
 						? 'border-t border-dashed border-dark/20'
 						: ''}"
 				>
