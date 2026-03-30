@@ -31,7 +31,6 @@
 	"dependencies": {
 		"@calcom/sdk": "^1.0.1",
 		"@mdd95/sveltekit-adapter-node": "^1.1.0",
-		"resend": "^6.9.4",
 		"stripe": "^21.0.1"
 	}
 }
