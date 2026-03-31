@@ -204,9 +204,9 @@
 					hours: '8h – 18h'
 				},
 				legal: [
-					{ label: 'Mentions Légales', href: '#' },
-					{ label: 'Politique de confidentialité', href: '#' },
-					{ label: 'Cookies', href: '#' }
+					{ label: 'Mentions Légales', href: '/mentions-legales' },
+					{ label: 'Politique de confidentialité', href: '/politique-de-confidentialite' },
+					{ label: 'Cookies', href: '/cookies' }
 				],
 				copyright: 'Yanis Carwash © 2026 - Tous droits réservés'
 			}

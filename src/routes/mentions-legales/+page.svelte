@@ -30,6 +30,7 @@
 		<h1 class="mb-10 text-mobile-title-2xl font-bold text-dark xl:text-title-2xl">
 			Mentions Légales
 		</h1>
+		<p class="mb-10 text-sm text-dark/40">Dernière mise à jour : Avril 2026</p>
 
 		<div class="flex flex-col gap-8 text-dark">
 			<section class="flex flex-col gap-3">
