@@ -39,7 +39,7 @@
 
 <section id="resultat" class="bg-primary">
 	<div
-		class="grid-section flex flex-col overflow-hidden px-5 py-9 xl:gap-x-5 xl:gap-y-0 xl:px-20 xl:py-16 3xl:container 3xl:mx-auto"
+		class="grid-section flex flex-col overflow-hidden px-5 py-9 xl:gap-x-5 xl:gap-y-0 xl:px-20 xl:py-16 3xl:container 3xl:mx-auto sm:px-8 sm:py-12"
 	>
 		<!-- Header: col 1-3 -->
 		<div class="flex flex-col gap-3 pb-8 xl:col-span-3 xl:col-start-1 xl:self-end xl:pb-18">

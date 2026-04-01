@@ -179,7 +179,7 @@
 {#if menuOpen}
 	<div
 		bind:this={overlayEl}
-		class="fixed inset-0 z-100 flex flex-col bg-dark px-5 py-6 pt-20"
+		class="fixed inset-0 z-100 flex flex-col bg-dark px-5 py-6 pt-20 sm:px-8"
 		style="transform: translateX(100%)"
 	>
 		<!-- Liens navigation -->
