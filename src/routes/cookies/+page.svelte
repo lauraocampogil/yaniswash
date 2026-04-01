@@ -27,7 +27,7 @@
 		<h1 class="mb-2 text-mobile-title-2xl font-bold text-dark xl:text-title-2xl">
 			Politique de Cookies
 		</h1>
-		<p class="mb-10 text-sm text-dark/40">Dernière mise à jour : Avril 2026</p>
+		<p class="mb-10 text-sm text-dark/40">Dernière mise à jour: Avril 2026</p>
 
 		<div class="flex flex-col gap-8 text-dark">
 			<section class="flex flex-col gap-3">
@@ -139,9 +139,9 @@
 			<section class="flex flex-col gap-3">
 				<h2 class="text-mobile-title-lg font-bold text-dark">Contact</h2>
 				<p class="text-mobile-body leading-relaxed">
-					Pour toute question concernant notre politique de cookies :<br />
-					<a href="mailto:contact@yaniswash.be" class="text-primary underline"
-						>contact@yaniswash.be</a
+					Pour toute question concernant notre politique de cookies:<br />
+					<a href="mailto:unixcreativestudio@gmail.com" class="text-primary underline"
+						>unixcreativestudio@gmail.com</a
 					><br />
 					Rue des Maraichers 5, 1070 Bruxelles, Belgique
 				</p>

@@ -30,20 +30,19 @@
 		<h1 class="mb-10 text-mobile-title-2xl font-bold text-dark xl:text-title-2xl">
 			Mentions Légales
 		</h1>
-		<p class="mb-10 text-sm text-dark/40">Dernière mise à jour : Avril 2026</p>
+		<p class="mb-10 text-sm text-dark/40">Dernière mise à jour: Avril 2026</p>
 
 		<div class="flex flex-col gap-8 text-dark">
 			<section class="flex flex-col gap-3">
 				<h2 class="text-mobile-title-lg font-bold text-dark">1. Éditeur du site</h2>
 				<p class="text-mobile-body leading-relaxed">
-					Le site yaniswash.be est édité par <strong>YanisWash</strong>, représenté par Yanis,
-					indépendant en personne physique.
+					Le site yaniswash.be est édité par <strong>Laura Ocampo</strong>, représenté par
+					UnixCreativeStudio, indépendant en personne physique.
 				</p>
 				<p class="text-mobile-body leading-relaxed">
-					<strong>Siège social :</strong> Rue des Maraichers 5, 1070 Bruxelles, Belgique<br />
 					<strong>Contact :</strong>
-					<a href="mailto:contact@yaniswash.be" class="text-primary underline"
-						>contact@yaniswash.be</a
+					<a href="mailto:unixcreativestudio@gmail.com" class="text-primary underline"
+						>unixcreativestudio@gmail.com</a
 					>
 				</p>
 			</section>
@@ -52,7 +51,7 @@
 
 			<section class="flex flex-col gap-3">
 				<h2 class="text-mobile-title-lg font-bold text-dark">2. Directeur de publication</h2>
-				<p class="text-mobile-body leading-relaxed">Yanis</p>
+				<p class="text-mobile-body leading-relaxed">UnixCreativeStudio</p>
 			</section>
 
 			<div class="border-t border-dashed border-dark/10"></div>
