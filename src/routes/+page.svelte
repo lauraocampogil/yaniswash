@@ -214,5 +214,13 @@
 	];
 </script>
 
+<svelte:head>
+	<title>Yanis Carwash | Lavage automobile à Bruxelles</title>
+	<meta
+		name="description"
+		content="Yanis Carwash propose des services de lavage automobile de qualité à Bruxelles. Votre voiture mérite le meilleur soin."
+	/>
+</svelte:head>
+
 <Booking bind:isOpen={$bookingOpen} />
 <Builder {blocks} />
