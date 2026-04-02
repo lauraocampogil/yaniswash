@@ -208,17 +208,17 @@
 					{ label: 'Politique de confidentialité', href: '/politique-de-confidentialite' },
 					{ label: 'Cookies', href: '/cookies' }
 				],
-				copyright: 'Yanis Carwash © 2026 - Tous droits réservés'
+				copyright: 'YanisWash © 2026 - Tous droits réservés'
 			}
 		}
 	];
 </script>
 
 <svelte:head>
-	<title>Yanis Carwash | Lavage automobile à Bruxelles</title>
+	<title>YanisWash | Lavage automobile à Bruxelles</title>
 	<meta
 		name="description"
-		content="Yanis Carwash propose des services de lavage automobile de qualité à Bruxelles. Votre voiture mérite le meilleur soin."
+		content="YanisWash propose des services de lavage automobile de qualité à Bruxelles. Votre voiture mérite le meilleur soin."
 	/>
 </svelte:head>
 

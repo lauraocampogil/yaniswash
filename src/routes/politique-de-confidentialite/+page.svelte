@@ -33,9 +33,9 @@
 			<section class="flex flex-col gap-3">
 				<h2 class="text-mobile-title-lg font-bold text-dark">1. Responsable du traitement</h2>
 				<p class="text-mobile-body leading-relaxed">
-					<strong>UnixCreativeStudio</strong>, représenté par Laura Ocampo, indépendant en personne
+					<strong>YanisWash</strong>, représenté par Guiseppe Franco, indépendant en personne
 					physique.<br />
-					Contact :
+					Contact:
 					<a href="mailto:unixcreativestudio@gmail.com" class="text-primary underline"
 						>unixcreativestudio@gmail.com</a
 					>
@@ -47,7 +47,7 @@
 			<section class="flex flex-col gap-3">
 				<h2 class="text-mobile-title-lg font-bold text-dark">2. Données personnelles collectées</h2>
 				<p class="text-mobile-body leading-relaxed">
-					Dans le cadre de son activité, YanisWash collecte les données suivantes :
+					Dans le cadre de son activité, YanisWash collecte les données suivantes:
 				</p>
 				<ul class="flex flex-col gap-1 pl-4">
 					{#each ['Nom et prénom', 'Numéro de téléphone', 'Adresse e-mail', 'Adresse postale (pour les interventions à domicile)', 'Type de véhicule', 'Informations de paiement (traitées par Stripe)'] as item}
@@ -139,8 +139,8 @@
 				</ul>
 				<p class="text-mobile-body leading-relaxed">
 					Pour exercer ces droits : <a
-						href="mailto:contact@yaniswash.be"
-						class="text-primary underline">contact@yaniswash.be</a
+						href="mailto:yaniswash@gmail.com"
+						class="text-primary underline">yaniswash@gmail.com</a
 					><br />
 					Vous pouvez également introduire une réclamation auprès de l'<a
 						href="https://www.autoriteprotectiondonnees.be"

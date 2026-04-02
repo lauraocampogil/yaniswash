@@ -36,11 +36,11 @@
 			<section class="flex flex-col gap-3">
 				<h2 class="text-mobile-title-lg font-bold text-dark">1. Éditeur du site</h2>
 				<p class="text-mobile-body leading-relaxed">
-					Le site yaniswash.be est édité par <strong>Laura Ocampo</strong>, représenté par
-					UnixCreativeStudio, indépendant en personne physique.
+					Le site yaniswash.be est édité par <strong>UnixCreativeStudio</strong>, représenté par
+					Laura Ocampo, indépendante en personne physique.
 				</p>
 				<p class="text-mobile-body leading-relaxed">
-					<strong>Contact :</strong>
+					<strong>Contact:</strong>
 					<a href="mailto:unixcreativestudio@gmail.com" class="text-primary underline"
 						>unixcreativestudio@gmail.com</a
 					>
