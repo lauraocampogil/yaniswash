@@ -199,7 +199,7 @@
 				contact: {
 					title: 'Nous contacter',
 					phone: '+0491 73 97 89',
-					email: 'contact@yaniswash.be',
+					email: 'yaniswash@gmail.com',
 					adresse: 'Rue des Maraichers 5, 1070 Bruxelles',
 					hours: '8h – 18h'
 				},

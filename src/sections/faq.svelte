@@ -15,7 +15,7 @@
 		if (openQuestion === index) {
 			openQuestion = null;
 			gsap.to(arrowEl, { rotation: 0, duration: 0.35, ease: 'expo.inOut' });
-			gsap.to(answerEl, { height: 0, opacity: 0, duration: 0.7, ease: 'expo.inOut' });
+			gsap.to(answerEl, { height: 0, opacity: 0, duration: 0.65, ease: 'expo.inOut' });
 		} else {
 			if (openQuestion !== null) {
 				const prevCard = document.querySelector(`[data-card="${openQuestion}"]`) as HTMLElement;
@@ -25,7 +25,7 @@
 					gsap.killTweensOf(prevAnswer);
 					gsap.killTweensOf(prevArrow);
 					gsap.to(prevArrow, { rotation: 0, duration: 0.35, ease: 'expo.inOut' });
-					gsap.to(prevAnswer, { height: 0, opacity: 0, duration: 0.7, ease: 'expo.inOut' });
+					gsap.to(prevAnswer, { height: 0, opacity: 0, duration: 0.65, ease: 'expo.inOut' });
 				}
 			}
 
@@ -34,7 +34,7 @@
 			gsap.fromTo(
 				answerEl,
 				{ height: 0, opacity: 0 },
-				{ height: 'auto', opacity: 1, duration: 0.7, ease: 'expo.inOut' }
+				{ height: 'auto', opacity: 1, duration: 0.65, ease: 'expo.inOut' }
 			);
 		}
 	}
