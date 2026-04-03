@@ -4,7 +4,7 @@
 </script>
 
 <section
-	class="relative min-h-[90vh] overflow-hidden rounded-b-[50px] bg-[url(/assets/images/Background.png)] bg-cover bg-center xl:min-h-svh xl:rounded-b-[60px]"
+	class="relative min-h-[90vh] overflow-hidden rounded-b-[50px] bg-[url(/assets/images/Background.png)] bg-cover bg-center xl:min-h-svh xl:rounded-b-[60px] xl:px-20"
 >
 	<!-- Titre -->
 	<div

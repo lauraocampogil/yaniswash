@@ -221,3 +221,6 @@ body {
 .grid-section {
 	@apply xl:grid xl:grid-cols-8 xl:gap-x-5 xl:px-20;
 }
+.sm-grid-section {
+	@apply sm:grid sm:grid-cols-8 sm:gap-x-5;
+}
