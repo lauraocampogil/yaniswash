@@ -84,7 +84,7 @@
 				<img
 					src="/assets/svg/mascot/heureux.svg"
 					alt="mascotte"
-					class="absolute -top-4 right-6 w-16"
+					class="absolute -top-4 right-6 w-16 sm:w-20"
 				/>
 			</div>
 

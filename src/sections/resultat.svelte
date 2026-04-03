@@ -49,7 +49,7 @@
 
 		<!-- Flèches: col 7, alignées en bas près de l'image -->
 		<div
-			class="flex justify-end gap-2.5 pb-3 xl:col-span-1 xl:col-start-7 xl:justify-end xl:self-end xl:pb-4"
+			class="flex justify-end gap-2.5 pb-4 xl:col-span-1 xl:col-start-7 xl:justify-end xl:self-end xl:pb-4"
 		>
 			<button
 				type="button"

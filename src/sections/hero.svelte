@@ -8,12 +8,12 @@
 >
 	<!-- Titre -->
 	<div
-		class="absolute top-[25%] right-0 left-0 z-10 flex justify-center px-4
-           xl:top-[30%]
-           xl:px-10 max-xl:sm:top-[16%]"
+		class="absolute top-[25%] right-0 left-0 z-10 flex justify-center px-4 xl:top-[30%]
+           xl:px-10
+        max-xl:sm:top-[21%]"
 	>
 		<h1
-			class="text-center font-druk text-[13vw] leading-none tracking-tight text-white uppercase xl:text-[100px]"
+			class="text-center font-druk text-[13vw] leading-none tracking-tight text-white uppercase xl:text-[100px] sm:text-[80px] sm:leading-20"
 		>
 			{@html title}
 		</h1>
