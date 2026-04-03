@@ -35,7 +35,7 @@
 
 <footer id="footer" class="rounded-t-[50px] bg-primary">
 	<div
-		class="grid-section rounded-t-[50px] bg-primary px-5 pt-10 pb-0 xl:gap-x-5 xl:px-20 xl:pt-16 3xl:container 3xl:mx-auto"
+		class="grid-section rounded-t-[50px] bg-primary px-5 pt-10 pb-0 xl:gap-x-5 xl:px-20 xl:pt-16 3xl:container 3xl:mx-auto sm:px-8 sm:pt-12"
 	>
 		<!-- Logo + titre + description + socials: col 1-3 -->
 		<div class="flex flex-col gap-4 xl:col-span-3 xl:col-start-1 xl:row-start-1 xl:pb-10">

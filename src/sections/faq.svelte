@@ -42,7 +42,7 @@
 
 <section
 	id="faq"
-	class="grid-section bg-background px-5 py-9 xl:gap-x-5 xl:px-20 xl:py-16 3xl:container 3xl:mx-auto"
+	class="grid-section bg-background px-5 py-9 xl:gap-x-5 xl:px-20 xl:py-16 3xl:container 3xl:mx-auto sm:px-8 sm:py-12"
 >
 	<h2
 		class="pb-2.5 text-mobile-title-2xl text-dark xl:col-span-4 xl:col-start-1 xl:row-start-1 xl:pb-4 xl:text-title-2xl"
