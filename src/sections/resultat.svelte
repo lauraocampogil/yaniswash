@@ -39,17 +39,19 @@
 
 <section id="resultat" class="bg-primary">
 	<div
-		class="grid-section flex flex-col overflow-hidden px-5 py-9 xl:gap-x-5 xl:gap-y-0 xl:px-20 xl:py-16 3xl:container 3xl:mx-auto sm:px-8 sm:py-12"
+		class="grid-section flex flex-col overflow-hidden px-5 py-9 xl:gap-x-5 xl:gap-y-0 xl:px-20 xl:py-16 3xl:container 3xl:mx-auto sm:grid sm:grid-cols-8 sm:gap-x-2 sm:gap-y-3 sm:px-8 sm:py-12"
 	>
 		<!-- Header: col 1-3 -->
-		<div class="flex flex-col gap-3 pb-8 xl:col-span-3 xl:col-start-1 xl:self-end xl:pb-18">
+		<div
+			class="flex flex-col gap-3 pb-8 xl:col-span-4 xl:col-start-1 xl:self-end xl:pb-18 sm:col-span-5 sm:col-start-1 sm:self-end sm:pb-12"
+		>
 			<h2 class="text-mobile-title-2xl text-white xl:text-title-2xl">{title}</h2>
 			<p class="text-description text-white">{description}</p>
 		</div>
 
 		<!-- Flèches: col 7, alignées en bas près de l'image -->
 		<div
-			class="flex justify-end gap-2.5 pb-4 xl:col-span-1 xl:col-start-7 xl:justify-end xl:self-end xl:pb-4"
+			class="flex justify-end gap-2.5 pb-4 xl:col-span-1 xl:col-start-7 xl:justify-end xl:self-end xl:pb-4 sm:col-span-1 sm:col-start-7 sm:justify-end sm:self-end sm:pb-2"
 		>
 			<button
 				type="button"
@@ -91,7 +93,7 @@
 			aria-valuemin={0}
 			aria-valuemax={100}
 			tabindex="0"
-			class="relative max-h-135 overflow-hidden rounded-2xl select-none xl:col-span-6 xl:col-start-2 xl:row-start-2"
+			class="relative max-h-135 overflow-hidden rounded-2xl select-none xl:col-span-6 xl:col-start-2 xl:row-start-2 sm:col-span-6 sm:col-start-2 sm:row-start-2 max-xl:sm:max-h-105"
 			onmousedown={() => (dragging = true)}
 			onmouseup={() => (dragging = false)}
 			onmouseleave={() => (dragging = false)}
