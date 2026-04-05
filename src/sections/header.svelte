@@ -3,7 +3,7 @@
 	import gsap from 'gsap';
 	import { bookingOpen } from '$lib/stores/booking';
 
-	let { logo, navigation, button } = $props();
+	let { logo, navigation, button, instagram = null } = $props();
 
 	let menuOpen = $state(false);
 	let hidden = $state(false);
@@ -14,7 +14,6 @@
 	let navLinks = $state<(HTMLElement | null)[]>([]);
 	let ctaEl = $state<HTMLElement | null>(null);
 
-	// Deux refs pour les deux SVG (header + overlay)
 	let line1Header = $state<SVGLineElement | null>(null);
 	let line2Header = $state<SVGLineElement | null>(null);
 
@@ -56,7 +55,6 @@
 				{ y: 0, opacity: 1, duration: 0.4, ease: 'expo.out', delay: 0.5 }
 			);
 
-			// Anime le burger du header → X
 			gsap.to(line1Header, {
 				attr: { x1: 20, y1: 4, x2: 4, y2: 20 },
 				duration: 0.3,
@@ -73,7 +71,6 @@
 	function closeMenu() {
 		if (!overlayEl) return;
 
-		// Anime le X → burger avant de fermer
 		gsap.to(line1Header, {
 			attr: { x1: 2, y1: 6, x2: 22, y2: 6 },
 			duration: 0.3,
@@ -113,6 +110,7 @@
 				<img src={logo} alt="YanisWash" class="h-10 w-fit xl:h-16" />
 			</a>
 
+			<!-- Nav desktop -->
 			<nav class="hidden items-center gap-10 xl:flex">
 				{#each navigation.links as link}
 					<a
@@ -124,18 +122,31 @@
 				{/each}
 			</nav>
 
-			<a
-				href="#contact"
-				onclick={(e) => {
-					e.preventDefault();
-					$bookingOpen = true;
-				}}
-				class="hidden items-center rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-dark xl:inline-flex"
-			>
-				{button}
-			</a>
+			<!-- Desktop: Instagram + CTA -->
+			<div class="hidden items-center gap-3 xl:flex">
+				{#if instagram}
+					<a
+						href={instagram.href}
+						aria-label="Instagram"
+						target="_blank"
+						class="text-white transition-opacity hover:opacity-70"
+					>
+						{@html instagram.icon}
+					</a>
+				{/if}
+				<a
+					href="#contact"
+					onclick={(e) => {
+						e.preventDefault();
+						$bookingOpen = true;
+					}}
+					class="inline-flex items-center rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-dark"
+				>
+					{button}
+				</a>
+			</div>
 
-			<!-- Burger animé — toujours visible au dessus de l'overlay -->
+			<!-- Burger mobile -->
 			<button
 				type="button"
 				class="text-white xl:hidden"
@@ -175,7 +186,7 @@
 	</div>
 </header>
 
-<!-- Menu mobile overlay — z inférieur au header -->
+<!-- Menu mobile overlay -->
 {#if menuOpen}
 	<div
 		bind:this={overlayEl}
@@ -197,8 +208,8 @@
 			{/each}
 		</nav>
 
-		<!-- CTA -->
-		<div bind:this={ctaEl} class="pt-8 pb-10" style="opacity: 0">
+		<!-- CTA + Instagram mobile -->
+		<div bind:this={ctaEl} class="flex flex-col items-start gap-5 pt-8 pb-10" style="opacity: 0">
 			<a
 				href="#contact"
 				onclick={(e) => {
@@ -209,6 +220,16 @@
 			>
 				{button}
 			</a>
+			{#if instagram}
+				<a
+					href={instagram.href}
+					aria-label="Instagram"
+					target="_blank"
+					class="text-white transition-opacity hover:opacity-70"
+				>
+					{@html instagram.icon}
+				</a>
+			{/if}
 		</div>
 	</div>
 {/if}
@@ -217,7 +238,6 @@
 	.hide {
 		transform: translateY(-100%);
 	}
-
 	.scrolled-bg {
 		background-color: #151d3c;
 		backdrop-filter: blur(12px);

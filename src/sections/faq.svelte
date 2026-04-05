@@ -42,21 +42,32 @@
 
 <section
 	id="faq"
-	class="grid-section bg-background px-5 py-9 xl:gap-x-5 xl:px-20 xl:py-16 3xl:container 3xl:mx-auto sm:px-8 sm:py-12"
+	class="grid-section bg-background px-5 py-9 xl:gap-x-5 xl:px-20 xl:py-16 3xl:container 3xl:mx-auto sm:grid sm:grid-cols-8 sm:gap-x-5 max-xl:sm:px-8 max-xl:sm:py-12"
 >
+	<!-- Titre: sm col 1-8 row 1 / xl col 1-4 row 1 -->
 	<h2
-		class="pb-2.5 text-mobile-title-2xl text-dark xl:col-span-4 xl:col-start-1 xl:row-start-1 xl:pb-4 xl:text-title-2xl"
+		class="pb-2.5 text-mobile-title-2xl text-dark
+		xl:col-span-4 xl:col-start-1 xl:row-start-1
+		xl:pb-4 xl:text-title-2xl max-xl:sm:col-span-8 max-xl:sm:col-start-1 max-xl:sm:row-start-1"
 	>
 		{title}
 	</h2>
 
+	<!-- Description: sm col 1-8 row 2 / xl col 1-4 row 2 -->
 	<p
-		class="pb-8 text-description text-dark xl:col-span-4 xl:col-start-1 xl:row-start-2 xl:self-start xl:pr-16 xl:pb-0"
+		class="pb-8 text-description text-dark
+		xl:col-span-4 xl:col-start-1 xl:row-start-2 xl:self-start
+		xl:pr-16 xl:pb-0 max-xl:sm:col-span-5 max-xl:sm:col-start-1 max-xl:sm:row-start-2"
 	>
 		{description}
 	</p>
 
-	<div class="flex flex-col gap-3 xl:col-span-4 xl:col-start-5 xl:row-start-2">
+	<!-- FAQ list: sm col 1-8 row 3 / xl col 5-8 row 2 -->
+	<div
+		class="flex flex-col gap-3
+		xl:col-span-4 xl:col-start-5 xl:row-start-2
+		max-xl:sm:col-span-8 max-xl:sm:col-start-1 max-xl:sm:row-start-3"
+	>
 		{#each faqs as faq, i}
 			<div
 				data-card={i}
@@ -82,7 +93,6 @@
 						</svg>
 					</span>
 				</div>
-
 				<div
 					data-answer={i}
 					class="overflow-hidden text-mobile-body text-dark/70"

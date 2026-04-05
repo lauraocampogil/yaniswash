@@ -16,16 +16,20 @@
 
 <section id="services" class="bg-background">
 	<div
-		class="grid-section flex flex-col gap-6 px-5 py-9 xl:gap-x-5 xl:gap-y-0 xl:px-20 xl:py-16 3xl:container 3xl:mx-auto sm:px-8 sm:py-12"
+		class="grid-section flex flex-col gap-6 px-5 py-9 xl:gap-x-5 xl:gap-y-0 xl:px-20 xl:py-16 3xl:container 3xl:mx-auto sm:grid sm:grid-cols-8 sm:gap-x-5 sm:px-8 sm:py-12"
 	>
 		<!-- Header: col 1-3 -->
-		<div class="flex flex-col gap-3 xl:col-span-3 xl:col-start-1 xl:self-end xl:pb-6">
+		<div
+			class="flex flex-col gap-3 xl:col-span-3 xl:col-start-1 xl:self-end xl:pb-6 sm:col-span-5 sm:col-start-1 sm:self-end sm:pb-6"
+		>
 			<h2 class="text-left text-mobile-title-2xl text-dark xl:text-title-2xl">{title}</h2>
 			<p class="text-description text-dark">{description}</p>
 		</div>
 
 		<!-- Card: col 2-7 -->
-		<div class="flex flex-col rounded-2xl xl:col-span-6 xl:col-start-2 xl:row-start-2">
+		<div
+			class="flex flex-col rounded-2xl xl:col-span-6 xl:col-start-2 xl:row-start-2 sm:col-span-6 sm:col-start-2 sm:row-start-2"
+		>
 			<!-- Header primary-accent mobile -->
 			<div class="relative flex items-center rounded-t-2xl bg-primary-accent px-4 py-4 xl:hidden">
 				<div class="relative">

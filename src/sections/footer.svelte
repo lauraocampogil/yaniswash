@@ -4,13 +4,12 @@
 	import gsap from 'gsap';
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-	let { logo, title, description, image, socials, services, contact, legal, copyright } = $props();
+	let { logo, title, description, image, services, contact, legal, copyright } = $props();
 
 	let carEl: HTMLElement;
 
 	onMount(() => {
 		gsap.registerPlugin(ScrollTrigger);
-
 		if (window.innerWidth >= 1280) {
 			gsap.fromTo(
 				carEl,
@@ -20,11 +19,7 @@
 					opacity: 1,
 					duration: 1.8,
 					ease: 'expo.out',
-					scrollTrigger: {
-						trigger: carEl,
-						start: 'top 60%',
-						once: true
-					}
+					scrollTrigger: { trigger: carEl, start: 'top 60%', once: true }
 				}
 			);
 		} else {
@@ -35,54 +30,36 @@
 
 <footer id="footer" class="rounded-t-[50px] bg-primary">
 	<div
-		class="grid-section rounded-t-[50px] bg-primary px-5 pt-10 pb-0 xl:gap-x-5 xl:px-20 xl:pt-16 3xl:container 3xl:mx-auto sm:px-8 sm:pt-12"
+		class="grid-section rounded-t-[50px] bg-primary px-5 pt-10 pb-0
+		xl:gap-x-5 xl:px-20 xl:pt-16
+		3xl:container 3xl:mx-auto
+		sm:grid sm:grid-cols-8 sm:gap-x-5 sm:gap-y-4
+		max-xl:sm:px-8 max-xl:sm:pt-12"
 	>
-		<!-- Logo + titre + description + socials: col 1-3 -->
-		<div class="flex flex-col gap-4 xl:col-span-2 xl:col-start-1 xl:row-start-1 xl:pb-10">
+		<!-- Logo: sm col 1-3 row 1 / xl col 1-2 row 1 -->
+		<div
+			class="mb-4
+			xl:col-span-2 xl:col-start-1 xl:row-start-1 max-xl:sm:col-span-3
+			max-xl:sm:col-start-1 max-xl:sm:row-start-1 max-xl:sm:mb-0"
+		>
 			<img src={logo} alt="YanisWash" class="h-15 w-fit xl:h-20" />
-			<div class="flex flex-col gap-1">
-				<p class="text-mobile-title-lg font-bold text-white xl:text-title-sm">{title}</p>
-				<p class="text-mobile-body text-white">{description}</p>
-			</div>
-			<div class="flex flex-col gap-1.5">
-				<p class="font-bold text-white">Suivez-nous</p>
-				<div class="flex gap-4">
-					{#each socials as social}
-						<a href={social.href} aria-label={social.label} class="text-white">
-							{#if social.label === 'Instagram'}
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="24"
-									height="24"
-									fill="currentColor"
-									viewBox="0 0 256 256"
-								>
-									<path
-										d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"
-									/>
-								</svg>
-							{:else if social.label === 'Facebook'}
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="24"
-									height="24"
-									fill="currentColor"
-									viewBox="0 0 256 256"
-								>
-									<path
-										d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm8,191.63V152h24a8,8,0,0,0,0-16H136V112a16,16,0,0,1,16-16h16a8,8,0,0,0,0-16H152a32,32,0,0,0-32,32v24H96a8,8,0,0,0,0,16h24v63.63a88,88,0,1,1,16,0Z"
-									/>
-								</svg>
-							{/if}
-						</a>
-					{/each}
-				</div>
-			</div>
 		</div>
 
-		<!-- Horaires + CTA: col 6 -->
+		<!-- Titre + description: sm col 1-3 row 2 / xl col 1-2 row 2 -->
 		<div
-			class="mt-12 flex flex-col gap-2 xl:col-span-1 xl:col-start-6 xl:row-start-1 xl:mt-0 xl:self-start xl:pb-10"
+			class="flex flex-col gap-1
+			xl:col-span-2 xl:col-start-1 xl:row-start-2 xl:self-start
+			max-xl:sm:col-span-3 max-xl:sm:col-start-1 max-xl:sm:row-start-2 max-xl:sm:self-start"
+		>
+			<p class="text-mobile-title-lg font-bold text-white xl:text-title-sm">{title}</p>
+			<p class="text-mobile-body text-white">{description}</p>
+		</div>
+
+		<!-- Horaires + CTA: sm col 4-5 row 2 / xl col 6 row 2 -->
+		<div
+			class="flex flex-col gap-2
+			xl:col-span-1 xl:col-start-6 xl:row-start-2 xl:self-start
+			xl:pb-10 max-xl:sm:col-span-2 max-xl:sm:col-start-4 max-xl:sm:row-start-2 max-xl:sm:self-start"
 		>
 			<p class="font-bold text-white">Lundi - Samedi</p>
 			<p class="text-mobile-body text-white">{contact.hours}</p>
@@ -98,9 +75,11 @@
 			</a>
 		</div>
 
-		<!-- Contact: col 7-8 -->
+		<!-- Contact: sm col 6-8 row 2 / xl col 7-8 row 2 -->
 		<div
-			class="mt-6 flex flex-col gap-2 xl:col-span-2 xl:col-start-7 xl:row-start-1 xl:mt-0 xl:self-start xl:pb-10"
+			class="flex flex-col gap-2
+			xl:col-span-2 xl:col-start-7 xl:row-start-2 xl:self-start
+			xl:pb-10 max-xl:sm:col-span-3 max-xl:sm:col-start-6 max-xl:sm:row-start-2 max-xl:sm:self-start"
 		>
 			<p class="font-bold text-white">{contact.title}</p>
 			<div class="flex items-center gap-2">
@@ -160,18 +139,22 @@
 			</div>
 		</div>
 
-		<!-- Image voiture: col 1-8, row 2 — animation depuis la droite -->
+		<!-- Image voiture: col 1-8 row 4 -->
 		<div
 			bind:this={carEl}
-			class="-mx-5 mt-6 overflow-hidden px-4 xl:col-span-8 xl:col-start-1 xl:row-start-2 xl:mx-0 xl:-mb-1 xl:px-0"
+			class="-mx-5 mt-6 overflow-hidden px-4
+			xl:col-span-8 xl:col-start-1 xl:row-start-4 xl:mx-0
+			xl:mt-0 xl:-mb-1 xl:px-0 max-xl:sm:col-span-8 max-xl:sm:col-start-1 max-xl:sm:row-start-4 max-xl:sm:mt-4"
 			style="opacity: 0"
 		>
 			<img src={image} alt="voiture" class="w-full object-contain xl:max-h-95" />
 		</div>
 
-		<!-- Legal: col 1-8, row 3 -->
+		<!-- Legal: col 1-8 row 5 -->
 		<div
-			class="flex flex-col gap-2 py-4 xl:col-span-8 xl:col-start-1 xl:row-start-3 xl:flex-row xl:items-center xl:justify-between xl:py-5"
+			class="flex flex-col gap-2 py-4
+			xl:col-span-8 xl:col-start-1 xl:row-start-5
+			xl:flex-row xl:items-center xl:justify-between xl:py-5 max-xl:sm:col-span-8 max-xl:sm:col-start-1 max-xl:sm:row-start-5"
 		>
 			<a
 				href="https://unixcreativestudio.com/index.html"

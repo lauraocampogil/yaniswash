@@ -23,7 +23,7 @@
 		<!-- Header: sm col 1-6 / xl col 1-4 -->
 		<div
 			class="mb-6 flex flex-col gap-3
-			xl:col-span-4 xl:col-start-1 xl:self-end sm:col-span-6
+			xl:col-span-4 xl:col-start-1 xl:self-end sm:col-span-5
 			sm:col-start-1 sm:mb-0 sm:self-end"
 		>
 			<h2 class="text-mobile-title-2xl text-white xl:text-title-2xl">{title}</h2>
