@@ -38,7 +38,7 @@
 		class="grid-section rounded-t-[50px] bg-primary px-5 pt-10 pb-0 xl:gap-x-5 xl:px-20 xl:pt-16 3xl:container 3xl:mx-auto sm:px-8 sm:pt-12"
 	>
 		<!-- Logo + titre + description + socials: col 1-3 -->
-		<div class="flex flex-col gap-4 xl:col-span-3 xl:col-start-1 xl:row-start-1 xl:pb-10">
+		<div class="flex flex-col gap-4 xl:col-span-2 xl:col-start-1 xl:row-start-1 xl:pb-10">
 			<img src={logo} alt="YanisWash" class="h-15 w-fit xl:h-20" />
 			<div class="flex flex-col gap-1">
 				<p class="text-mobile-title-lg font-bold text-white xl:text-title-sm">{title}</p>
@@ -82,7 +82,7 @@
 
 		<!-- Horaires + CTA: col 6 -->
 		<div
-			class="mt-8 flex flex-col gap-2 xl:col-span-1 xl:col-start-6 xl:row-start-1 xl:mt-0 xl:self-start xl:pb-10"
+			class="mt-12 flex flex-col gap-2 xl:col-span-1 xl:col-start-6 xl:row-start-1 xl:mt-0 xl:self-start xl:pb-10"
 		>
 			<p class="font-bold text-white">Lundi - Samedi</p>
 			<p class="text-mobile-body text-white">{contact.hours}</p>
