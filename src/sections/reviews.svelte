@@ -14,14 +14,20 @@
 
 <section id="reviews" class="bg-dark">
 	<div
-		class="grid-section flex flex-col gap-6 px-5 py-9 xl:gap-x-5 xl:px-20 xl:py-16 3xl:container 3xl:mx-auto sm:px-8 sm:py-12"
+		class="block gap-6 px-5 py-9
+    xl:grid-cols-8 xl:gap-x-5 xl:px-20 xl:py-16
+    3xl:container 3xl:mx-auto
+    sm:grid sm:grid-cols-8 sm:gap-x-5 sm:gap-y-6
+    max-xl:sm:px-8 max-xl:sm:py-12"
 	>
-		<!-- Header: col 1-4 -->
-		<div class="flex flex-col gap-3 xl:col-span-4 xl:col-start-1 xl:self-end">
+		<!-- Header: sm col 1-6 / xl col 1-4 -->
+		<div
+			class="mb-6 flex flex-col gap-3
+			xl:col-span-4 xl:col-start-1 xl:self-end sm:col-span-6
+			sm:col-start-1 sm:mb-0 sm:self-end"
+		>
 			<h2 class="text-mobile-title-2xl text-white xl:text-title-2xl">{title}</h2>
 			<p class="text-description text-white">{description}</p>
-
-			<!-- Stats badge -->
 			<div class="flex flex-col items-start pt-4">
 				<div class="inline-flex items-center gap-4 rounded-full bg-secondary-accent py-1 pr-2 pl-4">
 					<p class="text-mobile-body text-dark">
@@ -40,9 +46,11 @@
 			</div>
 		</div>
 
-		<!-- Flèches: col 7 -->
+		<!-- Flèches: sm col 7-8 / xl col 7-8 -->
 		<div
-			class="flex justify-end gap-2.5 xl:col-span-2 xl:col-start-7 xl:justify-end xl:self-end xl:pb-1"
+			class="mb-4 flex justify-end gap-2.5
+			xl:col-span-2 xl:col-start-7 xl:self-end xl:pb-1 sm:col-span-2
+			sm:col-start-7 sm:mb-0 sm:self-end sm:pb-1"
 		>
 			<button
 				type="button"
@@ -76,9 +84,10 @@
 			</button>
 		</div>
 
-		<!-- Card: col 2-7, row 2 -->
 		<div
-			class="flex flex-col gap-3 rounded-2xl bg-white p-5 xl:col-span-3 xl:col-start-6 xl:row-start-2 xl:p-8"
+			class="flex flex-col gap-3 rounded-2xl bg-white p-5
+    xl:col-span-3 xl:col-start-6 xl:row-start-2
+    xl:p-8 max-xl:sm:col-span-5 max-xl:sm:col-start-4 max-xl:sm:row-start-2"
 		>
 			<p class="text-mobile-body text-dark xl:text-body">{avis[currentIndex].text}</p>
 			<p class="text-sm font-semibold text-dark">{avis[currentIndex].name}</p>
