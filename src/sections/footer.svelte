@@ -34,7 +34,7 @@
 		xl:gap-x-5 xl:px-20 xl:pt-16
 		3xl:container 3xl:mx-auto
 		sm:grid sm:grid-cols-8 sm:gap-x-5 sm:gap-y-4
-		max-xl:sm:px-8 max-xl:sm:pt-12 md:px-10"
+		max-xl:sm:px-8 max-xl:sm:pt-12 max-xl:md:px-10 max-xl:lg:px-12"
 	>
 		<!-- Logo: sm col 1-3 row 1 / xl col 1-2 row 1 -->
 		<div
@@ -155,8 +155,8 @@
 		<!-- Legal: col 1-8 row 5 -->
 		<div
 			class="flex flex-col gap-2 py-4
-			xl:col-span-8 xl:col-start-1 xl:row-start-5
-			xl:flex-row xl:items-center xl:justify-between xl:py-5 max-xl:sm:col-span-8 max-xl:sm:col-start-1 max-xl:sm:row-start-5"
+			max-xl:sm:col-span-8 max-xl:sm:col-start-1 max-xl:sm:row-start-5
+			lg:col-span-8 lg:col-start-1 lg:row-start-5 lg:flex-row lg:items-center lg:justify-between lg:py-5"
 		>
 			<p class="text-xs text-white/60">{copyright}</p>
 			<div class="flex flex-wrap gap-4 xl:gap-6">

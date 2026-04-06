@@ -18,7 +18,7 @@
     py-9 xl:grid-cols-8 xl:gap-x-5 xl:px-20
     xl:py-16 3xl:container
     3xl:mx-auto sm:grid sm:grid-cols-8 sm:gap-x-5
-    sm:gap-y-6 sm:py-12 max-xl:sm:px-8 md:px-10"
+    sm:gap-y-6 sm:py-12 max-xl:sm:px-8 max-xl:md:px-10 max-xl:lg:px-12"
 	>
 		<!-- Header: sm col 1-6 / xl col 1-4 -->
 		<div
@@ -85,9 +85,9 @@
 		</div>
 
 		<div
-			class="flex flex-col gap-3 rounded-2xl bg-white p-5
-    xl:col-span-3 xl:col-start-6 xl:row-start-2
-    xl:p-8 max-xl:sm:col-span-5 max-xl:sm:col-start-4 max-xl:sm:row-start-2"
+			class="flex flex-col gap-3 rounded-2xl bg-white p-5 xl:col-span-3
+    xl:col-start-6 xl:row-start-2 xl:p-8 max-xl:sm:col-span-5 max-xl:sm:col-start-4
+    max-xl:sm:row-start-2 max-xl:md:col-span-4 max-xl:md:col-start-5 max-xl:lg:col-span-4 max-xl:lg:col-start-5"
 		>
 			<p class="text-mobile-body text-dark xl:text-body">{avis[currentIndex].text}</p>
 			<p class="text-sm font-semibold text-dark">{avis[currentIndex].name}</p>

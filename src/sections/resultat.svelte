@@ -39,7 +39,7 @@
 
 <section id="resultat" class="bg-primary">
 	<div
-		class="grid-section flex flex-col overflow-hidden px-5 py-9 xl:gap-x-5 xl:gap-y-0 xl:px-20 xl:py-16 3xl:container 3xl:mx-auto sm:grid sm:grid-cols-8 sm:gap-x-1 sm:gap-y-3 sm:px-8 sm:py-12 md:px-10"
+		class="grid-section flex flex-col overflow-hidden px-5 py-9 xl:gap-x-5 xl:gap-y-0 xl:px-20 xl:py-16 3xl:container 3xl:mx-auto sm:grid sm:grid-cols-8 sm:gap-x-1 sm:gap-y-3 sm:px-8 sm:py-12 max-xl:md:px-10 max-xl:lg:px-12"
 	>
 		<!-- Header: col 1-3 -->
 		<div
@@ -93,7 +93,7 @@
 			aria-valuemin={0}
 			aria-valuemax={100}
 			tabindex="0"
-			class="relative max-h-135 overflow-hidden rounded-2xl select-none xl:col-span-6 xl:col-start-2 xl:row-start-2 sm:col-span-6 sm:col-start-2 sm:row-start-2 max-xl:sm:max-h-105"
+			class="relative max-h-135 overflow-hidden rounded-2xl select-none xl:col-span-6 xl:col-start-2 xl:row-start-2 sm:col-span-6 sm:col-start-2 sm:row-start-2 max-xl:sm:max-h-105 lg:max-h-135"
 			onmousedown={() => (dragging = true)}
 			onmouseup={() => (dragging = false)}
 			onmouseleave={() => (dragging = false)}

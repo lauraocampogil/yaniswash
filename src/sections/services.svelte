@@ -16,7 +16,7 @@
 
 <section id="services" class="bg-background">
 	<div
-		class="grid-section flex flex-col gap-6 px-5 py-9 xl:gap-x-5 xl:gap-y-0 xl:px-20 xl:py-16 3xl:container 3xl:mx-auto sm:grid sm:grid-cols-8 sm:gap-x-5 sm:px-8 sm:py-12 md:px-10"
+		class="grid-section flex flex-col gap-6 px-5 py-9 xl:gap-x-5 xl:gap-y-0 xl:px-20 xl:py-16 3xl:container 3xl:mx-auto sm:grid sm:grid-cols-8 sm:gap-x-5 sm:px-8 sm:py-12 md:px-10 lg:px-12"
 	>
 		<!-- Header: col 1-3 -->
 		<div
@@ -28,10 +28,10 @@
 
 		<!-- Card: col 2-7 -->
 		<div
-			class="flex flex-col rounded-2xl xl:col-span-6 xl:col-start-2 xl:row-start-2 sm:col-span-6 sm:col-start-2 sm:row-start-2"
+			class="flex flex-col rounded-2xl sm:col-span-6 sm:col-start-2 sm:row-start-2 lg:col-span-6 lg:col-start-2 lg:row-start-2"
 		>
 			<!-- Header primary-accent mobile -->
-			<div class="relative flex items-center rounded-t-2xl bg-primary-accent px-4 py-4 xl:hidden">
+			<div class="relative flex items-center rounded-t-2xl bg-primary-accent px-4 py-4 lg:hidden">
 				<div class="relative">
 					<button
 						type="button"
@@ -93,7 +93,7 @@
 			</div>
 
 			<!-- Header desktop -->
-			<div class="relative hidden rounded-t-2xl bg-primary-accent xl:grid xl:grid-cols-4">
+			<div class="relative hidden rounded-t-2xl bg-primary-accent lg:grid lg:grid-cols-4">
 				<div class="px-6 py-5"></div>
 				{#each columns as col}
 					<div
@@ -110,7 +110,7 @@
 			</div>
 
 			<!-- Tabla mobile -->
-			<div class="relative grid grid-cols-2 bg-white px-4 xl:hidden">
+			<div class="relative grid grid-cols-2 bg-white px-4 lg:hidden">
 				<div
 					class="absolute top-4 bottom-4 left-1/2 -translate-x-1/2 border-l border-dashed border-dark/20"
 				></div>
@@ -133,7 +133,7 @@
 			</div>
 
 			<!-- Tabla desktop -->
-			<div class="hidden bg-white xl:grid xl:grid-cols-4">
+			<div class="hidden bg-white lg:grid lg:grid-cols-4">
 				{#each vehicules as v, i}
 					<div
 						class="flex items-center px-6 py-9 text-mobile-title-lg text-dark {i !== 0
@@ -170,7 +170,7 @@
 			</div>
 
 			<!-- CTA + Extras -->
-			<div class="flex flex-col gap-6 rounded-b-2xl bg-white px-4 pt-6 pb-6 xl:px-6">
+			<div class="flex flex-col gap-6 rounded-b-2xl bg-white px-4 pt-6 pb-6 lg:px-6">
 				<div class="flex justify-center">
 					<a
 						href={ctaHref}
@@ -183,7 +183,7 @@
 						{button}
 					</a>
 				</div>
-				<ul class="flex flex-col gap-2 text-tag text-dark-accent/70 xl:text-sm">
+				<ul class="flex flex-col gap-2 text-tag text-dark-accent/70 lg:text-sm">
 					{#each extras as extra}
 						<li>• {extra.name} — {extra.price}</li>
 					{/each}
