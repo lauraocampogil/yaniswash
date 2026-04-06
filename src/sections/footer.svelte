@@ -30,7 +30,7 @@
 
 <footer id="footer" class="rounded-t-[50px] bg-primary">
 	<div
-		class="grid-section rounded-t-[50px] bg-primary px-5 pt-10 pb-0
+		class="grid-section gap-5 rounded-t-[50px] bg-primary px-5 pt-10 pb-0
 		xl:gap-x-5 xl:px-20 xl:pt-16
 		3xl:container 3xl:mx-auto
 		sm:grid sm:grid-cols-8 sm:gap-x-5 sm:gap-y-4
@@ -47,7 +47,7 @@
 
 		<!-- Titre + description: sm col 1-3 row 2 / xl col 1-2 row 2 -->
 		<div
-			class="flex flex-col gap-1
+			class="flex flex-col gap-1 pb-5
 			xl:col-span-2 xl:col-start-1 xl:row-start-2 xl:self-start
 			max-xl:sm:col-span-3 max-xl:sm:col-start-1 max-xl:sm:row-start-2 max-xl:sm:self-start"
 		>
@@ -57,9 +57,9 @@
 
 		<!-- Horaires + CTA: sm col 4-5 row 2 / xl col 6 row 2 -->
 		<div
-			class="flex flex-col gap-2
+			class="flex flex-col gap-1 pb-7
 			xl:col-span-1 xl:col-start-6 xl:row-start-2 xl:self-start
-			xl:pb-10 max-xl:sm:col-span-2 max-xl:sm:col-start-4 max-xl:sm:row-start-2 max-xl:sm:self-start"
+			xl:pb-10 max-xl:sm:col-span-2 max-xl:sm:col-start-5 max-xl:sm:row-start-2 max-xl:sm:self-start"
 		>
 			<p class="font-bold text-white">Lundi - Samedi</p>
 			<p class="text-mobile-body text-white">{contact.hours}</p>
@@ -77,9 +77,9 @@
 
 		<!-- Contact: sm col 6-8 row 2 / xl col 7-8 row 2 -->
 		<div
-			class="flex flex-col gap-2
+			class="flex flex-col gap-1
 			xl:col-span-2 xl:col-start-7 xl:row-start-2 xl:self-start
-			xl:pb-10 max-xl:sm:col-span-3 max-xl:sm:col-start-6 max-xl:sm:row-start-2 max-xl:sm:self-start"
+			xl:pb-10 max-xl:sm:col-span-2 max-xl:sm:col-start-7 max-xl:sm:row-start-2 max-xl:sm:self-start"
 		>
 			<p class="font-bold text-white">{contact.title}</p>
 			<div class="flex items-center gap-2">
@@ -96,13 +96,15 @@
 				</svg>
 				<span class="text-mobile-body text-white">{contact.phone}</span>
 			</div>
-			<div class="flex items-center gap-2">
+			<!-- Email -->
+			<div class="flex items-start gap-2 overflow-hidden">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="18"
 					height="18"
 					fill="#ffffff"
 					viewBox="0 0 256 256"
+					class="mt-0.5 shrink-0"
 				>
 					<path
 						d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48Zm-96,85.15L52.57,64H203.43ZM98.71,128,40,181.81V74.19Zm11.84,10.85,12,11.05a8,8,0,0,0,10.82,0l12-11.05,58,53.15H52.57ZM157.29,128,216,74.18V181.82Z"
@@ -110,7 +112,7 @@
 				</svg>
 				<a
 					href={'mailto:' + contact.email}
-					class="text-mobile-body break-all text-white underline-offset-2 hover:underline"
+					class="min-w-0 text-mobile-body wrap-break-word text-white underline-offset-2 hover:underline"
 				>
 					{contact.email}
 				</a>
@@ -156,17 +158,17 @@
 			xl:col-span-8 xl:col-start-1 xl:row-start-5
 			xl:flex-row xl:items-center xl:justify-between xl:py-5 max-xl:sm:col-span-8 max-xl:sm:col-start-1 max-xl:sm:row-start-5"
 		>
-			<a
-				href="https://unixcreativestudio.com/index.html"
-				target="_blank"
-				class="text-xs text-white/60">Made with love by Unix</a
-			>
+			<p class="text-xs text-white/60">{copyright}</p>
 			<div class="flex flex-wrap gap-4 xl:gap-6">
 				{#each legal as item}
 					<a href={item.href} class="text-xs text-white/60">{item.label}</a>
 				{/each}
 			</div>
-			<p class="text-xs text-white/60">{copyright}</p>
+			<a
+				href="https://unixcreativestudio.com/index.html"
+				target="_blank"
+				class="text-xs text-white/60">Made with love by Unix</a
+			>
 		</div>
 	</div>
 </footer>
