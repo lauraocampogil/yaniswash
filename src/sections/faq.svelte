@@ -42,7 +42,7 @@
 
 <section
 	id="faq"
-	class="grid-section bg-background px-5 py-9 xl:gap-x-5 xl:px-20 xl:py-16 3xl:container 3xl:mx-auto sm:grid sm:grid-cols-8 sm:gap-x-5 max-xl:sm:px-8 max-xl:sm:py-12"
+	class="grid-section bg-background px-5 py-9 xl:gap-x-5 xl:px-20 xl:py-16 3xl:container 3xl:mx-auto sm:grid sm:grid-cols-8 sm:gap-x-5 max-xl:sm:px-8 max-xl:sm:py-12 md:px-10"
 >
 	<!-- Titre: sm col 1-8 row 1 / xl col 1-4 row 1 -->
 	<h2

@@ -16,7 +16,7 @@
 
 <section id="services" class="bg-background">
 	<div
-		class="grid-section flex flex-col gap-6 px-5 py-9 xl:gap-x-5 xl:gap-y-0 xl:px-20 xl:py-16 3xl:container 3xl:mx-auto sm:grid sm:grid-cols-8 sm:gap-x-5 sm:px-8 sm:py-12"
+		class="grid-section flex flex-col gap-6 px-5 py-9 xl:gap-x-5 xl:gap-y-0 xl:px-20 xl:py-16 3xl:container 3xl:mx-auto sm:grid sm:grid-cols-8 sm:gap-x-5 sm:px-8 sm:py-12 md:px-10"
 	>
 		<!-- Header: col 1-3 -->
 		<div

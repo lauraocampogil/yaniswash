@@ -34,7 +34,7 @@
 		xl:gap-x-5 xl:px-20 xl:pt-16
 		3xl:container 3xl:mx-auto
 		sm:grid sm:grid-cols-8 sm:gap-x-5 sm:gap-y-4
-		max-xl:sm:px-8 max-xl:sm:pt-12"
+		max-xl:sm:px-8 max-xl:sm:pt-12 md:px-10"
 	>
 		<!-- Logo: sm col 1-3 row 1 / xl col 1-2 row 1 -->
 		<div
