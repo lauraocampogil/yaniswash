@@ -28,7 +28,7 @@
 		>
 			<h2 class="text-mobile-title-2xl text-white xl:text-title-2xl">{title}</h2>
 			<p class="text-description text-white">{description}</p>
-			<div class="flex flex-col items-start pt-4">
+			<div class="flex flex-col items-start pt-4 pb-8">
 				<div class="inline-flex items-center gap-4 rounded-full bg-secondary-accent py-1 pr-2 pl-4">
 					<p class="text-mobile-body text-dark">
 						<strong>{stats.note}</strong> étoiles | <strong>{stats.total}</strong> avis
