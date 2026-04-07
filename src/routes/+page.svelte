@@ -142,41 +142,41 @@
 					'Nous savons que confier sa voiture peut soulever des questions. Voici les réponses aux plus courantes.',
 				faqs: [
 					{
-						question: 'Combien de temps dure un lavage ?',
+						question: 'Combien de temps dure un lavage?',
 						answer:
 							"Entre 1h et 2h30 selon la formule choisie et l'état du véhicule. Nous prenons le temps qu'il faut pour bien faire."
 					},
 					{
-						question: 'Dois-je être présent pendant le lavage ?',
+						question: 'Dois-je être présent pendant le lavage?',
 						answer:
 							"Non, ce n'est pas obligatoire. Vous pouvez nous laisser les clés et revenir une fois le véhicule prêt."
 					},
 					{
-						question: 'Comment se passe le paiement ?',
+						question: 'Comment se passe le paiement?',
 						answer:
 							'Vous pouvez régler en ligne lors de la réservation, ou en espèces directement sur place au moment du lavage.'
 					},
 					{
-						question: 'Travaillez-vous le week-end ?',
+						question: 'Travaillez-vous le week-end?',
 						answer:
 							'Oui, du lundi au samedi de 8h à 18h. Contactez-nous pour les disponibilités le samedi.'
 					},
 					{
-						question: 'Puis-je annuler ou déplacer mon rendez-vous ?',
+						question: 'Puis-je annuler ou déplacer mon rendez-vous?',
 						answer:
 							"Oui, jusqu'à 24h avant la prestation. Au-delà, nous vous demandons de nous prévenir dès que possible."
 					},
 					{
-						question: 'Ma voiture est vraiment très sale, est-ce un problème ?',
+						question: 'Ma voiture est vraiment très sale, est-ce un problème?',
 						answer:
 							"Non, au contraire — c'est pour ça que nous existons. Un supplément de 10€ peut s'appliquer pour les véhicules très sales ou avec des poils d'animaux."
 					},
 					{
-						question: 'Faut-il vider la voiture avant ?',
+						question: 'Faut-il vider la voiture avant?',
 						answer: 'Idéalement oui, pour les affaires personnelles. Nous nous occupons du reste.'
 					},
 					{
-						question: 'Vous déplacez-vous partout à Bruxelles ?',
+						question: 'Vous déplacez-vous partout à Bruxelles?',
 						answer:
 							"Oui, dans toute la région bruxelloise et jusqu'à 25 km aux alentours. Au-delà, un supplément de 10€ par tranche de 25 km s'applique."
 					}
