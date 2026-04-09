@@ -227,10 +227,6 @@
 
 <svelte:head>
 	<title>YanisWash | Lavage automobile à Bruxelles</title>
-	<meta
-		name="description"
-		content="YanisWash propose des services de lavage automobile de qualité à Bruxelles. Votre voiture mérite le meilleur soin."
-	/>
 </svelte:head>
 
 <Booking bind:isOpen={$bookingOpen} />
