@@ -55,6 +55,42 @@
 		<meta name="geo.region" content="BE-BRU" />
 		<meta name="geo.placename" content="Anderlecht - Bruxelles" />
 		<meta name="ICBM" content="50.84003658930904, 4.301242201110728" />
+
+		<!-- Schema.org -->
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "AutoWash",
+				"name": "YanisWash",
+				"description": "Lavage automobile professionnel à domicile à Bruxelles.",
+				"url": "https://yaniswash.be",
+				"telephone": "+32491739789",
+				"email": "contact@yaniswash.be",
+				"address": {
+					"@type": "PostalAddress",
+					"streetAddress": "Rue des Maraichers 5",
+					"addressLocality": "Anderlecht",
+					"postalCode": "1070",
+					"addressCountry": "BE"
+				},
+				"geo": {
+					"@type": "GeoCoordinates",
+					"latitude": 50.8356,
+					"longitude": 4.3072
+				},
+				"openingHoursSpecification": [
+					{
+						"@type": "OpeningHoursSpecification",
+						"dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+						"opens": "08:00",
+						"closes": "18:00"
+					}
+				],
+				"priceRange": "€€",
+				"image": "https://yaniswash.be/og-image.jpg",
+				"sameAs": ["https://www.instagram.com/yaniswash/"]
+			}
+		</script>
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">%sveltekit.body%</div>
