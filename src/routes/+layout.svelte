@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href="/assets/svg/favicon.svg" type="image/svg+xml" />
+	<title>Yanis Wash| Lavage automobile</title>
 </svelte:head>
 
 {@render children()}
