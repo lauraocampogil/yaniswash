@@ -39,7 +39,7 @@
 
 <section id="resultat" class="bg-primary">
 	<div
-		class="grid-section flex flex-col overflow-hidden px-5 py-9 xl:gap-x-5 xl:gap-y-0 xl:px-20 xl:py-16 3xl:container 3xl:mx-auto sm:grid sm:grid-cols-8 sm:gap-x-1 sm:gap-y-3 sm:px-8 sm:py-12 max-xl:md:px-10 max-xl:lg:px-12 "
+		class="grid-section flex flex-col overflow-hidden px-5 py-9 xl:gap-x-5 xl:gap-y-0 xl:px-20 xl:py-16 3xl:container 3xl:mx-auto sm:grid sm:grid-cols-8 sm:gap-x-1 sm:gap-y-3 sm:px-8 sm:py-12 max-xl:md:px-10 max-xl:lg:px-12"
 	>
 		<!-- Header: col 1-3 -->
 		<div
@@ -57,7 +57,7 @@
 				type="button"
 				aria-label="caret-left"
 				onclick={prev}
-				class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-secondary-accent text-dark shadow-sm"
+				class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-secondary-accent text-dark shadow-sm hover:bg-primary-accent"
 			>
 				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
 					<path
@@ -72,7 +72,7 @@
 				type="button"
 				aria-label="caret-right"
 				onclick={next}
-				class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-secondary-accent text-dark shadow-sm"
+				class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-secondary-accent text-dark shadow-sm hover:bg-primary-accent"
 			>
 				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
 					<path

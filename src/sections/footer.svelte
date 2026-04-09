@@ -69,7 +69,7 @@
 					e.preventDefault();
 					$bookingOpen = true;
 				}}
-				class="mt-2 inline-flex w-fit items-center rounded-full bg-white px-2 py-2 text-sm font-semibold text-dark"
+				class="mt-2 inline-flex w-fit items-center rounded-full bg-white px-2 py-2 text-sm font-semibold text-dark hover:bg-primary-accent"
 			>
 				{services.button}
 			</a>

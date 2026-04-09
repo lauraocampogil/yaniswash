@@ -178,7 +178,7 @@
 							e.preventDefault();
 							$bookingOpen = true;
 						}}
-						class="rounded-full bg-dark px-8 py-3 text-button whitespace-nowrap text-white xl:text-button"
+						class="rounded-full bg-dark px-8 py-3 text-button whitespace-nowrap text-white hover:bg-dark-accent xl:text-button"
 					>
 						{button}
 					</a>

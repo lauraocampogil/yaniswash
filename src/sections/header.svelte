@@ -115,7 +115,7 @@
 				{#each navigation.links as link}
 					<a
 						href={link.href}
-						class="text-sm font-medium text-white transition-opacity hover:opacity-70"
+						class="text-sm font-medium text-white transition-opacity hover:text-primary-accent"
 					>
 						{link.label}
 					</a>
@@ -129,7 +129,7 @@
 						href={instagram.href}
 						aria-label="Instagram"
 						target="_blank"
-						class="text-white transition-opacity hover:opacity-70"
+						class="text-white transition-opacity hover:text-primary-accent"
 					>
 						{@html instagram.icon}
 					</a>
@@ -140,7 +140,7 @@
 						e.preventDefault();
 						$bookingOpen = true;
 					}}
-					class="inline-flex items-center rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-dark"
+					class="inline-flex items-center rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-dark hover:bg-primary-accent"
 				>
 					{button}
 				</a>

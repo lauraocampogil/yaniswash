@@ -56,7 +56,7 @@
 				type="button"
 				aria-label="caret-left"
 				onclick={prev}
-				class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-secondary-accent text-dark shadow-sm"
+				class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-secondary-accent text-dark shadow-sm hover:bg-primary-accent"
 			>
 				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
 					<path
@@ -71,7 +71,7 @@
 				type="button"
 				aria-label="caret-right"
 				onclick={next}
-				class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-secondary-accent text-dark shadow-sm"
+				class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-secondary-accent text-dark shadow-sm hover:bg-primary-accent"
 			>
 				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
 					<path

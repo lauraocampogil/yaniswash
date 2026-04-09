@@ -34,7 +34,7 @@
 				e.preventDefault();
 				$bookingOpen = true;
 			}}
-			class="inline-flex items-center rounded-full bg-white px-8 py-3 text-button whitespace-nowrap text-dark shadow-sm"
+			class="inline-flex items-center rounded-full bg-white px-8 py-3 text-button whitespace-nowrap text-dark shadow-sm hover:bg-primary-accent"
 		>
 			{button}
 		</a>
