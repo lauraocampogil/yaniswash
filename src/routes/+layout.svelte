@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-	<title>Yanis Wash| Lavage automobile</title>
+	<title>Yanis Wash| Lavage automobile à Bruxelles</title>
 </svelte:head>
 
 {@render children()}
