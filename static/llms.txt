@@ -1,0 +1,16 @@
+# YanisWash
+
+YanisWash est un service de lavage automobile professionnel à domicile à Bruxelles, Belgique.
+
+## Services
+- Lavage intérieur (dès 40€)
+- Lavage extérieur (dès 40€)
+- Lavage complet intérieur + extérieur (dès 60€)
+- Déplacement à domicile jusqu'à 25km et au delà (+€10)
+
+## Contact
+- Site : https://yaniswash.be
+- Email : yaniswash@gmail.com
+- Tél : +32 491 73 97 89
+- Adresse : Rue des Maraichers 5, 1070 Anderlecht, Bruxelles
+- Horaires : Lundi-Samedi 8h-18h
