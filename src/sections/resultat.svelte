@@ -102,6 +102,8 @@
 			<img
 				src={slides[currentIndex].after}
 				alt={slides[currentIndex].alt}
+				width="800"
+				height="1067"
 				class="block h-full w-full object-cover"
 			/>
 
@@ -109,6 +111,8 @@
 				<img
 					src={slides[currentIndex].before}
 					alt={slides[currentIndex].alt}
+					width="800"
+					height="1067"
 					class="h-full w-full object-cover"
 				/>
 			</div>
