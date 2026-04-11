@@ -67,28 +67,28 @@
 					'Nous ne faisons pas de miracle, juste un travail soigné avec de bons produits et un peu de patience.',
 				slides: [
 					{
-						before: '/assets/images/resultat/avant1.jpg',
-						after: '/assets/images/resultat/apres1.jpg',
+						before: '/assets/images/resultat/avant1.webp',
+						after: '/assets/images/resultat/apres1.webp',
 						alt: 'Nettoyage extérieur — jantes'
 					},
 					{
-						before: '/assets/images/resultat/avant2.jpg',
-						after: '/assets/images/resultat/apres2.jpg',
+						before: '/assets/images/resultat/avant2.webp',
+						after: '/assets/images/resultat/apres2.webp',
 						alt: 'Nettoyage intérieur — tapis'
 					},
 					{
-						before: '/assets/images/resultat/avant3.jpg',
-						after: '/assets/images/resultat/apres3.jpg',
+						before: '/assets/images/resultat/avant3.webp',
+						after: '/assets/images/resultat/apres3.webp',
 						alt: 'Nettoyage intérieur — coffre '
 					},
 					{
-						before: '/assets/images/resultat/avant4.jpg',
-						after: '/assets/images/resultat/apres4.jpg',
+						before: '/assets/images/resultat/avant4.webp',
+						after: '/assets/images/resultat/apres4.webp',
 						alt: 'Nettoyage intérieur — tapis'
 					},
 					{
-						before: '/assets/images/resultat/avant5.jpg',
-						after: '/assets/images/resultat/apres5.jpg',
+						before: '/assets/images/resultat/avant5.webp',
+						after: '/assets/images/resultat/apres5.webp',
 						alt: 'Nettoyage intérieur — tapis'
 					}
 				]

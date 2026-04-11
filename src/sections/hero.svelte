@@ -4,7 +4,7 @@
 </script>
 
 <section
-	class="relative min-h-[90vh] overflow-hidden rounded-b-[50px] bg-[url(/assets/images/Background.png)] bg-cover bg-center xl:min-h-svh xl:rounded-b-[60px] xl:px-20"
+	class="relative min-h-[90vh] overflow-hidden rounded-b-[50px] bg-[url(/assets/images/Background.webp)] bg-cover bg-center xl:min-h-svh xl:rounded-b-[60px] xl:px-20"
 >
 	<!-- Titre -->
 	<div
@@ -23,6 +23,7 @@
 	<img
 		src="/assets/images/Foreground.webp"
 		alt="Lavage de voiture"
+		fetchpriority="high"
 		class="pointer-events-none absolute top-[60%] left-1/2 z-20 w-full -translate-x-1/2 -translate-y-1/2 object-cover xl:top-[60%] xl:w-[70%]"
 	/>
 
