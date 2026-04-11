@@ -115,6 +115,7 @@
 				{#each navigation.links as link}
 					<a
 						href={link.href}
+						title={link.label}
 						class="text-sm font-medium text-white transition-opacity hover:text-primary-accent"
 					>
 						{link.label}
@@ -136,6 +137,7 @@
 				{/if}
 				<a
 					href="#contact"
+					title="Prendre rendez-vous"
 					onclick={(e) => {
 						e.preventDefault();
 						$bookingOpen = true;

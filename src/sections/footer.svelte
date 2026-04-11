@@ -4,7 +4,7 @@
 	import gsap from 'gsap';
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-	let { logo, title, description, image, services, contact, legal, copyright } = $props();
+	let { logo, title, description, image, services, contact, legal } = $props();
 
 	let carEl: HTMLElement;
 
@@ -42,7 +42,7 @@
 			xl:col-span-2 xl:col-start-1 xl:row-start-1 max-xl:sm:col-span-3
 			max-xl:sm:col-start-1 max-xl:sm:row-start-1 max-xl:sm:mb-0"
 		>
-			<img src={logo} alt="YanisWash" class="h-15 w-fit xl:h-20" />
+			<img src={logo} alt="YanisWash" title="YanisWash" class="h-15 w-fit xl:h-20" />
 		</div>
 
 		<!-- Titre + description: sm col 1-3 row 2 / xl col 1-2 row 2 -->
@@ -65,6 +65,7 @@
 			<p class="text-mobile-body text-white">{contact.hours}</p>
 			<a
 				href="#contact"
+				title="Réserver un lavage"
 				onclick={(e) => {
 					e.preventDefault();
 					$bookingOpen = true;
@@ -158,10 +159,12 @@
 			max-xl:sm:col-span-8 max-xl:sm:col-start-1 max-xl:sm:row-start-5
 			lg:col-span-8 lg:col-start-1 lg:row-start-5 lg:flex-row lg:items-center lg:justify-between lg:py-5"
 		>
-			<p class="text-xs text-white/60">{copyright}</p>
+			<p class="text-xs text-white/60">
+				YanisWash © {new Date().getFullYear()} - Tous droits réservés
+			</p>
 			<div class="flex flex-wrap gap-4 xl:gap-6">
 				{#each legal as item}
-					<a href={item.href} class="text-xs text-white/60">{item.label}</a>
+					<a href={item.href} title={item.label} class="text-xs text-white/60">{item.label}</a>
 				{/each}
 			</div>
 			<a

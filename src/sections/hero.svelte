@@ -56,6 +56,7 @@
 	>
 		<a
 			href={ctaHref ?? '#booking'}
+			title="Réserver un lavage"
 			onclick={(e) => {
 				e.preventDefault();
 				$bookingOpen = true;

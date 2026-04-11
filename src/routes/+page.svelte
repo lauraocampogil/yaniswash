@@ -218,8 +218,7 @@
 					{ label: 'Mentions Légales', href: '/mentions-legales' },
 					{ label: 'Politique de confidentialité', href: '/politique-de-confidentialite' },
 					{ label: 'Cookies', href: '/cookies' }
-				],
-				copyright: 'YanisWash © 2026 - Tous droits réservés'
+				]
 			}
 		}
 	];
