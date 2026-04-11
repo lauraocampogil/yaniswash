@@ -1,5 +1,6 @@
 <script lang="ts">
 	import './layout.css';
+	import CookieBanner from '$lib/components/CookieBanner.svelte';
 	let { children } = $props();
 </script>
 
@@ -8,3 +9,4 @@
 </svelte:head>
 
 {@render children()}
+<CookieBanner />
