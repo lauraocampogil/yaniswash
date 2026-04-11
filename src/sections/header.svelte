@@ -93,7 +93,11 @@
 	}
 
 	$effect(() => {
-		document.body.style.overflow = menuOpen ? 'hidden' : '';
+		if (menuOpen) {
+			document.documentElement.style.overflow = 'hidden';
+		} else {
+			document.documentElement.style.overflow = '';
+		}
 	});
 </script>
 
