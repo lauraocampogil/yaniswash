@@ -106,8 +106,8 @@
 		<div
 			class="flex items-center justify-between px-5 pt-6 pb-2 xl:px-20 xl:pt-4 xl:pb-2 3xl:container 3xl:mx-auto"
 		>
-			<a href="/">
-				<img src={logo} alt="YanisWash" class="h-10 w-fit xl:h-16" />
+			<a href="/" class="shrink-0">
+				<img src={logo} alt="YanisWash" title="YanisWash" class="h-10 w-fit xl:h-16" />
 			</a>
 
 			<!-- Nav desktop -->

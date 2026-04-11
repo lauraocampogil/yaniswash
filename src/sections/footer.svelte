@@ -39,10 +39,15 @@
 		<!-- Logo: sm col 1-3 row 1 / xl col 1-2 row 1 -->
 		<div
 			class="mb-4
-			xl:col-span-2 xl:col-start-1 xl:row-start-1 max-xl:sm:col-span-3
-			max-xl:sm:col-start-1 max-xl:sm:row-start-1 max-xl:sm:mb-0"
+    xl:col-span-2 xl:col-start-1 xl:row-start-1
+    max-xl:sm:col-span-3 max-xl:sm:col-start-1 max-xl:sm:row-start-1 max-xl:sm:mb-0"
 		>
-			<img src={logo} alt="YanisWash" title="YanisWash" class="h-15 w-fit xl:h-20" />
+			<img
+				src={logo}
+				alt="YanisWash"
+				title="YanisWash"
+				class="h-12 w-auto max-w-35 xl:h-20 xl:max-w-45"
+			/>
 		</div>
 
 		<!-- Titre + description: sm col 1-3 row 2 / xl col 1-2 row 2 -->
