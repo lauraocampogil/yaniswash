@@ -30,17 +30,17 @@ function emailBase(content: string) {
           </td>
         </tr>
 
-        <!-- Signature -->
-        <tr>
-          <td style="padding:0;">
-            <table cellpadding="0" cellspacing="0" border="0" style="width:600px;border-collapse:collapse;">
-              <tr>
-                <!-- Logo horizontal -->
-                <td style="padding:0 15px;background-color:#f5f6ff;">
-                  <img src="https://yaniswash.be/assets/svg/Logo-horizontal.svg" alt="YanisWash" width="160" height="80" style="object-fit:contain;display:block;border:0;" />
-                </td>
-                <!-- Infos contact -->
-                <td width="300" style="padding:20px 15px;vertical-align:middle;background-color:#151d3c;">
+<!-- Signature -->
+<tr>
+  <td style="padding:0;">
+    <table cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;">
+      <tr>
+        <!-- Logo horizontal -->
+        <td style="padding:0 15px;background-color:#f5f6ff;width:40%;vertical-align:middle;">
+          <img src="https://yaniswash.be/assets/svg/Logo-horizontal.svg" alt="YanisWash" width="140" style="display:block;border:0;max-width:100%;" />
+        </td>
+        <!-- Infos contact -->
+        <td style="padding:20px 15px;vertical-align:middle;background-color:#151d3c;width:60%;">
                   <p style="margin:0 0 6px;font-size:14px;font-family:Arial,sans-serif;">
                     <a href="tel:+32491739789" style="color:#e3e3e3;text-decoration:none;">+32 491 73 97 89</a>
                   </p>
@@ -57,7 +57,7 @@ function emailBase(content: string) {
               </tr>
             </table>
             <!-- Bannière -->
-            <table cellpadding="0" cellspacing="0" border="0" style="width:600px;background-color:#8fadff;border-collapse:collapse;">
+            <table cellpadding="0" cellspacing="0" border="0" style="width:100%;background-color:#8fadff;border-collapse:collapse;">
               <tr>
                 <td style="padding:8px 0;text-align:center;">
                   <p style="margin:0;font-size:12px;font-weight:600;color:#151d3c;font-family:Arial,sans-serif;">
@@ -291,20 +291,31 @@ async function createCalBooking(data: any) {
 			? data.address
 			: 'Rue des Maraichers 5, 1070 Anderlecht, Bruxelles';
 
-	const response = await fetch('https://api.cal.com/v1/bookings', {
+	// Format datetime correctement pour Cal.com
+	const startTime = new Date(`${data.date}T${data.time}:00`).toISOString();
+
+	console.log('Cal.com request:', {
+		eventTypeId: Number(CAL_EVENT_TYPE_ID),
+		start: startTime,
+		name: data.name,
+		email: data.email
+	});
+
+	const response = await fetch(`https://api.cal.com/v1/bookings?apiKey=${CAL_API_KEY}`, {
 		method: 'POST',
 		headers: {
-			'Content-Type': 'application/json',
-			Authorization: `Bearer ${CAL_API_KEY}`
+			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify({
 			eventTypeId: Number(CAL_EVENT_TYPE_ID),
-			start: data.datetime,
+			start: startTime,
 			responses: {
 				name: data.name,
 				email: data.email,
-				phone: data.phone,
-				location
+				location: {
+					value: location,
+					optionValue: location
+				}
 			},
 			metadata: {
 				vehicle: data.vehicle,
@@ -318,7 +329,10 @@ async function createCalBooking(data: any) {
 			language: 'fr'
 		})
 	});
-	return response.json();
+
+	const result = await response.json();
+	console.log('Cal.com response:', JSON.stringify(result, null, 2));
+	return result;
 }
 
 // ─── Handler principal ────────────────────────────────────
