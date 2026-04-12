@@ -79,7 +79,7 @@ function emailBase(content: string) {
 // ─── Email 1: Confirmation client ─────────────────────────
 function confirmationClientHtml(data: any) {
 	return emailBase(`
-        <h1 style="margin:0 0 8px;font-size:24px;color:#151d3c;">Réservation confirmée !</h1>
+        <h1 style="margin:0 0 8px;font-size:24px;color:#151d3c;">Réservation confirmée!</h1>
         <p style="margin:0 0 24px;color:#666;font-size:15px;">Bonjour <strong>${data.name}</strong>, votre lavage est bien réservé.</p>
         
         <table width="100%" style="background:#f4f4f8;border-radius:16px;padding:20px;margin-bottom:24px;" cellpadding="0" cellspacing="0">
