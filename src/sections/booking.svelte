@@ -379,15 +379,14 @@
 								<h3 class="mb-1 font-bold text-dark">Choisissez votre créneau</h3>
 								<p class="text-sm text-dark/50">Sélectionnez une date et une heure</p>
 							</div>
-
 							<div class="flex flex-col gap-1">
 								<label for="date" class="text-sm font-medium text-dark">Date souhaitée</label>
 								<input
-									id="date"
 									type="date"
 									bind:value={form.date}
 									min={new Date().toISOString().split('T')[0]}
-									class="w-full cursor-pointer rounded-xl border border-dark/10 px-4 py-3 text-sm text-dark outline-none focus:border-primary"
+									class="block w-full rounded-xl border border-dark/10 px-4 py-3 text-sm text-dark outline-none focus:border-primary"
+									style="max-width: 100%; box-sizing: border-box;"
 								/>
 							</div>
 
