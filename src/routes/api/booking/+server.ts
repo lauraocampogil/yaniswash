@@ -1,44 +1,375 @@
-import { CAL_API_KEY, CAL_EVENT_TYPE_ID, STRIPE_PAYMENT_LINK } from '$env/static/private';
+import {
+	CAL_API_KEY,
+	CAL_EVENT_TYPE_ID,
+	STRIPE_PAYMENT_LINK,
+	RESEND_API_KEY
+} from '$env/static/private';
 
+// ─── Templates HTML ───────────────────────────────────────
+
+function emailBase(content: string) {
+	return `<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
+<body style="margin:0;padding:0;background:#f4f4f8;font-family:Arial,Helvetica,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f8;padding:40px 20px;">
+    <tr><td align="center">
+      <table width="100%" style="max-width:600px;background:#ffffff;border-radius:24px;overflow:hidden;">
+
+        <!-- Header -->
+        <tr>
+          <td style="background:#151d3c;padding:32px;text-align:center;">
+            <img src="https://yaniswash.be/assets/svg/Logo-vertical_blanc.svg" alt="YanisWash" height="60" style="display:block;margin:auto;border:0;" />
+          </td>
+        </tr>
+
+        <!-- Content -->
+        <tr>
+          <td style="padding:32px 40px;">
+            ${content}
+          </td>
+        </tr>
+
+        <!-- Signature -->
+        <tr>
+          <td style="padding:0;">
+            <table cellpadding="0" cellspacing="0" border="0" style="width:600px;border-collapse:collapse;">
+              <tr>
+                <!-- Logo horizontal -->
+                <td style="padding:0 15px;background-color:#f5f6ff;">
+                  <img src="https://yaniswash.be/assets/svg/Logo-horizontal.svg" alt="YanisWash" width="160" height="80" style="object-fit:contain;display:block;border:0;" />
+                </td>
+                <!-- Infos contact -->
+                <td width="300" style="padding:20px 15px;vertical-align:middle;background-color:#151d3c;">
+                  <p style="margin:0 0 6px;font-size:14px;font-family:Arial,sans-serif;">
+                    <a href="tel:+0491739789" style="color:#e3e3e3;text-decoration:none;">+0491 73 97 89</a>
+                  </p>
+                  <p style="margin:0 0 6px;font-size:14px;font-family:Arial,sans-serif;">
+                    <a href="mailto:contact@yaniswash.be" style="color:#e3e3e3;text-decoration:none;">contact@yaniswash.be</a>
+                  </p>
+                  <p style="margin:0 0 6px;font-size:14px;font-family:Arial,sans-serif;">
+                    <a href="https://maps.google.com/?q=Rue+des+Maraichers+5,+1070+Bruxelles" style="color:#e3e3e3;text-decoration:none;" target="_blank">Rue des Maraichers 5, 1070 Bruxelles</a>
+                  </p>
+                  <p style="margin:0;font-size:14px;font-family:Arial,sans-serif;">
+                    <a href="https://yaniswash.be" style="color:#8fadff;text-decoration:none;" target="_blank">yaniswash.be</a>
+                  </p>
+                </td>
+              </tr>
+            </table>
+            <!-- Bannière -->
+            <table cellpadding="0" cellspacing="0" border="0" style="width:600px;background-color:#8fadff;border-collapse:collapse;">
+              <tr>
+                <td style="padding:8px 0;text-align:center;">
+                  <p style="margin:0;font-size:12px;font-weight:600;color:#151d3c;font-family:Arial,sans-serif;">
+                    Lavage automobile à Bruxelles — Du lundi au samedi 8h–18h
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`;
+}
+
+// ─── Email 1: Confirmation client ─────────────────────────
+function confirmationClientHtml(data: any) {
+	return emailBase(`
+        <h1 style="margin:0 0 8px;font-size:24px;color:#151d3c;">✅ Réservation confirmée !</h1>
+        <p style="margin:0 0 24px;color:#666;font-size:15px;">Bonjour <strong>${data.name}</strong>, votre lavage est bien réservé.</p>
+        
+        <table width="100%" style="background:#f4f4f8;border-radius:16px;padding:20px;margin-bottom:24px;" cellpadding="0" cellspacing="0">
+          <tr><td style="padding:6px 0;">
+            <span style="color:#999;font-size:13px;">📅 Date</span><br>
+            <strong style="color:#151d3c;">${formatDate(data.date)}</strong>
+          </td></tr>
+          <tr><td style="padding:6px 0;">
+            <span style="color:#999;font-size:13px;">⏰ Heure</span><br>
+            <strong style="color:#151d3c;">${data.time}</strong>
+          </td></tr>
+          <tr><td style="padding:6px 0;">
+            <span style="color:#999;font-size:13px;">📍 Lieu</span><br>
+            <strong style="color:#151d3c;">${data.domicile && data.address ? data.address : 'Rue des Maraichers 5, 1070 Anderlecht'}</strong>
+          </td></tr>
+          <tr><td style="padding:6px 0;">
+            <span style="color:#999;font-size:13px;">🚗 Véhicule & service</span><br>
+            <strong style="color:#151d3c;">${data.vehicle} — ${data.service}</strong>
+          </td></tr>
+          ${
+						data.options?.length
+							? `<tr><td style="padding:6px 0;">
+            <span style="color:#999;font-size:13px;">➕ Options</span><br>
+            <strong style="color:#151d3c;">${data.options.join(', ')}</strong>
+          </td></tr>`
+							: ''
+					}
+          <tr><td style="padding:6px 0;border-top:1px solid #e0e0e0;margin-top:8px;">
+            <span style="color:#999;font-size:13px;">💶 Total</span><br>
+            <strong style="color:#151d3c;font-size:18px;">€${data.totalPrice}</strong>
+          </td></tr>
+        </table>
+
+        <p style="color:#666;font-size:14px;margin:0 0 24px;">
+          Une question ou besoin de modifier votre rendez-vous ?<br>
+          Contactez Yanis directement :
+        </p>
+        <table cellpadding="0" cellspacing="0"><tr>
+          <td>
+            <a href="tel:+32491739789" style="display:inline-block;background:#151d3c;color:#fff;text-decoration:none;padding:12px 24px;border-radius:100px;font-size:14px;font-weight:600;">
+              📞 +32 491 73 97 89
+            </a>
+          </td>
+        </tr></table>
+    `);
+}
+
+// ─── Email 2: Rappel 24h avant ─────────────────────────────
+function rappelHtml(data: any) {
+	return emailBase(`
+        <h1 style="margin:0 0 8px;font-size:24px;color:#151d3c;">🚗 Votre lavage est demain !</h1>
+        <p style="margin:0 0 24px;color:#666;font-size:15px;">Bonjour <strong>${data.name}</strong>, on vous rappelle votre rendez-vous.</p>
+        
+        <table width="100%" style="background:#f4f4f8;border-radius:16px;padding:20px;margin-bottom:24px;" cellpadding="0" cellspacing="0">
+          <tr><td style="padding:6px 0;">
+            <span style="color:#999;font-size:13px;">📅 Date</span><br>
+            <strong style="color:#151d3c;">${formatDate(data.date)}</strong>
+          </td></tr>
+          <tr><td style="padding:6px 0;">
+            <span style="color:#999;font-size:13px;">⏰ Heure</span><br>
+            <strong style="color:#151d3c;">${data.time}</strong>
+          </td></tr>
+          <tr><td style="padding:6px 0;">
+            <span style="color:#999;font-size:13px;">📍 Lieu</span><br>
+            <strong style="color:#151d3c;">${data.domicile && data.address ? data.address : 'Rue des Maraichers 5, 1070 Anderlecht'}</strong>
+          </td></tr>
+        </table>
+
+        <p style="color:#666;font-size:14px;margin:0 0 8px;">
+          Besoin d'annuler ou reporter ? Prévenez-nous <strong>au moins 24h à l'avance</strong> :
+        </p>
+        <table cellpadding="0" cellspacing="0"><tr>
+          <td>
+            <a href="tel:+32491739789" style="display:inline-block;background:#151d3c;color:#fff;text-decoration:none;padding:12px 24px;border-radius:100px;font-size:14px;font-weight:600;">
+              📞 +32 491 73 97 89
+            </a>
+          </td>
+        </tr></table>
+    `);
+}
+
+// ─── Email 3: Google Review ────────────────────────────────
+const GOOGLE_REVIEW_LINK = 'https://g.page/r/XXXXXXXX/review'; // ← remplace par le vrai lien
+
+function reviewHtml(data: any) {
+	return emailBase(`
+        <h1 style="margin:0 0 8px;font-size:24px;color:#151d3c;">⭐ Comment s'est passé votre lavage ?</h1>
+        <p style="margin:0 0 24px;color:#666;font-size:15px;">
+          Bonjour <strong>${data.name}</strong>,<br><br>
+          Merci d'avoir choisi YanisWash pour votre <strong>${data.vehicle}</strong> !
+          Votre avis aide d'autres clients à nous trouver sur Google 🙏
+        </p>
+        
+        <table cellpadding="0" cellspacing="0" style="margin-bottom:24px;"><tr>
+          <td>
+            <a href="${GOOGLE_REVIEW_LINK}" style="display:inline-block;background:#4285f4;color:#fff;text-decoration:none;padding:14px 28px;border-radius:100px;font-size:15px;font-weight:700;">
+              ⭐ Laisser un avis Google
+            </a>
+          </td>
+        </tr></table>
+
+        <p style="color:#999;font-size:13px;margin:0;">
+          Cela prend moins d'une minute et fait vraiment la différence. Merci !
+        </p>
+    `);
+}
+
+// ─── Email 4: Notification Yanis ──────────────────────────
+function notificationYanisHtml(data: any) {
+	return emailBase(`
+        <h1 style="margin:0 0 8px;font-size:24px;color:#151d3c;">🚗 Nouvelle réservation !</h1>
+        <p style="margin:0 0 24px;color:#666;font-size:15px;">Un nouveau client vient de réserver.</p>
+        
+        <table width="100%" style="background:#f4f4f8;border-radius:16px;padding:20px;margin-bottom:24px;" cellpadding="0" cellspacing="0">
+          <tr><td style="padding:6px 0;">
+            <span style="color:#999;font-size:13px;">👤 Client</span><br>
+            <strong style="color:#151d3c;">${data.name}</strong>
+          </td></tr>
+          <tr><td style="padding:6px 0;">
+            <span style="color:#999;font-size:13px;">📧 Email</span><br>
+            <strong style="color:#151d3c;">${data.email}</strong>
+          </td></tr>
+          <tr><td style="padding:6px 0;">
+            <span style="color:#999;font-size:13px;">📞 Téléphone</span><br>
+            <strong style="color:#151d3c;">${data.phone}</strong>
+          </td></tr>
+          <tr><td style="padding:6px 0;">
+            <span style="color:#999;font-size:13px;">📅 Date & heure</span><br>
+            <strong style="color:#151d3c;">${formatDate(data.date)} à ${data.time}</strong>
+          </td></tr>
+          <tr><td style="padding:6px 0;">
+            <span style="color:#999;font-size:13px;">📍 Lieu</span><br>
+            <strong style="color:#151d3c;">${data.domicile && data.address ? `🏠 Domicile — ${data.address}` : '🏪 Station YanisWash'}</strong>
+          </td></tr>
+          <tr><td style="padding:6px 0;">
+            <span style="color:#999;font-size:13px;">🚗 Véhicule & service</span><br>
+            <strong style="color:#151d3c;">${data.vehicle} — ${data.service}</strong>
+          </td></tr>
+          ${
+						data.options?.length
+							? `<tr><td style="padding:6px 0;">
+            <span style="color:#999;font-size:13px;">➕ Options</span><br>
+            <strong style="color:#151d3c;">${data.options.join(', ')}</strong>
+          </td></tr>`
+							: ''
+					}
+          <tr><td style="padding:6px 0;">
+            <span style="color:#999;font-size:13px;">💳 Paiement</span><br>
+            <strong style="color:#151d3c;">${data.payment === 'cash' ? '💵 Espèces sur place' : '💳 En ligne (Stripe)'}</strong>
+          </td></tr>
+          <tr><td style="padding:10px 0 0;border-top:1px solid #e0e0e0;">
+            <span style="color:#999;font-size:13px;">💶 Total</span><br>
+            <strong style="color:#151d3c;font-size:20px;">€${data.totalPrice}</strong>
+          </td></tr>
+        </table>
+
+        <table cellpadding="0" cellspacing="0"><tr>
+          <td>
+            <a href="https://app.cal.com/bookings/upcoming" style="display:inline-block;background:#151d3c;color:#fff;text-decoration:none;padding:12px 24px;border-radius:100px;font-size:14px;font-weight:600;">
+              Voir sur Cal.com →
+            </a>
+          </td>
+        </tr></table>
+    `);
+}
+
+// ─── Helper date ──────────────────────────────────────────
+function formatDate(dateStr: string) {
+	return new Date(dateStr).toLocaleDateString('fr-BE', {
+		weekday: 'long',
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric'
+	});
+}
+
+// ─── Resend sender ────────────────────────────────────────
+async function sendEmail({
+	to,
+	subject,
+	html,
+	scheduledAt
+}: {
+	to: string;
+	subject: string;
+	html: string;
+	scheduledAt?: string;
+}) {
+	await fetch('https://api.resend.com/emails', {
+		method: 'POST',
+		headers: {
+			Authorization: `Bearer ${RESEND_API_KEY}`,
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({
+			from: 'YanisWash <contact@yaniswash.be>',
+			to,
+			subject,
+			html,
+			...(scheduledAt && { scheduled_at: scheduledAt })
+		})
+	});
+}
+
+// ─── Cal.com booking ─────────────────────────────────────
+async function createCalBooking(data: any) {
+	const location =
+		data.domicile && data.address
+			? data.address
+			: 'Rue des Maraichers 5, 1070 Anderlecht, Bruxelles';
+
+	const response = await fetch('https://api.cal.com/v1/bookings', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${CAL_API_KEY}`
+		},
+		body: JSON.stringify({
+			eventTypeId: Number(CAL_EVENT_TYPE_ID),
+			start: data.datetime,
+			responses: {
+				name: data.name,
+				email: data.email,
+				phone: data.phone,
+				location
+			},
+			metadata: {
+				vehicle: data.vehicle,
+				service: data.service,
+				options: data.options?.join(', ') || '',
+				payment: data.payment === 'cash' ? 'Espèces' : 'En ligne',
+				total: `€${data.totalPrice}`,
+				domicile: data.domicile ? 'Oui' : 'Non'
+			},
+			timeZone: 'Europe/Brussels',
+			language: 'fr'
+		})
+	});
+	return response.json();
+}
+
+// ─── Handler principal ────────────────────────────────────
 export async function POST({ request }) {
 	const data = await request.json();
 
-	async function createCalBooking() {
-		const response = await fetch('https://api.cal.com/v1/bookings', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: `Bearer ${CAL_API_KEY}`
-			},
-			body: JSON.stringify({
-				eventTypeId: Number(CAL_EVENT_TYPE_ID),
-				start: data.datetime,
-				responses: {
-					name: data.name,
-					email: data.email,
-					phone: data.phone,
-					location: data.address || 'À la station'
-				},
-				metadata: {
-					vehicle: data.vehicle,
-					service: data.service,
-					options: data.options?.join(', ') || '',
-					payment: data.payment,
-					total: data.totalPrice
-				},
-				timeZone: 'Europe/Brussels',
-				language: 'fr'
-			})
-		});
-		return response.json();
-	}
-
 	try {
 		if (data.payment === 'cash') {
-			await createCalBooking();
+			// 1. Créer le booking Cal.com
+			await createCalBooking(data);
+
+			// 2. Email confirmation → client
+			await sendEmail({
+				to: data.email,
+				subject: '✅ Réservation confirmée — YanisWash',
+				html: confirmationClientHtml(data)
+			});
+
+			// 3. Email notification → Yanis
+			await sendEmail({
+				to: 'contact@yaniswash.be',
+				subject: `🚗 Nouvelle réservation — ${data.name}`,
+				html: notificationYanisHtml(data)
+			});
+
+			// 4. Email rappel 24h avant → client (schedulé)
+			await sendEmail({
+				to: data.email,
+				subject: '🚗 Rappel — Votre lavage est demain !',
+				html: rappelHtml(data),
+				scheduledAt: new Date(new Date(data.datetime).getTime() - 24 * 60 * 60 * 1000).toISOString()
+			});
+
+			// 5. Email Google Review 2h après → client (schedulé)
+			await sendEmail({
+				to: data.email,
+				subject: "⭐ Comment s'est passé votre lavage ?",
+				html: reviewHtml(data),
+				scheduledAt: new Date(
+					new Date(data.datetime).getTime() + 90 * 60 * 1000 + 2 * 60 * 60 * 1000
+				).toISOString()
+			});
+
+			return new Response(JSON.stringify({ success: true }), { status: 200 });
+
+			// 4. Email rappel 24h → planifié via Cal.com Workflow
+			// (le rappel est géré par Cal.com directement)
+
 			return new Response(JSON.stringify({ success: true }), { status: 200 });
 		} else {
-			// Stripe d'abord — Cal.com après confirmation paiement
+			// Paiement en ligne → Stripe d'abord, Cal.com après confirmation
 			return new Response(JSON.stringify({ success: true, stripeUrl: STRIPE_PAYMENT_LINK }), {
 				status: 200
 			});
