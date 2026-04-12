@@ -10,7 +10,11 @@
 
 	onMount(() => {
 		gsap.registerPlugin(ScrollTrigger);
+
 		if (window.innerWidth >= 1280) {
+			// S'assure que l'élément est bien dans le DOM avant de créer le trigger
+			ScrollTrigger.refresh();
+
 			gsap.fromTo(
 				carEl,
 				{ x: '40%', opacity: 0 },
@@ -19,12 +23,21 @@
 					opacity: 1,
 					duration: 1.8,
 					ease: 'expo.out',
-					scrollTrigger: { trigger: carEl, start: 'top 60%', once: true }
+					scrollTrigger: {
+						trigger: carEl,
+						start: 'top 90%', // ← change de 60% à 90% pour déclencher plus tôt
+						once: true,
+						onEnter: () => console.log('Footer animation triggered') // debug
+					}
 				}
 			);
 		} else {
 			gsap.set(carEl, { opacity: 1 });
 		}
+
+		return () => {
+			ScrollTrigger.getAll().forEach((t) => t.kill());
+		};
 	});
 </script>
 
@@ -151,9 +164,9 @@
 		<div
 			bind:this={carEl}
 			class="-mx-5 mt-6 overflow-hidden px-4
-			xl:col-span-8 xl:col-start-1 xl:row-start-4 xl:mx-0
-			xl:mt-0 xl:-mb-1 xl:px-0 max-xl:sm:col-span-8 max-xl:sm:col-start-1 max-xl:sm:row-start-4 max-xl:sm:mt-4"
-			style="opacity: 0"
+    xl:col-span-8 xl:col-start-1 xl:row-start-4 xl:mx-0
+    xl:mt-0 xl:-mb-1 xl:px-0 xl:opacity-0 max-xl:sm:col-span-8 max-xl:sm:col-start-1 max-xl:sm:row-start-4
+    max-xl:sm:mt-4"
 		>
 			<img src={image} alt="voiture" class="w-full object-contain xl:max-h-95" />
 		</div>
