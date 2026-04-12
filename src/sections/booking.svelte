@@ -204,6 +204,32 @@
 		}
 		return `top: ${pos.top}px; left: ${pos.left}px; width: ${pos.width}px; max-height: 240px;`;
 	}
+
+	// ── Google Places Autocomplete ──
+	let addressSuggestions = $state<{ description: string; place_id: string }[]>([]);
+	let showSuggestions = $state(false);
+	let searchTimeout: ReturnType<typeof setTimeout>;
+
+	async function searchAddress(query: string) {
+		if (query.length < 3) {
+			addressSuggestions = [];
+			showSuggestions = false;
+			return;
+		}
+		clearTimeout(searchTimeout);
+		searchTimeout = setTimeout(async () => {
+			const res = await fetch(`/api/places?input=${encodeURIComponent(query)}`);
+			const data = await res.json();
+			addressSuggestions = data.predictions ?? [];
+			showSuggestions = addressSuggestions.length > 0;
+		}, 300);
+	}
+
+	function selectAddress(description: string) {
+		form.address = description;
+		addressSuggestions = [];
+		showSuggestions = false;
+	}
 </script>
 
 {#if isOpen}
@@ -536,14 +562,45 @@
 
 									<!-- Adresse domicile -->
 									{#if form.domicile}
-										<div class="mt-1 flex flex-col gap-1 pl-7">
+										<div class="relative mt-1 flex flex-col gap-1 pl-7">
 											<input
 												type="text"
 												bind:value={form.address}
+												oninput={(e) => searchAddress((e.target as HTMLInputElement).value)}
+												onblur={() => setTimeout(() => (showSuggestions = false), 200)}
 												placeholder="Votre adresse complète"
-												autocomplete="street-address"
+												autocomplete="off"
 												class="cursor-text rounded-xl border border-dark/10 px-4 py-3 text-sm text-dark outline-none focus:border-primary"
 											/>
+
+											{#if showSuggestions && addressSuggestions.length > 0}
+												<div
+													class="absolute top-full right-0 left-0 z-700 mt-1 overflow-hidden rounded-xl border border-dark/10 bg-white shadow-xl"
+												>
+													{#each addressSuggestions as suggestion}
+														<button
+															type="button"
+															onmousedown={() => selectAddress(suggestion.description)}
+															class="flex w-full cursor-pointer items-start gap-2 px-4 py-3 text-left text-sm text-dark hover:bg-secondary-accent"
+														>
+															<svg
+																xmlns="http://www.w3.org/2000/svg"
+																width="14"
+																height="14"
+																fill="currentColor"
+																viewBox="0 0 256 256"
+																class="mt-0.5 shrink-0 text-dark/40"
+															>
+																<path
+																	d="M128,16a96,96,0,1,0,96,96A96.11,96.11,0,0,0,128,16Zm0,176a80,80,0,1,1,80-80A80.09,80.09,0,0,1,128,192Zm40-104H136V72a8,8,0,0,0-16,0v24H104a8,8,0,0,0,0,16h16v72a8,8,0,0,0,16,0V112h32a8,8,0,0,0,0-16Z"
+																/>
+															</svg>
+															<span>{suggestion.description}</span>
+														</button>
+													{/each}
+												</div>
+											{/if}
+
 											{#if deplacement > 0}
 												<p class="text-xs text-dark/50">Déplacement calculé : +€{deplacement}</p>
 											{/if}
