@@ -324,7 +324,8 @@ async function createCalBooking(data: any) {
 				payment: data.payment === 'cash' ? 'Espèces' : 'En ligne',
 				total: `€${data.totalPrice}`,
 				domicile: data.domicile ? 'Oui' : 'Non'
-			}
+			},
+			noEmail: true
 		})
 	});
 
