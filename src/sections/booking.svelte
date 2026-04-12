@@ -311,6 +311,7 @@
 		<div bind:this={contentEl} class="relative w-full max-w-lg rounded-3xl bg-white shadow-2xl">
 			<!-- Close -->
 			<button
+				aria-label="button"
 				type="button"
 				onclick={close}
 				class="absolute top-3 right-3 z-10 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-dark/5 text-dark/50 transition-colors hover:bg-dark/10 hover:text-dark"
@@ -386,13 +387,12 @@
 									type="date"
 									bind:value={form.date}
 									min={new Date().toISOString().split('T')[0]}
-									onclick={(e) => (e.currentTarget as HTMLInputElement).showPicker?.()}
 									class="w-full cursor-pointer rounded-xl border border-dark/10 px-4 py-3 text-sm text-dark outline-none focus:border-primary"
 								/>
 							</div>
 
 							<div class="flex flex-col gap-1">
-								<label class="text-sm font-medium text-dark">Heure souhaitée</label>
+								<label for="hour" class="text-sm font-medium text-dark">Heure souhaitée</label>
 								<button
 									bind:this={timeButtonEl}
 									type="button"
@@ -426,7 +426,7 @@
 								<p class="text-sm text-dark/50">Confirmez votre véhicule</p>
 							</div>
 							<div class="flex flex-col gap-1">
-								<label class="text-sm font-medium text-dark">Type de véhicule</label>
+								<label for="car" class="text-sm font-medium text-dark">Type de véhicule</label>
 								<button
 									bind:this={vehicleButtonEl}
 									type="button"
@@ -460,7 +460,7 @@
 								<p class="text-sm text-dark/50">Confirmez les détails de votre lavage</p>
 							</div>
 							<div class="flex flex-col gap-1">
-								<label class="text-sm font-medium text-dark">Service souhaité</label>
+								<label for="service" class="text-sm font-medium text-dark">Service souhaité</label>
 								<button
 									bind:this={serviceButtonEl}
 									type="button"
@@ -625,7 +625,7 @@
 								</p>
 							</div>
 							<div class="flex flex-col gap-1">
-								<label class="text-sm font-medium text-dark">Prénom</label>
+								<label for="name" class="text-sm font-medium text-dark">Prénom</label>
 								<input
 									type="text"
 									bind:value={form.name}
@@ -635,7 +635,7 @@
 								/>
 							</div>
 							<div class="flex flex-col gap-1">
-								<label class="text-sm font-medium text-dark">Email</label>
+								<label for="email" class="text-sm font-medium text-dark">Email</label>
 								<input
 									type="email"
 									bind:value={form.email}
@@ -645,7 +645,7 @@
 								/>
 							</div>
 							<div class="flex flex-col gap-1">
-								<label class="text-sm font-medium text-dark">Téléphone</label>
+								<label for="phone" class="text-sm font-medium text-dark">Téléphone</label>
 								<input
 									type="tel"
 									bind:value={form.phone}
