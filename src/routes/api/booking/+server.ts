@@ -42,10 +42,10 @@ function emailBase(content: string) {
                 <!-- Infos contact -->
                 <td width="300" style="padding:20px 15px;vertical-align:middle;background-color:#151d3c;">
                   <p style="margin:0 0 6px;font-size:14px;font-family:Arial,sans-serif;">
-                    <a href="tel:+0491739789" style="color:#e3e3e3;text-decoration:none;">+0491 73 97 89</a>
+                    <a href="tel:+32491739789" style="color:#e3e3e3;text-decoration:none;">+32 491 73 97 89</a>
                   </p>
                   <p style="margin:0 0 6px;font-size:14px;font-family:Arial,sans-serif;">
-                    <a href="mailto:contact@yaniswash.be" style="color:#e3e3e3;text-decoration:none;">contact@yaniswash.be</a>
+                    <a href="mailto:yaniswash@gmail.com" style="color:#e3e3e3;text-decoration:none;">yaniswash@gmail.com</a>
                   </p>
                   <p style="margin:0 0 6px;font-size:14px;font-family:Arial,sans-serif;">
                     <a href="https://maps.google.com/?q=Rue+des+Maraichers+5,+1070+Bruxelles" style="color:#e3e3e3;text-decoration:none;" target="_blank">Rue des Maraichers 5, 1070 Bruxelles</a>
@@ -79,7 +79,7 @@ function emailBase(content: string) {
 // ─── Email 1: Confirmation client ─────────────────────────
 function confirmationClientHtml(data: any) {
 	return emailBase(`
-        <h1 style="margin:0 0 8px;font-size:24px;color:#151d3c;">✅ Réservation confirmée !</h1>
+        <h1 style="margin:0 0 8px;font-size:24px;color:#151d3c;">Réservation confirmée !</h1>
         <p style="margin:0 0 24px;color:#666;font-size:15px;">Bonjour <strong>${data.name}</strong>, votre lavage est bien réservé.</p>
         
         <table width="100%" style="background:#f4f4f8;border-radius:16px;padding:20px;margin-bottom:24px;" cellpadding="0" cellspacing="0">
@@ -115,7 +115,7 @@ function confirmationClientHtml(data: any) {
 
         <p style="color:#666;font-size:14px;margin:0 0 24px;">
           Une question ou besoin de modifier votre rendez-vous ?<br>
-          Contactez Yanis directement :
+          Contactez YanisWash directement:
         </p>
         <table cellpadding="0" cellspacing="0"><tr>
           <td>
@@ -175,7 +175,7 @@ function reviewHtml(data: any) {
         
         <table cellpadding="0" cellspacing="0" style="margin-bottom:24px;"><tr>
           <td>
-            <a href="${GOOGLE_REVIEW_LINK}" style="display:inline-block;background:#4285f4;color:#fff;text-decoration:none;padding:14px 28px;border-radius:100px;font-size:15px;font-weight:700;">
+            <a href="${GOOGLE_REVIEW_LINK}" style="display:inline-block;background:#151d3c;color:#fff;text-decoration:none;padding:14px 20px;border-radius:100px;font-size:15px;font-weight:700;">
               ⭐ Laisser un avis Google
             </a>
           </td>
@@ -275,7 +275,7 @@ async function sendEmail({
 			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify({
-			from: 'YanisWash <contact@yaniswash.be>',
+			from: 'YanisWash <yaniswash@gmail.com>',
 			to,
 			subject,
 			html,
@@ -339,7 +339,7 @@ export async function POST({ request }) {
 
 			// 3. Email notification → Yanis
 			await sendEmail({
-				to: 'contact@yaniswash.be',
+				to: 'yaniswash@gmail.com',
 				subject: `🚗 Nouvelle réservation — ${data.name}`,
 				html: notificationYanisHtml(data)
 			});
