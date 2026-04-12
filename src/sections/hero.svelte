@@ -34,7 +34,7 @@
 		<h1
 			bind:this={titleEl}
 			style="opacity: 0"
-			class="text-center font-druk text-[13vw] leading-none tracking-tight text-white uppercase xl:text-[100px] max-xl:sm:text-[60px] max-xl:md:text-[10vw]"
+			class="text-center font-druk text-[13vw] leading-none tracking-tight text-white uppercase xl:max-w-300 xl:text-[100px] max-xl:sm:text-[60px] max-xl:md:text-[10vw]"
 		>
 			{@html title}
 		</h1>
