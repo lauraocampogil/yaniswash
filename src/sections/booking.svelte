@@ -1,5 +1,11 @@
 <script lang="ts">
 	import gsap from 'gsap';
+	import { onMount } from 'svelte';
+	import flatpickr from 'flatpickr';
+	import { French } from 'flatpickr/dist/l10n/fr.js';
+
+	let dateInputEl = $state<HTMLInputElement | null>(null);
+	let flatpickrInstance: any = null;
 
 	let { isOpen = $bindable(false) } = $props();
 
@@ -103,6 +109,26 @@
 
 	let overlayEl = $state<HTMLElement | null>(null);
 	let contentEl = $state<HTMLElement | null>(null);
+
+	$effect(() => {
+		if (isOpen && dateInputEl && !flatpickrInstance) {
+			flatpickrInstance = flatpickr(dateInputEl, {
+				locale: French,
+				dateFormat: 'Y-m-d',
+				altInput: true,
+				altFormat: 'l j F Y',
+				minDate: 'today',
+				disable: [(date) => date.getDay() === 0],
+				onChange: ([date]) => {
+					form.date = date?.toISOString().split('T')[0] ?? '';
+				}
+			});
+		}
+		if (!isOpen && flatpickrInstance) {
+			flatpickrInstance.destroy();
+			flatpickrInstance = null;
+		}
+	});
 
 	$effect(() => {
 		if (isOpen && overlayEl && contentEl) {
@@ -375,18 +401,14 @@
 					<!-- STEP 1 — Date & Heure -->
 					{#if step === 1}
 						<div class="flex flex-col gap-4">
-							<div>
-								<h3 class="mb-1 font-bold text-dark">Choisissez votre créneau</h3>
-								<p class="text-sm text-dark/50">Sélectionnez une date et une heure</p>
-							</div>
 							<div class="flex flex-col gap-1">
 								<label for="date" class="text-sm font-medium text-dark">Date souhaitée</label>
 								<input
-									type="date"
-									bind:value={form.date}
-									min={new Date().toISOString().split('T')[0]}
-									class="block w-full rounded-xl border border-dark/10 px-4 py-3 text-sm text-dark outline-none focus:border-primary"
-									style="max-width: 100%; box-sizing: border-box;"
+									bind:this={dateInputEl}
+									type="text"
+									placeholder="Sélectionner une date"
+									readonly
+									class="w-full cursor-pointer rounded-xl border border-dark/10 px-4 py-3 text-sm text-dark outline-none focus:border-primary"
 								/>
 							</div>
 
