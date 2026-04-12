@@ -336,7 +336,7 @@
 						>
 							✓
 						</div>
-						<h2 class="text-mobile-title-2xl font-bold text-dark">Réservation confirmée !</h2>
+						<h2 class="text-mobile-title-2xl font-bold text-dark">Réservation confirmée!</h2>
 						<p class="text-sm text-dark/60">Un email de confirmation a été envoyé à {form.email}</p>
 						<button
 							type="button"
@@ -598,7 +598,7 @@
 											{/if}
 
 											{#if deplacement > 0}
-												<p class="text-xs text-dark/50">Déplacement calculé : +€{deplacement}</p>
+												<p class="text-xs text-dark/50">Déplacement calculé: +€{deplacement}</p>
 											{/if}
 										</div>
 									{/if}
@@ -624,28 +624,36 @@
 									Pour vous contacter et confirmer votre réservation
 								</p>
 							</div>
-
-							<input
-								type="text"
-								bind:value={form.name}
-								placeholder="Jean Dupont"
-								autocomplete="name"
-								class="cursor-text rounded-xl border border-dark/10 px-4 py-3 text-sm text-dark outline-none focus:border-primary"
-							/>
-							<input
-								type="email"
-								bind:value={form.email}
-								placeholder="jean@example.com"
-								autocomplete="email"
-								class="cursor-text rounded-xl border border-dark/10 px-4 py-3 text-sm text-dark outline-none focus:border-primary"
-							/>
-							<input
-								type="tel"
-								bind:value={form.phone}
-								placeholder="+32 4XX XX XX XX"
-								autocomplete="tel"
-								class="cursor-text rounded-xl border border-dark/10 px-4 py-3 text-sm text-dark outline-none focus:border-primary"
-							/>
+							<div class="flex flex-col gap-1">
+								<label class="text-sm font-medium text-dark">Prénom</label>
+								<input
+									type="text"
+									bind:value={form.name}
+									placeholder="Jean Dupont"
+									autocomplete="name"
+									class="cursor-text rounded-xl border border-dark/10 px-4 py-3 text-sm text-dark outline-none focus:border-primary"
+								/>
+							</div>
+							<div class="flex flex-col gap-1">
+								<label class="text-sm font-medium text-dark">Email</label>
+								<input
+									type="email"
+									bind:value={form.email}
+									placeholder="jean@example.com"
+									autocomplete="email"
+									class="cursor-text rounded-xl border border-dark/10 px-4 py-3 text-sm text-dark outline-none focus:border-primary"
+								/>
+							</div>
+							<div class="flex flex-col gap-1">
+								<label class="text-sm font-medium text-dark">Téléphone</label>
+								<input
+									type="tel"
+									bind:value={form.phone}
+									placeholder="+32 4XX XX XX XX"
+									autocomplete="tel"
+									class="cursor-text rounded-xl border border-dark/10 px-4 py-3 text-sm text-dark outline-none focus:border-primary"
+								/>
+							</div>
 
 							<p class="text-sm font-medium text-dark">Mode de paiement</p>
 							<div class="grid grid-cols-2 gap-3">
