@@ -275,7 +275,7 @@ async function sendEmail({
 			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify({
-			from: 'YanisWash <yaniswash@gmail.com>',
+			from: 'YanisWash <noreply@yaniswash.be>',
 			to,
 			subject,
 			html,
@@ -374,11 +374,6 @@ export async function POST({ request }) {
 					new Date(data.datetime).getTime() + 90 * 60 * 1000 + 2 * 60 * 60 * 1000
 				).toISOString()
 			});
-
-			return new Response(JSON.stringify({ success: true }), { status: 200 });
-
-			// 4. Email rappel 24h → planifié via Cal.com Workflow
-			// (le rappel est géré par Cal.com directement)
 
 			return new Response(JSON.stringify({ success: true }), { status: 200 });
 		} else {
