@@ -291,32 +291,32 @@ async function createCalBooking(data: any) {
 			? data.address
 			: 'Rue des Maraichers 5, 1070 Anderlecht, Bruxelles';
 
-	// Format datetime correctement pour Cal.com
 	const startTime = new Date(`${data.date}T${data.time}:00`).toISOString();
 
-	console.log('Cal.com request:', {
+	console.log('Cal.com v2 request:', {
 		eventTypeId: Number(CAL_EVENT_TYPE_ID),
 		start: startTime,
 		name: data.name,
 		email: data.email
 	});
 
-	const response = await fetch(`https://api.cal.com/v1/bookings?apiKey=${CAL_API_KEY}`, {
+	const response = await fetch('https://api.cal.com/v2/bookings', {
 		method: 'POST',
 		headers: {
-			'Content-Type': 'application/json'
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${CAL_API_KEY}`,
+			'cal-api-version': '2024-08-13'
 		},
 		body: JSON.stringify({
 			eventTypeId: Number(CAL_EVENT_TYPE_ID),
 			start: startTime,
-			responses: {
+			attendee: {
 				name: data.name,
 				email: data.email,
-				location: {
-					value: location,
-					optionValue: location
-				}
+				timeZone: 'Europe/Brussels',
+				language: 'fr'
 			},
+			location: location,
 			metadata: {
 				vehicle: data.vehicle,
 				service: data.service,
@@ -324,14 +324,12 @@ async function createCalBooking(data: any) {
 				payment: data.payment === 'cash' ? 'Espèces' : 'En ligne',
 				total: `€${data.totalPrice}`,
 				domicile: data.domicile ? 'Oui' : 'Non'
-			},
-			timeZone: 'Europe/Brussels',
-			language: 'fr'
+			}
 		})
 	});
 
 	const result = await response.json();
-	console.log('Cal.com response:', JSON.stringify(result, null, 2));
+	console.log('Cal.com v2 response:', JSON.stringify(result, null, 2));
 	return result;
 }
 
