@@ -5,24 +5,18 @@
 	import { French } from 'flatpickr/dist/l10n/fr.js';
 
 	// ── Disponibilité ──
-	let bookedSlots = $state<Record<string, string[]>>({});
+	let unavailableDates = $state<string[]>([]);
+	let availableSlots = $state<Record<string, string[]>>({});
 
 	onMount(async () => {
 		const res = await fetch('/api/availability');
-		bookedSlots = await res.json();
-		console.log('bookedSlots reçus:', JSON.stringify(bookedSlots));
+		const data = await res.json();
+		unavailableDates = data.unavailableDates ?? [];
+		availableSlots = data.availableSlots ?? {};
 	});
 
 	let availableTimeSlots = $derived.by(() => {
-		const booked = bookedSlots[form.date] ?? [];
-		console.log('Date sélectionnée:', form.date);
-		console.log('Créneaux réservés pour cette date:', booked);
-		console.log('Tous les créneaux:', timeSlots);
-		console.log(
-			'Créneaux disponibles:',
-			timeSlots.filter((slot) => !booked.includes(slot))
-		);
-		return timeSlots.filter((slot) => !booked.includes(slot));
+		return availableSlots[form.date] ?? [];
 	});
 
 	let dateInputEl = $state<HTMLInputElement | null>(null);
@@ -132,14 +126,23 @@
 	let contentEl = $state<HTMLElement | null>(null);
 
 	$effect(() => {
-		if (isOpen && dateInputEl && !flatpickrInstance) {
+		// Recrée flatpickr quand unavailableDates change ou quand isOpen change
+		const dates = unavailableDates; // ← reactive dependency
+
+		if (isOpen && dateInputEl) {
+			// Détruit l'instance existante si elle existe
+			if (flatpickrInstance) {
+				flatpickrInstance.destroy();
+				flatpickrInstance = null;
+			}
+
 			flatpickrInstance = flatpickr(dateInputEl, {
 				locale: French,
 				dateFormat: 'Y-m-d',
 				altInput: true,
 				altFormat: 'l j F Y',
 				minDate: 'today',
-				disable: [(date: Date) => date.getDay() === 0],
+				disable: [...dates],
 				onChange: (selectedDates: Date[]) => {
 					const date = selectedDates[0];
 					if (!date) return;
@@ -147,12 +150,12 @@
 					const m = String(date.getMonth() + 1).padStart(2, '0');
 					const d = String(date.getDate()).padStart(2, '0');
 					form.date = `${y}-${m}-${d}`;
-					if (form.time && bookedSlots[form.date]?.includes(form.time)) {
-						form.time = '';
-					}
+					// Vide l'heure — les nouveaux slots sont différents
+					form.time = '';
 				}
 			});
 		}
+
 		if (!isOpen && flatpickrInstance) {
 			flatpickrInstance.destroy();
 			flatpickrInstance = null;
