@@ -285,13 +285,27 @@ async function sendEmail({
 }
 
 // ─── Cal.com booking ─────────────────────────────────────
+function toBrusselsISO(date: string, time: string): string {
+	// Crée la date en timezone locale sans conversion UTC
+	const [year, month, day] = date.split('-').map(Number);
+	const [hours, minutes] = time.split(':').map(Number);
+	const dt = new Date(year, month - 1, day, hours, minutes, 0);
+	// Offset Brussels (UTC+1 hiver, UTC+2 été)
+	const offset = -dt.getTimezoneOffset();
+	const sign = offset >= 0 ? '+' : '-';
+	const abs = Math.abs(offset);
+	const hh = String(Math.floor(abs / 60)).padStart(2, '0');
+	const mm = String(abs % 60).padStart(2, '0');
+	return `${date}T${time}:00${sign}${hh}:${mm}`;
+}
+
 async function createCalBooking(data: any) {
 	const location =
 		data.domicile && data.address
 			? data.address
 			: 'Rue des Maraichers 5, 1070 Anderlecht, Bruxelles';
 
-	const startTime = new Date(`${data.date}T${data.time}:00`).toISOString();
+	const startTime = toBrusselsISO(data.date, data.time);
 
 	console.log('Cal.com v2 request:', {
 		eventTypeId: Number(CAL_EVENT_TYPE_ID),

@@ -4,6 +4,19 @@
 	import flatpickr from 'flatpickr';
 	import { French } from 'flatpickr/dist/l10n/fr.js';
 
+	// ── Disponibilité ──
+	let bookedSlots = $state<Record<string, string[]>>({});
+
+	onMount(async () => {
+		const res = await fetch('/api/availability');
+		bookedSlots = await res.json();
+	});
+
+	let availableTimeSlots = $derived.by(() => {
+		const booked = bookedSlots[form.date] ?? [];
+		return timeSlots.filter((slot) => !booked.includes(slot));
+	});
+
 	let dateInputEl = $state<HTMLInputElement | null>(null);
 	let flatpickrInstance: any = null;
 
@@ -118,9 +131,17 @@
 				altInput: true,
 				altFormat: 'l j F Y',
 				minDate: 'today',
-				disable: [(date) => date.getDay() === 0],
-				onChange: ([date]) => {
-					form.date = date?.toISOString().split('T')[0] ?? '';
+				disable: [(date: Date) => date.getDay() === 0],
+				onChange: (selectedDates: Date[]) => {
+					const date = selectedDates[0];
+					if (!date) return;
+					const y = date.getFullYear();
+					const m = String(date.getMonth() + 1).padStart(2, '0');
+					const d = String(date.getDate()).padStart(2, '0');
+					form.date = `${y}-${m}-${d}`;
+					if (form.time && bookedSlots[form.date]?.includes(form.time)) {
+						form.time = '';
+					}
 				}
 			});
 		}
@@ -261,21 +282,25 @@
 			class="fixed z-600 overflow-y-auto rounded-xl border border-dark/10 bg-white shadow-xl"
 			style={dropdownStyle(dropdownPos)}
 		>
-			{#each timeSlots as slot}
-				<button
-					type="button"
-					onclick={() => {
-						form.time = slot;
-						timeOpen = false;
-					}}
-					class="block w-full cursor-pointer px-4 py-3 text-left text-sm text-dark hover:bg-secondary-accent {form.time ===
-					slot
-						? 'font-semibold text-primary'
-						: ''}"
-				>
-					{slot}
-				</button>
-			{/each}
+			{#if availableTimeSlots.length === 0}
+				<p class="px-4 py-4 text-center text-sm text-dark/40">Aucun créneau disponible ce jour</p>
+			{:else}
+				{#each availableTimeSlots as slot}
+					<button
+						type="button"
+						onclick={() => {
+							form.time = slot;
+							timeOpen = false;
+						}}
+						class="block w-full cursor-pointer px-4 py-3 text-left text-sm text-dark hover:bg-secondary-accent {form.time ===
+						slot
+							? 'font-semibold text-primary'
+							: ''}"
+					>
+						{slot}
+					</button>
+				{/each}
+			{/if}
 		</div>
 	{/if}
 
