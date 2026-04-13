@@ -15,7 +15,7 @@ function annulationHtml(attendeeName: string, date: string, time: string) {
         </tr>
         <tr>
           <td style="padding:32px 40px;">
-            <h1 style="margin:0 0 8px;font-size:24px;color:#151d3c;">❌ Réservation annulée</h1>
+            <h1 style="margin:0 0 8px;font-size:24px;color:#151d3c;">Réservation annulée</h1>
             <p style="margin:0 0 24px;color:#666;font-size:15px;">
               Bonjour <strong>${attendeeName}</strong>,<br><br>
               Votre réservation du <strong>${date} à ${time}</strong> a été annulée.
