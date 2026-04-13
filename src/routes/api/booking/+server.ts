@@ -286,17 +286,9 @@ async function sendEmail({
 
 // ─── Cal.com booking ─────────────────────────────────────
 function toBrusselsISO(date: string, time: string): string {
-	// Crée la date en timezone locale sans conversion UTC
-	const [year, month, day] = date.split('-').map(Number);
-	const [hours, minutes] = time.split(':').map(Number);
-	const dt = new Date(year, month - 1, day, hours, minutes, 0);
-	// Offset Brussels (UTC+1 hiver, UTC+2 été)
-	const offset = -dt.getTimezoneOffset();
-	const sign = offset >= 0 ? '+' : '-';
-	const abs = Math.abs(offset);
-	const hh = String(Math.floor(abs / 60)).padStart(2, '0');
-	const mm = String(abs % 60).padStart(2, '0');
-	return `${date}T${time}:00${sign}${hh}:${mm}`;
+	const month = parseInt(date.split('-')[1]);
+	const offset = month >= 3 && month <= 10 ? '+02:00' : '+01:00';
+	return `${date}T${time}:00${offset}`;
 }
 
 async function createCalBooking(data: any) {
@@ -338,8 +330,7 @@ async function createCalBooking(data: any) {
 				payment: data.payment === 'cash' ? 'Espèces' : 'En ligne',
 				total: `€${data.totalPrice}`,
 				domicile: data.domicile ? 'Oui' : 'Non'
-			},
-			noEmail: true
+			}
 		})
 	});
 
@@ -352,26 +343,32 @@ async function createCalBooking(data: any) {
 export async function POST({ request }) {
 	const data = await request.json();
 
+	console.log('Data reçue:', JSON.stringify(data));
+
 	try {
 		if (data.payment === 'cash') {
-			// 1. Créer le booking Cal.com
-			await createCalBooking(data);
+			const calResult = await createCalBooking(data);
+			console.log('Cal result status:', calResult.status);
 
-			// 2. Email confirmation → client
+			if (calResult.status !== 'success') {
+				console.error('Cal.com ERREUR:', JSON.stringify(calResult));
+				return new Response(JSON.stringify({ success: false, error: 'Cal.com booking failed' }), {
+					status: 500
+				});
+			}
+
 			await sendEmail({
 				to: data.email,
 				subject: '✅ Réservation confirmée — YanisWash',
 				html: confirmationClientHtml(data)
 			});
 
-			// 3. Email notification → Yanis
 			await sendEmail({
 				to: 'yaniswash@gmail.com',
 				subject: `🚗 Nouvelle réservation — ${data.name}`,
 				html: notificationYanisHtml(data)
 			});
 
-			// 4. Email rappel 24h avant → client (schedulé)
 			await sendEmail({
 				to: data.email,
 				subject: '🚗 Rappel — Votre lavage est demain !',
@@ -379,7 +376,6 @@ export async function POST({ request }) {
 				scheduledAt: new Date(new Date(data.datetime).getTime() - 24 * 60 * 60 * 1000).toISOString()
 			});
 
-			// 5. Email Google Review 2h après → client (schedulé)
 			await sendEmail({
 				to: data.email,
 				subject: "⭐ Comment s'est passé votre lavage ?",
@@ -391,7 +387,6 @@ export async function POST({ request }) {
 
 			return new Response(JSON.stringify({ success: true }), { status: 200 });
 		} else {
-			// Paiement en ligne → Stripe d'abord, Cal.com après confirmation
 			return new Response(JSON.stringify({ success: true, stripeUrl: STRIPE_PAYMENT_LINK }), {
 				status: 200
 			});

@@ -10,10 +10,18 @@
 	onMount(async () => {
 		const res = await fetch('/api/availability');
 		bookedSlots = await res.json();
+		console.log('bookedSlots reçus:', JSON.stringify(bookedSlots));
 	});
 
 	let availableTimeSlots = $derived.by(() => {
 		const booked = bookedSlots[form.date] ?? [];
+		console.log('Date sélectionnée:', form.date);
+		console.log('Créneaux réservés pour cette date:', booked);
+		console.log('Tous les créneaux:', timeSlots);
+		console.log(
+			'Créneaux disponibles:',
+			timeSlots.filter((slot) => !booked.includes(slot))
+		);
 		return timeSlots.filter((slot) => !booked.includes(slot));
 	});
 
