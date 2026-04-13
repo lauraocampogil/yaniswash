@@ -65,6 +65,12 @@ body {
 	@apply bg-background;
 }
 
+input,
+select,
+textarea {
+	font-size: 16px !important;
+}
+
 #services,
 #resultat,
 #avis,
