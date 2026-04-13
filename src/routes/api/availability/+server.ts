@@ -15,9 +15,31 @@ export async function GET() {
 	const booked: Record<string, string[]> = {};
 
 	for (const booking of data.data ?? []) {
+		// Convertit UTC → Europe/Brussels
 		const dt = new Date(booking.start);
-		const date = `${dt.getFullYear()}-${String(dt.getMonth() + 1).padStart(2, '0')}-${String(dt.getDate()).padStart(2, '0')}`;
-		const time = `${String(dt.getHours()).padStart(2, '0')}:${String(dt.getMinutes()).padStart(2, '0')}`;
+
+		const brusselsDate = new Intl.DateTimeFormat('fr-BE', {
+			timeZone: 'Europe/Brussels',
+			year: 'numeric',
+			month: '2-digit',
+			day: '2-digit'
+		}).format(dt);
+
+		const brusselsTime = new Intl.DateTimeFormat('fr-BE', {
+			timeZone: 'Europe/Brussels',
+			hour: '2-digit',
+			minute: '2-digit',
+			hour12: false
+		}).format(dt);
+
+		// Convertit dd/mm/yyyy → yyyy-mm-dd
+		const [day, month, year] = brusselsDate.split('/');
+		const date = `${year}-${month}-${day}`;
+
+		// Normalise le format heure (ex: "08:00" ou "8:00" → "08:00")
+		const [h, m] = brusselsTime.split(':');
+		const time = `${h.padStart(2, '0')}:${m.padStart(2, '0')}`;
+
 		if (!booked[date]) booked[date] = [];
 		booked[date].push(time);
 	}
