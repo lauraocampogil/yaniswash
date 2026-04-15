@@ -130,7 +130,7 @@ function confirmationClientHtml(data: any) {
 // ─── Email 2: Rappel 24h avant ─────────────────────────────
 function rappelHtml(data: any) {
 	return emailBase(`
-        <h1 style="margin:0 0 8px;font-size:24px;color:#151d3c;">🚗 Votre lavage est demain !</h1>
+        <h1 style="margin:0 0 8px;font-size:24px;color:#151d3c;">Votre lavage est demain !</h1>
         <p style="margin:0 0 24px;color:#666;font-size:15px;">Bonjour <strong>${data.name}</strong>, on vous rappelle votre rendez-vous.</p>
         
         <table width="100%" style="background:#f4f4f8;border-radius:16px;padding:20px;margin-bottom:24px;" cellpadding="0" cellspacing="0">
@@ -166,7 +166,7 @@ const GOOGLE_REVIEW_LINK = 'https://g.page/r/XXXXXXXX/review'; // ← remplace p
 
 function reviewHtml(data: any) {
 	return emailBase(`
-        <h1 style="margin:0 0 8px;font-size:24px;color:#151d3c;">⭐ Comment s'est passé votre lavage ?</h1>
+        <h1 style="margin:0 0 8px;font-size:24px;color:#151d3c;">Comment s'est passé votre lavage ?</h1>
         <p style="margin:0 0 24px;color:#666;font-size:15px;">
           Bonjour <strong>${data.name}</strong>,<br><br>
           Merci d'avoir choisi YanisWash pour votre <strong>${data.vehicle}</strong> !
@@ -190,7 +190,7 @@ function reviewHtml(data: any) {
 // ─── Email 4: Notification Yanis ──────────────────────────
 function notificationYanisHtml(data: any) {
 	return emailBase(`
-        <h1 style="margin:0 0 8px;font-size:24px;color:#151d3c;">🚗 Nouvelle réservation !</h1>
+        <h1 style="margin:0 0 8px;font-size:24px;color:#151d3c;">Nouvelle réservation !</h1>
         <p style="margin:0 0 24px;color:#666;font-size:15px;">Un nouveau client vient de réserver.</p>
         
         <table width="100%" style="background:#f4f4f8;border-radius:16px;padding:20px;margin-bottom:24px;" cellpadding="0" cellspacing="0">
@@ -365,13 +365,13 @@ export async function POST({ request }) {
 
 			await sendEmail({
 				to: 'yaniswash@gmail.com',
-				subject: `🚗 Nouvelle réservation — ${data.name}`,
+				subject: `Nouvelle réservation — ${data.name}`,
 				html: notificationYanisHtml(data)
 			});
 
 			await sendEmail({
 				to: data.email,
-				subject: '🚗 Rappel — Votre lavage est demain !',
+				subject: 'Rappel — Votre lavage est demain !',
 				html: rappelHtml(data),
 				scheduledAt: new Date(new Date(data.datetime).getTime() - 24 * 60 * 60 * 1000).toISOString()
 			});
