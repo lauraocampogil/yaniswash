@@ -79,7 +79,7 @@
 			xl:col-span-1 xl:col-start-6 xl:row-start-2 xl:self-start
 			xl:pb-10 max-xl:sm:col-span-2 max-xl:sm:col-start-5 max-xl:sm:row-start-2 max-xl:sm:self-start"
 		>
-			<p class="font-bold text-white">Lundi - Samedi</p>
+			<p class="font-bold text-white">Lundi - Dimanche</p>
 			<p class="text-mobile-body text-white">{contact.hours}</p>
 			<a
 				href="#contact"

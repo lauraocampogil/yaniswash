@@ -212,7 +212,7 @@
 					phone: '+0491 73 97 89',
 					email: 'yaniswash@gmail.com',
 					adresse: 'Rue des Maraichers 5, 1070 Bruxelles',
-					hours: '8h – 18h'
+					hours: '8h – 20h'
 				},
 				legal: [
 					{ label: 'Mentions Légales', href: '/mentions-legales' },
