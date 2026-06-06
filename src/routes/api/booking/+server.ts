@@ -1,8 +1,8 @@
 import {
 	CAL_API_KEY,
 	CAL_EVENT_TYPE_ID,
-	STRIPE_PAYMENT_LINK,
-	RESEND_API_KEY
+	RESEND_API_KEY,
+	STRIPE_SECRET_KEY
 } from '$env/static/private';
 
 // ─── Templates HTML ───────────────────────────────────────
@@ -387,9 +387,61 @@ export async function POST({ request }) {
 
 			return new Response(JSON.stringify({ success: true }), { status: 200 });
 		} else {
-			return new Response(JSON.stringify({ success: true, stripeUrl: STRIPE_PAYMENT_LINK }), {
-				status: 200
+			// Stripe Checkout dynamique
+			const stripeRes = await fetch('https://api.stripe.com/v1/checkout/sessions', {
+				method: 'POST',
+				headers: {
+					Authorization: `Bearer ${STRIPE_SECRET_KEY}`,
+					'Content-Type': 'application/x-www-form-urlencoded'
+				},
+				body: new URLSearchParams({
+					'payment_method_types[]': 'card',
+					mode: 'payment',
+					'line_items[0][price_data][currency]': 'eur',
+					'line_items[0][price_data][unit_amount]': String(data.totalPrice * 100),
+					'line_items[0][price_data][product_data][name]': `YanisWash — ${data.service} (${data.vehicle})`,
+					'line_items[0][price_data][product_data][description]': [
+						`📅 ${data.date} à ${data.time}`,
+						data.domicile ? `📍 ${data.address}` : '📍 Station YanisWash',
+						data.options?.length ? `➕ ${data.options.join(', ')}` : ''
+					]
+						.filter(Boolean)
+						.join(' | '),
+					'line_items[0][quantity]': '1',
+					success_url: 'https://yaniswash.be/booking-success',
+					cancel_url: 'https://yaniswash.be',
+					customer_email: data.email,
+					'metadata[name]': data.name,
+					'metadata[phone]': data.phone,
+					'metadata[vehicle]': data.vehicle,
+					'metadata[service]': data.service,
+					'metadata[date]': data.date,
+					'metadata[time]': data.time,
+					'metadata[domicile]': data.domicile ? 'Oui' : 'Non',
+					'metadata[address]': data.address || '',
+					'metadata[options]': data.options?.join(', ') || '',
+					'metadata[total]': String(data.totalPrice)
+				})
 			});
+
+			const session = await stripeRes.json();
+			console.log('Stripe session:', JSON.stringify(session));
+
+			if (session.url) {
+				await createCalBooking(data);
+
+				await sendEmail({
+					to: 'yaniswash@gmail.com',
+					subject: `🚗 Nouvelle réservation (en ligne) — ${data.name}`,
+					html: notificationYanisHtml(data)
+				});
+
+				return new Response(JSON.stringify({ success: true, stripeUrl: session.url }), {
+					status: 200
+				});
+			} else {
+				throw new Error(`Stripe error: ${JSON.stringify(session)}`);
+			}
 		}
 	} catch (error) {
 		console.error('Booking error:', error);
