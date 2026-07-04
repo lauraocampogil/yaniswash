@@ -158,8 +158,7 @@
 					},
 					{
 						question: 'Travaillez-vous le week-end?',
-						answer:
-							'Oui, du lundi au samedi de 8h à 18h. Contactez-nous pour les disponibilités le samedi.'
+						answer: 'Oui, du lundi au dimanche de 8h à 20h. Contactez-nous pour les disponibilités.'
 					},
 					{
 						question: 'Puis-je annuler ou déplacer mon rendez-vous?',
