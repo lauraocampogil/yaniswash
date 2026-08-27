@@ -158,7 +158,7 @@
 					},
 					{
 						question: 'Travaillez-vous le week-end?',
-						answer: 'Oui, du lundi au dimanche de 8h à 20h. Contactez-nous pour les disponibilités.'
+						answer: 'Oui, du lundi au dimanche de 8h à 22h. Contactez-nous pour les disponibilités.'
 					},
 					{
 						question: 'Puis-je annuler ou déplacer mon rendez-vous?',
@@ -211,7 +211,7 @@
 					phone: '+0491 73 97 89',
 					email: 'yaniswash@gmail.com',
 					adresse: 'Rue des Maraichers 5, 1070 Bruxelles',
-					hours: '8h – 20h'
+					hours: '8h – 22h'
 				},
 				legal: [
 					{ label: 'Mentions Légales', href: '/mentions-legales' },
