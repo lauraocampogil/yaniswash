@@ -9,10 +9,42 @@
 	let availableSlots = $state<Record<string, string[]>>({});
 
 	onMount(async () => {
-		const res = await fetch('/api/availability');
-		const data = await res.json();
-		unavailableDates = data.unavailableDates ?? [];
-		availableSlots = data.availableSlots ?? {};
+		const pricingRes = await fetch('/api/pricing');
+		const pricingData = await pricingRes.json();
+		console.log('Pricing data:', JSON.stringify(pricingData));
+
+		// Map Directus values → formulaire labels
+		const vehicleMap: Record<string, string> = {
+			citadine: 'Citadine',
+			break: 'Break',
+			'4x4': '4*4',
+			camionnette: 'Camionnette'
+		};
+
+		const serviceMap: Record<string, string> = {
+			interieur: 'Intérieur',
+			exterieur: 'Extérieur',
+			int_ext: 'Int + Ext'
+		};
+
+		// Construit prices dynamiquement
+		for (const item of pricingData.pricing ?? []) {
+			const vehicle = vehicleMap[item.vehicule] ?? item.vehicule;
+			const service = serviceMap[item.service] ?? item.service;
+			if (!prices[vehicle]) prices[vehicle] = {};
+			prices[vehicle][service] = item.price;
+		}
+
+		// Construit optionPrices dynamiquement
+		for (const opt of pricingData.options ?? []) {
+			optionPrices[opt.name] = opt.price;
+		}
+
+		// Charge les disponibilités
+		const availRes = await fetch('/api/availability');
+		const availData = await availRes.json();
+		unavailableDates = availData.unavailableDates ?? [];
+		availableSlots = availData.availableSlots ?? {};
 	});
 
 	let availableTimeSlots = $derived.by(() => {
@@ -88,20 +120,29 @@
 		payment: ''
 	});
 
-	const prices: Record<string, Record<string, number>> = {
-		Citadine: { Intérieur: 40, Extérieur: 40, 'Int + Ext': 60 },
-		Break: { Intérieur: 40, Extérieur: 40, 'Int + Ext': 60 },
-		'4*4': { Intérieur: 50, Extérieur: 50, 'Int + Ext': 70 },
-		Camionnette: { Intérieur: 50, Extérieur: 50, 'Int + Ext': 70 }
-	};
-
-	const optionPrices: Record<string, number> = {
-		'Shampooing siège': 15,
-		'Traitement cuir': 15,
-		'Très sale / poils de chien': 10
-	};
+	let prices = $state<Record<string, Record<string, number>>>({});
+	let optionPrices = $state<Record<string, number>>({});
 
 	const STATION_ADDRESS = 'Rue des Maraichers 5, 1070 Bruxelles';
+
+	async function calculateDistance(address: string) {
+		if (!address) return;
+		const res = await fetch(
+			`/api/distance?origin=${encodeURIComponent(STATION_ADDRESS)}&destination=${encodeURIComponent(address)}`
+		);
+		const data = await res.json();
+		if (data.distance_km) {
+			// +10€ par tranche de 25km
+			deplacement = Math.ceil(data.distance_km / 25) * 10;
+		}
+	}
+
+	function selectAddress(description: string) {
+		form.address = description;
+		addressSuggestions = [];
+		showSuggestions = false;
+		calculateDistance(description); // ← calcule la distance après sélection
+	}
 
 	// Prix déplacement calculé (sera mis à jour quand on aura Google Maps)
 	let deplacement = $state(0);
@@ -277,12 +318,6 @@
 			addressSuggestions = data.predictions ?? [];
 			showSuggestions = addressSuggestions.length > 0;
 		}, 300);
-	}
-
-	function selectAddress(description: string) {
-		form.address = description;
-		addressSuggestions = [];
-		showSuggestions = false;
 	}
 </script>
 

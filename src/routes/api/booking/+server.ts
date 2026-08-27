@@ -1,6 +1,6 @@
 import {
-	CAL_API_KEY,
-	CAL_EVENT_TYPE_ID,
+	DIRECTUS_URL,
+	DIRECTUS_TOKEN,
 	RESEND_API_KEY,
 	STRIPE_SECRET_KEY
 } from '$env/static/private';
@@ -284,58 +284,58 @@ async function sendEmail({
 	});
 }
 
-// ─── Cal.com booking ─────────────────────────────────────
-function toBrusselsISO(date: string, time: string): string {
-	const month = parseInt(date.split('-')[1]);
+// ─── Directus booking ─────────────────────────────────────
+async function createDirectusBooking(data: any, stripeSessionId?: string) {
+	const month = parseInt(data.date.split('-')[1]);
 	const offset = month >= 3 && month <= 10 ? '+02:00' : '+01:00';
-	return `${date}T${time}:00${offset}`;
-}
+	const datetime = `${data.date}T${data.time}:00${offset}`;
 
-async function createCalBooking(data: any) {
-	const location =
-		data.domicile && data.address
-			? data.address
-			: 'Rue des Maraichers 5, 1070 Anderlecht, Bruxelles';
+	console.log('vehicule envoyé:', data.vehicle?.toLowerCase().replace('*', 'x'));
 
-	const startTime = toBrusselsISO(data.date, data.time);
+	console.log(
+		'Sending to Directus:',
+		JSON.stringify({
+			name: data.name,
+			email: data.email,
+			datetime: datetime,
+			vehicule: data.vehicle?.toLowerCase().replace('*', 'x'),
+			service: data.service,
+			options: data.options?.length ? data.options : []
+		})
+	);
 
-	console.log('Cal.com v2 request:', {
-		eventTypeId: Number(CAL_EVENT_TYPE_ID),
-		start: startTime,
-		name: data.name,
-		email: data.email
-	});
-
-	const response = await fetch('https://api.cal.com/v2/bookings', {
+	const res = await fetch(`${DIRECTUS_URL}/items/bookings`, {
 		method: 'POST',
 		headers: {
-			'Content-Type': 'application/json',
-			Authorization: `Bearer ${CAL_API_KEY}`,
-			'cal-api-version': '2024-08-13'
+			Authorization: `Bearer ${DIRECTUS_TOKEN}`,
+			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify({
-			eventTypeId: Number(CAL_EVENT_TYPE_ID),
-			start: startTime,
-			attendee: {
-				name: data.name,
-				email: data.email,
-				timeZone: 'Europe/Brussels',
-				language: 'fr'
-			},
-			location: location,
-			metadata: {
-				vehicle: data.vehicle,
-				service: data.service,
-				options: data.options?.join(', ') || '',
-				payment: data.payment === 'cash' ? 'Espèces' : 'En ligne',
-				total: `€${data.totalPrice}`,
-				domicile: data.domicile ? 'Oui' : 'Non'
-			}
+			name: data.name,
+			email: data.email,
+			phone: data.phone,
+			datetime: datetime,
+			vehicule: data.vehicle?.toLowerCase().replace('*', 'x') ?? '',
+			service:
+				data.service === 'Int + Ext'
+					? 'int_ext'
+					: data.service === 'Intérieur'
+						? 'interieur'
+						: data.service === 'Extérieur'
+							? 'exterieur'
+							: data.service,
+			options: data.options?.length ? data.options : [],
+			domicile: data.domicile,
+			address: data.address || '',
+			payment: data.payment,
+			total: data.totalPrice,
+			status: data.payment === 'cash' ? 'confirmed' : 'pending',
+			stripe_session_id: stripeSessionId || ''
 		})
 	});
 
-	const result = await response.json();
-	console.log('Cal.com v2 response:', JSON.stringify(result, null, 2));
+	const result = await res.json();
+	console.log('Directus response:', JSON.stringify(result));
 	return result;
 }
 
@@ -347,12 +347,11 @@ export async function POST({ request }) {
 
 	try {
 		if (data.payment === 'cash') {
-			const calResult = await createCalBooking(data);
-			console.log('Cal result status:', calResult.status);
+			const directusResult = await createDirectusBooking(data);
 
-			if (calResult.status !== 'success') {
-				console.error('Cal.com ERREUR:', JSON.stringify(calResult));
-				return new Response(JSON.stringify({ success: false, error: 'Cal.com booking failed' }), {
+			if (!directusResult.data) {
+				console.error('Directus ERREUR:', JSON.stringify(directusResult));
+				return new Response(JSON.stringify({ success: false, error: 'Booking failed' }), {
 					status: 500
 				});
 			}
@@ -387,7 +386,6 @@ export async function POST({ request }) {
 
 			return new Response(JSON.stringify({ success: true }), { status: 200 });
 		} else {
-			// Stripe Checkout dynamique
 			const stripeRes = await fetch('https://api.stripe.com/v1/checkout/sessions', {
 				method: 'POST',
 				headers: {
@@ -413,7 +411,7 @@ export async function POST({ request }) {
 					customer_email: data.email,
 					'metadata[name]': data.name,
 					'metadata[phone]': data.phone,
-					'metadata[vehicle]': data.vehicle,
+					'metadata[vehicule]': data.vehicule,
 					'metadata[service]': data.service,
 					'metadata[date]': data.date,
 					'metadata[time]': data.time,
@@ -428,7 +426,7 @@ export async function POST({ request }) {
 			console.log('Stripe session:', JSON.stringify(session));
 
 			if (session.url) {
-				await createCalBooking(data);
+				await createDirectusBooking(data, session.id);
 
 				await sendEmail({
 					to: 'yaniswash@gmail.com',
