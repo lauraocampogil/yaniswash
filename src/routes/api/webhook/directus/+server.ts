@@ -81,10 +81,9 @@ export async function POST({ request }) {
 	}
 
 	const body = await request.json();
-	console.log('Directus webhook body complet:', JSON.stringify(body, null, 2));
-	console.log('Directus webhook reçu:', JSON.stringify(body));
+	console.log('Webhook reçu:', JSON.stringify(body));
 
-	const booking = body.payload;
+	const booking = body; // ← directement, pas body.payload
 
 	if ((booking?.status === 'cancelled' || booking?.status === 'annuler') && booking?.email) {
 		const dt = new Date(booking.datetime);
