@@ -11,7 +11,6 @@
 	onMount(async () => {
 		const pricingRes = await fetch('/api/pricing');
 		const pricingData = await pricingRes.json();
-		console.log('Pricing data:', JSON.stringify(pricingData));
 
 		// Map Directus values → formulaire labels
 		const vehicleMap: Record<string, string> = {
