@@ -1,9 +1,9 @@
-import { RESEND_API_KEY } from '$env/static/private';
+import { RESEND_API_KEY, DIRECTUS_WEBHOOK_SECRET } from '$env/static/private';
 
-function annulationHtml(attendeeName: string, date: string, time: string) {
+function annulationHtml(name: string, date: string, time: string) {
 	return `<!DOCTYPE html>
 <html lang="fr">
-<head><meta charset="UTF-8"></head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
 <body style="margin:0;padding:0;background:#f4f4f8;font-family:Arial,Helvetica,sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f8;padding:40px 20px;">
     <tr><td align="center">
@@ -15,9 +15,9 @@ function annulationHtml(attendeeName: string, date: string, time: string) {
         </tr>
         <tr>
           <td style="padding:32px 40px;">
-            <h1 style="margin:0 0 8px;font-size:24px;color:#151d3c;">Réservation annulée</h1>
+            <h1 style="margin:0 0 8px;font-size:24px;color:#151d3c;">❌ Réservation annulée</h1>
             <p style="margin:0 0 24px;color:#666;font-size:15px;">
-              Bonjour <strong>${attendeeName}</strong>,<br><br>
+              Bonjour <strong>${name}</strong>,<br><br>
               Votre réservation du <strong>${date} à ${time}</strong> a été annulée.
             </p>
             <p style="color:#666;font-size:14px;margin:0 0 24px;">
@@ -60,7 +60,7 @@ function annulationHtml(attendeeName: string, date: string, time: string) {
               <tr>
                 <td style="padding:8px 0;text-align:center;">
                   <p style="margin:0;font-size:12px;font-weight:600;color:#151d3c;font-family:Arial,sans-serif;">
-                    Lavage automobile à Bruxelles — Du lundi au samedi 8h–18h
+                    Lavage automobile à Bruxelles — Du lundi au samedi 8h–22h
                   </p>
                 </td>
               </tr>
@@ -75,43 +75,46 @@ function annulationHtml(attendeeName: string, date: string, time: string) {
 }
 
 export async function POST({ request }) {
+	const secret = request.headers.get('x-webhook-secret');
+	if (secret !== DIRECTUS_WEBHOOK_SECRET) {
+		return new Response('Unauthorized', { status: 401 });
+	}
+
 	const body = await request.json();
+	console.log('Directus webhook reçu:', JSON.stringify(body));
 
-	console.log('Cal.com webhook:', JSON.stringify(body, null, 2));
+	const booking = body.payload;
 
-	if (body.triggerEvent === 'BOOKING_CANCELLED') {
-		const attendee = body.payload?.attendees?.[0];
-		const startTime = body.payload?.startTime;
+	if (booking?.status === 'cancelled' && booking?.email) {
+		const dt = new Date(booking.datetime);
+		const date = dt.toLocaleDateString('fr-BE', {
+			weekday: 'long',
+			day: 'numeric',
+			month: 'long',
+			year: 'numeric',
+			timeZone: 'Europe/Brussels'
+		});
+		const time = dt.toLocaleTimeString('fr-BE', {
+			hour: '2-digit',
+			minute: '2-digit',
+			timeZone: 'Europe/Brussels'
+		});
 
-		if (attendee?.email && startTime) {
-			const dt = new Date(startTime);
-			const date = dt.toLocaleDateString('fr-BE', {
-				weekday: 'long',
-				day: 'numeric',
-				month: 'long',
-				year: 'numeric',
-				timeZone: 'Europe/Brussels'
-			});
-			const time = dt.toLocaleTimeString('fr-BE', {
-				hour: '2-digit',
-				minute: '2-digit',
-				timeZone: 'Europe/Brussels'
-			});
+		await fetch('https://api.resend.com/emails', {
+			method: 'POST',
+			headers: {
+				Authorization: `Bearer ${RESEND_API_KEY}`,
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				from: 'YanisWash <noreply@yaniswash.be>',
+				to: booking.email,
+				subject: '❌ Votre réservation YanisWash a été annulée',
+				html: annulationHtml(booking.name, date, time)
+			})
+		});
 
-			await fetch('https://api.resend.com/emails', {
-				method: 'POST',
-				headers: {
-					Authorization: `Bearer ${RESEND_API_KEY}`,
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({
-					from: 'YanisWash <noreply@yaniswash.be>',
-					to: attendee.email,
-					subject: '❌ Votre réservation YanisWash a été annulée',
-					html: annulationHtml(attendee.name, date, time)
-				})
-			});
-		}
+		console.log('Email annulation envoyé à:', booking.email);
 	}
 
 	return new Response(JSON.stringify({ received: true }), { status: 200 });
