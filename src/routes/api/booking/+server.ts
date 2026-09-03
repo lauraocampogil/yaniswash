@@ -61,7 +61,7 @@ function emailBase(content: string) {
               <tr>
                 <td style="padding:8px 0;text-align:center;">
                   <p style="margin:0;font-size:12px;font-weight:600;color:#151d3c;font-family:Arial,sans-serif;">
-                    Lavage automobile à Bruxelles — Du lundi au samedi 8h–18h
+                    Lavage automobile à Bruxelles — Du lundi au dimanche 8h–22h
                   </p>
                 </td>
               </tr>
