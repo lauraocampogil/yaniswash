@@ -81,9 +81,13 @@ export async function POST({ request }) {
 	}
 
 	const body = await request.json();
-	console.log('Webhook reçu:', JSON.stringify(body));
+	console.log('Body reçu:', JSON.stringify(body));
 
-	const booking = body; // ← directement, pas body.payload
+	// Directus peut envoyer les données dans différents formats
+	const booking = body.payload ?? body.event?.payload ?? body;
+
+	console.log('booking status:', booking?.status);
+	console.log('booking email:', booking?.email);
 
 	if ((booking?.status === 'cancelled' || booking?.status === 'annuler') && booking?.email) {
 		const dt = new Date(booking.datetime);
