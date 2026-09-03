@@ -60,7 +60,7 @@ function annulationHtml(name: string, date: string, time: string) {
               <tr>
                 <td style="padding:8px 0;text-align:center;">
                   <p style="margin:0;font-size:12px;font-weight:600;color:#151d3c;font-family:Arial,sans-serif;">
-                    Lavage automobile à Bruxelles — Du lundi au samedi 8h–22h
+                    Lavage automobile à Bruxelles — Du lundi au dimanche 8h–22h
                   </p>
                 </td>
               </tr>
@@ -81,16 +81,17 @@ export async function POST({ request }) {
 	}
 
 	const body = await request.json();
-	console.log('Body reçu:', JSON.stringify(body));
 
-	// Directus peut envoyer les données dans différents formats
-	const booking = body.payload ?? body.event?.payload ?? body;
+	// Cherche les données dans tous les formats possibles
+	const booking = body.payload ?? body;
+	const status = booking?.status ?? body?.status;
+	const email = booking?.email ?? body?.email;
+	const name = booking?.name ?? body?.name;
+	const datetime = booking?.datetime ?? body?.datetime;
 
-	console.log('booking status:', booking?.status);
-	console.log('booking email:', booking?.email);
-
-	if ((booking?.status === 'cancelled' || booking?.status === 'annuler') && booking?.email) {
-		const dt = new Date(booking.datetime);
+	// Envoie le mail si status = annuler OU cancelled
+	if (email && (status === 'annuler' || status === 'cancelled')) {
+		const dt = new Date(datetime);
 		const date = dt.toLocaleDateString('fr-BE', {
 			weekday: 'long',
 			day: 'numeric',
@@ -104,7 +105,7 @@ export async function POST({ request }) {
 			timeZone: 'Europe/Brussels'
 		});
 
-		await fetch('https://api.resend.com/emails', {
+		const emailRes = await fetch('https://api.resend.com/emails', {
 			method: 'POST',
 			headers: {
 				Authorization: `Bearer ${RESEND_API_KEY}`,
@@ -112,14 +113,15 @@ export async function POST({ request }) {
 			},
 			body: JSON.stringify({
 				from: 'YanisWash <noreply@yaniswash.be>',
-				to: booking.email,
+				to: email,
 				subject: '❌ Votre réservation YanisWash a été annulée',
-				html: annulationHtml(booking.name, date, time)
+				html: annulationHtml(name, date, time)
 			})
 		});
 
-		console.log('Email annulation envoyé à:', booking.email);
+		const emailResult = await emailRes.json();
+		console.log('Email result:', JSON.stringify(emailResult));
 	}
 
-	return new Response(JSON.stringify({ received: true }), { status: 200 });
+	return new Response(JSON.stringify({ received: true, status, email }), { status: 200 });
 }

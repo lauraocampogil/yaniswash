@@ -238,8 +238,8 @@ function notificationYanisHtml(data: any) {
 
         <table cellpadding="0" cellspacing="0"><tr>
           <td>
-            <a href="https://app.cal.com/bookings/upcoming" style="display:inline-block;background:#151d3c;color:#fff;text-decoration:none;padding:12px 24px;border-radius:100px;font-size:14px;font-weight:600;">
-              Voir sur Cal.com →
+            <a href="http://directus-detgvouevteyensdyeklh8hr.128.140.85.57.sslip.io/admin/settings/flows/c0caa6c5-ef49-41c9-b733-d65a334bc265" style="display:inline-block;background:#151d3c;color:#fff;text-decoration:none;padding:12px 24px;border-radius:100px;font-size:14px;font-weight:600;">
+              Voir sur Directus →
             </a>
           </td>
         </tr></table>
