@@ -2,6 +2,7 @@
 	import Builder from '$sections/builder.svelte';
 	import Booking from '$sections/booking.svelte';
 	import { bookingOpen } from '$lib/stores/booking';
+	let { data } = $props();
 
 	const blocks = [
 		{
