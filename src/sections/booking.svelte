@@ -5,6 +5,7 @@
 	import { French } from 'flatpickr/dist/l10n/fr.js';
 
 	let shampooingSeats = $state(0);
+	let traitementSeats = $state(0);
 
 	// Supprime ce $effect :
 	// $effect(() => {
@@ -26,6 +27,8 @@
 		form.options.forEach((opt) => {
 			if (opt === 'Shampooing siège') {
 				total += (optionPrices[opt] ?? 0) * shampooingSeats;
+			} else if (opt === 'Traitement cuir') {
+				total += (optionPrices[opt] ?? 0) * traitementSeats;
 			} else {
 				total += optionPrices[opt] ?? 0;
 			}
@@ -284,7 +287,7 @@
 			const res = await fetch('/api/booking', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ ...form, totalPrice, deplacement, shampooingSeats })
+				body: JSON.stringify({ ...form, totalPrice, deplacement, shampooingSeats, traitementSeats })
 			});
 			const result = await res.json();
 			if (result.success) {
@@ -840,8 +843,47 @@
 										</div>
 									</div>
 
+									<!-- Traitement cuir avec selector -->
+									<div class="flex items-center justify-between">
+										<div class="flex flex-col">
+											<span class="text-sm text-dark">Traitement cuir</span>
+											<span class="text-xs text-dark/40"
+												>€{optionPrices['Traitement cuir'] ?? 15}/siège</span
+											>
+										</div>
+										<div class="flex items-center gap-2">
+											<button
+												type="button"
+												onclick={() => {
+													traitementSeats = Math.max(0, traitementSeats - 1);
+													if (traitementSeats === 0) {
+														form.options = form.options.filter((o) => o !== 'Traitement cuir');
+													}
+												}}
+												class="flex h-7 w-7 cursor-pointer items-center justify-center rounded-full border border-dark/20 text-dark hover:bg-secondary-accent"
+											>
+												−
+											</button>
+											<span class="w-4 text-center text-sm font-semibold text-dark"
+												>{traitementSeats}</span
+											>
+											<button
+												type="button"
+												onclick={() => {
+													traitementSeats = Math.min(8, traitementSeats + 1);
+													if (traitementSeats === 1) {
+														form.options = [...form.options, 'Traitement cuir'];
+													}
+												}}
+												class="flex h-7 w-7 cursor-pointer items-center justify-center rounded-full border border-dark/20 text-dark hover:bg-secondary-accent"
+											>
+												+
+											</button>
+										</div>
+									</div>
+
 									<!-- Autres options -->
-									{#each Object.entries(optionPrices).filter(([opt]) => opt !== 'Shampooing siège') as [opt, price]}
+									{#each Object.entries(optionPrices).filter(([opt]) => opt !== 'Shampooing siège' && opt !== 'Traitement cuir') as [opt, price]}
 										<button
 											type="button"
 											onclick={() => toggleOption(opt)}
