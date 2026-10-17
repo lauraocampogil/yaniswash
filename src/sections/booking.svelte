@@ -4,6 +4,36 @@
 	import flatpickr from 'flatpickr';
 	import { French } from 'flatpickr/dist/l10n/fr.js';
 
+	let shampooingSeats = $state(0);
+
+	// Supprime ce $effect :
+	// $effect(() => {
+	//     if (shampooingSeats > 0) {
+	//         if (!form.options.includes('Shampooing siège')) {
+	//             form.options = [...form.options, 'Shampooing siège'];
+	//         }
+	//     } else {
+	//         form.options = form.options.filter(o => o !== 'Shampooing siège');
+	//     }
+	// });
+
+	// Modifie le calcul du total pour shampooing
+	let totalPrice = $derived.by(() => {
+		let total = 0;
+		if (form.vehicle && form.service && prices[form.vehicle]?.[form.service]) {
+			total += prices[form.vehicle][form.service];
+		}
+		form.options.forEach((opt) => {
+			if (opt === 'Shampooing siège') {
+				total += (optionPrices[opt] ?? 0) * shampooingSeats;
+			} else {
+				total += optionPrices[opt] ?? 0;
+			}
+		});
+		if (form.domicile) total += deplacement;
+		return total;
+	});
+
 	// ── Disponibilité ──
 	let unavailableDates = $state<string[]>([]);
 	let availableSlots = $state<Record<string, string[]>>({});
@@ -146,18 +176,6 @@
 	// Prix déplacement calculé (sera mis à jour quand on aura Google Maps)
 	let deplacement = $state(0);
 
-	let totalPrice = $derived.by(() => {
-		let total = 0;
-		if (form.vehicle && form.service && prices[form.vehicle]?.[form.service]) {
-			total += prices[form.vehicle][form.service];
-		}
-		form.options.forEach((opt) => {
-			total += optionPrices[opt] ?? 0;
-		});
-		if (form.domicile) total += deplacement;
-		return total;
-	});
-
 	const timeSlots = ['08:00', '09:00', '10:00', '11:00', '13:00', '14:00', '15:00', '16:00'];
 	const vehicles = ['Citadine', 'Break', '4*4', 'Camionnette'];
 	const services = ['Intérieur', 'Extérieur', 'Int + Ext'];
@@ -266,7 +284,7 @@
 			const res = await fetch('/api/booking', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ ...form, totalPrice, deplacement })
+				body: JSON.stringify({ ...form, totalPrice, deplacement, shampooingSeats })
 			});
 			const result = await res.json();
 			if (result.success) {
@@ -783,7 +801,47 @@
 							<div class="rounded-xl border border-dark/10 p-4">
 								<p class="mb-3 text-sm font-semibold text-dark">Options supplémentaires</p>
 								<div class="flex flex-col gap-3">
-									{#each Object.entries(optionPrices) as [opt, price]}
+									<!-- Shampooing siège avec selector -->
+									<div class="flex items-center justify-between">
+										<div class="flex flex-col">
+											<span class="text-sm text-dark">Shampooing siège</span>
+											<span class="text-xs text-dark/40"
+												>€{optionPrices['Shampooing siège'] ?? 15}/siège</span
+											>
+										</div>
+										<div class="flex items-center gap-2">
+											<button
+												type="button"
+												onclick={() => {
+													shampooingSeats = Math.max(0, shampooingSeats - 1);
+													if (shampooingSeats === 0) {
+														form.options = form.options.filter((o) => o !== 'Shampooing siège');
+													}
+												}}
+												class="flex h-7 w-7 cursor-pointer items-center justify-center rounded-full border border-dark/20 text-dark hover:bg-secondary-accent"
+											>
+												−
+											</button>
+											<span class="w-4 text-center text-sm font-semibold text-dark"
+												>{shampooingSeats}</span
+											>
+											<button
+												type="button"
+												onclick={() => {
+													shampooingSeats = Math.min(8, shampooingSeats + 1);
+													if (shampooingSeats === 1) {
+														form.options = [...form.options, 'Shampooing siège'];
+													}
+												}}
+												class="flex h-7 w-7 cursor-pointer items-center justify-center rounded-full border border-dark/20 text-dark hover:bg-secondary-accent"
+											>
+												+
+											</button>
+										</div>
+									</div>
+
+									<!-- Autres options -->
+									{#each Object.entries(optionPrices).filter(([opt]) => opt !== 'Shampooing siège') as [opt, price]}
 										<button
 											type="button"
 											onclick={() => toggleOption(opt)}
@@ -792,7 +850,9 @@
 											<div class="flex items-center gap-2">
 												<div
 													class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors
-												{form.options.includes(opt) ? 'border-primary bg-primary text-white' : 'border-dark/20'}"
+                        {form.options.includes(opt)
+														? 'border-primary bg-primary text-white'
+														: 'border-dark/20'}"
 												>
 													{#if form.options.includes(opt)}
 														<svg

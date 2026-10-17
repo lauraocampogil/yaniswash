@@ -300,7 +300,13 @@ async function createDirectusBooking(data: any, stripeSessionId?: string) {
 			datetime: datetime,
 			vehicule: data.vehicle?.toLowerCase().replace('*', 'x'),
 			service: data.service,
-			options: data.options?.length ? data.options : []
+			options: data.options?.length
+				? data.options.map((o: string) =>
+						o === 'Shampooing siège' && data.shampooingSeats > 1
+							? `Shampooing siège x${data.shampooingSeats}`
+							: o
+					)
+				: []
 		})
 	);
 
